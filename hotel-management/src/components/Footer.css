@@ -1,0 +1,65 @@
+/* Footer.css */
+.footer {
+    background-color: #002244; /* Use the color from your provided design */
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1200px; /* Adjust as necessary to fit your site's layout */
+  }
+  
+  .footer-block {
+    display: flex;
+    flex-direction: column;
+    margin-right: 40px; /* Adjust the space between columns as needed */
+  }
+  
+  .footer-block h3 {
+    margin-bottom: 10px; /* Adjust as necessary for your design */
+  }
+  
+  .footer-block a, .footer-block p {
+    color: white;
+    text-decoration: none;
+    margin-bottom: 8px; /* Adjust the space between links as needed */
+  }
+  
+  .footer-icons {
+    display: flex;
+    /* Aligns the icons to the right of the footer */
+    margin-left: auto;
+  }
+  
+  .icon {
+    /* diameter of circe */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid white; 
+    margin-left: 10px; 
+    font-size: 24px; 
+  }
+  .ig-logo{
+    width: 20px;
+    height: 20px;
+  }
+  .fb-logo{
+    width: 20px;
+    height: 20px;
+  }
+  .x-logo{
+    width: 20px;
+    height: 20px;
+  }

@@ -1,0 +1,80 @@
+/* Date.css */
+.date-picker-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: #000000; /* This is for white text color */
+    background-size: cover; /* Ensure the background covers the entire div */
+  }
+  .whole-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    height: 15vh;
+    width: 100vh;
+  }
+  .date-input-container, .room-input-container {
+    position:relative;
+    border: 2px solid #9b9b9b; /* For white border */
+    
+    
+  }
+  .date-with-icon{
+    display: flex;
+    justify-content: center;
+    position: inherit;
+  }
+  
+  .date-label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: medium;
+  }
+  
+  .date-input, .room-input {
+    padding: 10px;
+    margin-right: 10px;
+    border: 2px solid #fff; /* For white border */
+    border-radius: 5px; /* Slightly rounded corners for the input */
+    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent black background */
+    color: #751313;
+    width: 200px; /* Adjust the width as needed */
+  }
+  
+  .dropdown-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #000000;
+  }
+  
+  .search-button {
+    padding: 10px 20px;
+    background-color: #007bff; /* Replace with the color you want */
+    border: none;
+    border-radius: 20px; /* Fully rounded edges for the button */
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    text-transform: uppercase; /* All letters in uppercase */
+  }
+  
+  .search-button:hover {
+    background-color: #0056b3; /* Darker shade for hover state */
+  }
+  
+  /* Responsive adjustments if necessary */
+  @media (max-width: 768px) {
+    .date-picker-wrapper {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .date-input, .room-input, .search-button {
+      margin-bottom: 10px;
+      width: 100%; /* Full width on smaller screens */
+    }
+  }
+  
