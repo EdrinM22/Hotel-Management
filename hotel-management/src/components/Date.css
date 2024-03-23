@@ -5,6 +5,7 @@
     justify-content: space-around;
     color: #000000; /* This is for white text color */
     background-size: cover; /* Ensure the background covers the entire div */
+    font-family: Lato, sans-serif;
   }
   .whole-container{
     display: flex;

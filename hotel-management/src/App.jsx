@@ -9,6 +9,7 @@ import EventBookingPage from "./pages/EventBookingPage";
 import LocationPage from "./pages/LocationPage";
 import FeedbackPage from "./pages/FeedbackPage";
 import ContactPage from "./pages/ContactPage";
+import LoginPage from "./pages/LoginPage";
 
 const router = createBrowserRouter([
 	{
@@ -40,7 +41,7 @@ const router = createBrowserRouter([
 	},
   {
     path: 'login',
-    element: <h1>login</h1>,
+    element: <LoginPage />
   },
   {
     path: 'staff',
