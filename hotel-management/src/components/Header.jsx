@@ -1,20 +1,55 @@
-import './Header.css';
-import Logo from '../assets/moto hotel.png';
+import "./Header.css";
+import Logo from "../assets/moto hotel.png";
+
+import { NavLink } from "react-router-dom";
+
 const Header = () => {
-  return (
-    <header className="header">
-      <div className="logo">
-      <img src={Logo} alt="Hotel Logo" className="logo"/>
-      </div>
-      <nav className="navigation">
-        <a href="/book" className="nav-link">Book</a>
-        <a href="/location" className="nav-link">Location</a>
-        <a href="/feedback" className="nav-link">Feedback</a>
-        <a href="/contact" className="nav-link">Contact Us</a>
-        <a href="/login" className="nav-link log-in">Log In</a>
-      </nav>
-    </header>
-  );
+	return (
+		<header className="header">
+			<div className="logo">
+				<NavLink to="./">
+					<img src={Logo} alt="Hotel Logo" className="logo" />
+				</NavLink>
+			</div>
+			<nav className="navigation">
+				<NavLink
+					to="/book"
+					className={({ isActive }) =>
+						isActive ? "nav-link nav-link-active" : "nav-link"
+					}>
+					Book
+				</NavLink>
+				<NavLink
+					to="/location"
+					className={({ isActive }) =>
+						isActive ? "nav-link nav-link-active" : "nav-link"
+					}>
+					Location
+				</NavLink>
+				<NavLink
+					to="/feedback"
+					className={({ isActive }) =>
+						isActive ? "nav-link nav-link-active" : "nav-link"
+					}>
+					Feedback
+				</NavLink>
+				<NavLink
+					to="/contact"
+					className={({ isActive }) =>
+						isActive ? "nav-link nav-link-active" : "nav-link"
+					}>
+					Contact Us
+				</NavLink>
+				<NavLink
+					to="/login"
+					className={({ isActive }) =>
+						isActive ? "log-in" : "log-in"
+					}>
+					Log In
+				</NavLink>
+			</nav>
+		</header>
+	);
 };
 
 export default Header;

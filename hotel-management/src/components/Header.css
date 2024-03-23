@@ -29,6 +29,10 @@
     color: #001427;
     transition: color 0.3s;
   }
+
+  .nav-link-active {
+    color: #e97e0b; 
+  }
   
   .nav-link:hover {
     color: #aaaaaa; /* Replace with the hover color you need */
@@ -42,10 +46,11 @@
     text-transform: uppercase;
     border-radius: 55px;
     transition: background-color 0.3s;
-
   }
   
   .log-in:hover {
     background-color: #0055bb; /* Replace with the button hover background color you need */
   }
+
+
   
