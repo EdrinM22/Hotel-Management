@@ -8,7 +8,7 @@ import RoomBookingPage from "./pages/RoomBookingPage";
 import EventBookingPage from "./pages/EventBookingPage";
 import LocationPage from "./pages/LocationPage";
 import FeedbackPage from "./pages/FeedbackPage";
-import ContactPage from "./pages/ContactPAge";
+import ContactPage from "./pages/ContactPage";
 
 const router = createBrowserRouter([
 	{
