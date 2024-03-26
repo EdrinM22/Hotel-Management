@@ -3,7 +3,7 @@ import Banner from "../assets/contact_banner.png";
 
 const ContactUs = () => {
 	return (
-        <>
+    <>
         <div className="contactfull-banner">
         <h1 className="contact-header">Contact Us</h1>
         <img src={Banner} alt="Contact Us Banner" className="contact-banner" />
