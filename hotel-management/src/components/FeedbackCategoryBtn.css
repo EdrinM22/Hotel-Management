@@ -1,0 +1,38 @@
+.feedback_category_btn {
+	background-color: transparent;
+	color: #001427;
+	border: 1px solid #001427;
+	padding: 15px 20px;
+	cursor: pointer;
+	font-size: 20px;
+	font-weight: 500;
+	margin: 0;
+	transition: all 0.3s ease;
+}
+
+.feedback_category_btn:hover {
+	scale: 1.1;
+}
+
+.feedback_category_btn.active {
+	background-color: #001427;
+	color: white;
+}
+
+@media screen and (max-width: 1035px) {
+	.feedback_category_btn {
+		font-size: 16px;
+	}
+}
+
+@media screen and (max-width: 930px) {
+	.feedback_category_btn {
+		/* width: 100%; */
+		/* border: 2px solid #ff1500; */
+		margin: 0 20px;
+		text-align: center;
+	}
+	.feedback_category_btn:hover {
+		scale: 1;
+	}
+}

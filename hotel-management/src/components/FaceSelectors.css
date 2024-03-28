@@ -1,0 +1,63 @@
+.feedbac-icon-container {
+	width: fit-content;
+    padding: 3px 0;
+}
+
+.face {
+	font-size: 80px;
+	cursor: pointer;
+	color: #001427;
+	transition: all 0.3s ease;
+
+	&&.angry {
+		color: #ff0000;
+	}
+
+	&&.sad {
+		color: #ea7703;
+	}
+
+	&&.neutral {
+		color: #e8e810;
+	}
+
+	&&.happy {
+		color: #1a98d7;
+	}
+
+	&&.ecstatic {
+		color: #00ff11;
+	}
+}
+
+@media screen and (max-width: 1035px) {
+	.face {
+		font-size: 60px;
+	}
+}
+
+@media screen and (max-width: 790px) {
+	.face {
+		font-size: 45px;
+	}
+}
+
+@media screen and (max-width: 649px) {
+    .face {
+		font-size: 60px;
+	}
+
+}
+
+@media screen and (max-width: 421px) {
+	.face {
+		font-size: 45px;
+	}
+}
+
+body {
+	background-color: #f0f0f0;
+	font-family: "Lato", sans-serif;
+	margin: 0;
+	padding: 0;
+}
