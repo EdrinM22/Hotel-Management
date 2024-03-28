@@ -87,3 +87,26 @@
     background-color: #001427;
     color: white;
 }
+
+@media screen and (max-width: 1035px) {
+	.login-options{
+		height: 100%;
+        
+	}
+    .login-form{
+        border-right: none;
+        border-bottom: 2px solid #00142750;
+    }
+}
+
+@media screen and (max-width: 649px) {
+	
+	.login-options{
+		flex-direction: column;
+	}
+    .login-form{
+        border-right: none;
+        border-bottom: 2px solid #00142750;
+    }
+
+}

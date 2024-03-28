@@ -107,3 +107,29 @@
   .submit:hover {
     background-color: #0055bb; /* Replace with the button hover background color you need */
   }
+/* its a messs */
+  @media screen and (max-width: 1035px) {
+    .contact-container{
+      height: 100%;
+          
+    }
+    .contact-banner{
+      margin-top: -14px;
+      margin-left : -9px;
+      padding: 0;
+      width: 100vw;}
+    
+  }
+  
+  @media screen and (max-width: 649px) {
+    
+    .contact-container{
+      flex-direction: column;
+    }
+    .contact-banner{
+      margin-top: -14px;
+      margin-left : -9px;
+      padding: 0;
+      width: 100vw;}
+    
+  }
