@@ -1,56 +1,120 @@
 .header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0;
+	margin: 0px 30px;
+	color: white;
+	/* height: 100px; */
+	/* box-shadow: 1px 2px 10px #888888; */
+}
+
+.logo-nav-link {
+	display: flex;
+}
+
+.logo {
+	width: 120px;
+}
+
+.navigation_menu {
+	justify-self: flex-end;
+	display: flex;
+	justify-content: space-between;
+	padding: 0;
+	align-items: center;
+  width: 65%;
+}
+
+.menu-button-container {
+	display: none;
+}
+
+.navigation {
+	justify-self: center;
+	display: flex;
+	gap: 25px;
+	list-style: none;
+	align-items: center;
+}
+
+.nav-link {
+	text-decoration: none;
+	color: #001427;
+	transition: color 0.2s;
+}
+
+.nav-link-active {
+	color: #001427;
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+.nav-link:hover {
+	color: #aaaaaa;
+}
+
+.log-in {
+	text-decoration: none;
+}
+
+.log-in:hover {
+	background-color: #0055bb; /* Replace with the button hover background color you need */
+}
+
+@media screen and (max-width: 778px) {
+  .header{
+    margin: 0px 15px;
+    height: fit-content;
+  }
+
+  .logo{
+    width: 110px;
+
+  }
+  .navigation_menu {
+    width: 70%;
+  }
+
+  .nav-link{
+    font-size: 13px;
+  }
+
+  .log-in{
+    font-size: 13px !important;
+  }
+
+  .navigation{
+    gap: 15px;
+  }
+}
+
+@media screen and (max-width: 574px) {
+  .menu-button-container{
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
-    background-color: #ffffff; /* Replace with the exact color you need */
-    color: white;
-    /* box-shadow: 1px 2px 10px #888888; */
-    
-
-  }
-  
-  .logo {
-    width: 120px;
-    margin-left: 9vh;
-    margin-top: -10px;;
-  }
-  
-  .navigation {
-    display: flex;
-    list-style: none;
-    align-items: center;
-    font-family: Lato, sans-serif;
-  }
-  
-  .nav-link {
-    margin-right: 20px;
-    text-decoration: none;
-    color: #001427;
-    transition: color 0.3s;
   }
 
-  .nav-link-active {
-    color: #e97e0b; 
+  .navigation_menu{
+    display: none;
+
+    &&.active{
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: absolute;
+      top: 50px;
+      right: 10px;
+      background-color: white;
+      padding: 10px;
+      z-index: 1;
+      width: fit-content;
+    }
   }
-  
-  .nav-link:hover {
-    color: #aaaaaa; /* Replace with the hover color you need */
-  }
-  
-  .log-in {
-    padding: 10px 20px;
-    border: none;
-    background-color: #001427; /* Replace with the exact button background color you need */
-    color: white;
-    text-transform: uppercase;
-    border-radius: 55px;
-    transition: background-color 0.3s;
-  }
-  
-  .log-in:hover {
-    background-color: #0055bb; /* Replace with the button hover background color you need */
+
+  .navigation{
+    flex-direction: column;
   }
 
 
-  
+}

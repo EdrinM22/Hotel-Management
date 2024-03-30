@@ -49,6 +49,11 @@
 	margin: 1rem 2rem 2rem 0;
 }
 
+.feedback_error_msg_text {
+	color: red;
+	font-size: 14px;
+}
+
 @media screen and (max-width: 1035px) {
 	.feedback_form_container_text {
 		font-size: 16px;

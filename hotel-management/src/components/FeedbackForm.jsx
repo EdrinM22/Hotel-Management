@@ -16,16 +16,16 @@ import {
 import { feedbackActions } from "../store/feedbackSlice";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useSubmitState } from "../hooks/useSubmitState";
 
 export default function FeedbackForm() {
 	const dispatch = useDispatch();
-	const feedback = useSelector((state) => state.feedback);
 	const navigation = useNavigate();
 
-	const isSelected = oneIsSelected(feedback.category);
+	const feedback = useSelector((state) => state.feedback);
+	const [submitState, setErrorMessage, setSubmitting] = useSubmitState();
 
-	const [errorMessage, setErrorMessage] = useState("");
+	const isSelected = oneIsSelected(feedback.category);
 
 	function handleSubmit() {
 		if (feedback.face === null) {
@@ -38,11 +38,21 @@ export default function FeedbackForm() {
 				setErrorMessage("Please leave a comment");
 				return;
 			}
+		} else {
+			if (feedback.comment !== "") {
+				handleCommentChange({ target: { value: "" } });
+			}
 		}
 
+		setSubmitting(true);
 		async function sendFeedback() {
 			try {
 				await submitFeedback(feedback);
+				// setTimeout(() => {
+				// 	setSubmitting(false);
+				// 	navigation("/");
+				// }, 3000);
+				setSubmitting(false);
 				navigation("/");
 			} catch (error) {
 				console.log(error);
@@ -50,8 +60,6 @@ export default function FeedbackForm() {
 		}
 
 		sendFeedback();
-
-		console.log(feedback);
 	}
 
 	function handleFaceClick(feedbackFaceSelected) {
@@ -124,10 +132,14 @@ export default function FeedbackForm() {
 						disabled={!isSelected}
 					/>
 				</div>
-				<p>{errorMessage}</p>
+				<p className="lato-bold feedback_error_msg_text">
+					{submitState.errorMessage}
+				</p>
 			</section>
 			<p className="feedback_form_button_container">
-				<Button onClick={handleSubmit}> Submit </Button>
+				<Button onClick={handleSubmit}>
+					{submitState.isSubmitting ? "Submitting ..." : "Submit"}
+				</Button>
 			</p>
 		</div>
 	);
