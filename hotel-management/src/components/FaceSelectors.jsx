@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import "./FaceSelectors.css";
 
 export default function FaceSelectors({
