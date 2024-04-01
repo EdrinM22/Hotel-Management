@@ -1,27 +1,75 @@
+/* eslint-disable no-undef */
 import "./FeedbackForm.css";
 
 import FaceSelectors from "./FaceSelectors";
 import FeedbackCategoryBtn from "./FeedbackCategoryBtn";
 import Input from "./Input";
+import Button from "./Button";
 
-import { oneIsSelected, feedbackCategories, faceIcons } from "../util/feedback";
+import {
+	oneIsSelected,
+	feedbackCategories,
+	faceIcons,
+	submitFeedback,
+} from "../util/feedback";
 
 import { feedbackActions } from "../store/feedbackSlice";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useSubmitState } from "../hooks/useSubmitState";
 
-export default function FeedbackForm({}) {
+export default function FeedbackForm() {
 	const dispatch = useDispatch();
+	const navigation = useNavigate();
+
 	const feedback = useSelector((state) => state.feedback);
+	const [submitState, setErrorMessage, setSubmitting] = useSubmitState();
+
 	const isSelected = oneIsSelected(feedback.category);
 
-	console.log(feedback);
+	function handleSubmit() {
+		if (feedback.face === null) {
+			setErrorMessage("Please select a face");
+			return;
+		}
+
+		if (isSelected) {
+			if (feedback.comment === "") {
+				setErrorMessage("Please leave a comment");
+				return;
+			}
+		} else {
+			if (feedback.comment !== "") {
+				handleCommentChange({ target: { value: "" } });
+			}
+		}
+
+		setSubmitting(true);
+		async function sendFeedback() {
+			try {
+				await submitFeedback(feedback);
+				// setTimeout(() => {
+				// 	setSubmitting(false);
+				// 	navigation("/");
+				// }, 3000);
+				setSubmitting(false);
+				navigation("/");
+			} catch (error) {
+				console.log(error);
+			}
+		}
+
+		sendFeedback();
+	}
 
 	function handleFaceClick(feedbackFaceSelected) {
 		dispatch(feedbackActions.setFace(feedbackFaceSelected));
+		setErrorMessage("");
 	}
 
 	function handleCommentChange(event) {
 		dispatch(feedbackActions.setComment(event.target.value));
+		setErrorMessage("");
 	}
 
 	function handleCategoryClick(categoryIndex) {
@@ -29,6 +77,7 @@ export default function FeedbackForm({}) {
 		newCategory[Object.keys(newCategory)[categoryIndex]] =
 			!newCategory[Object.keys(newCategory)[categoryIndex]];
 		dispatch(feedbackActions.setCategory(newCategory));
+		setErrorMessage("");
 	}
 
 	return (
@@ -80,10 +129,18 @@ export default function FeedbackForm({}) {
 						onChange={handleCommentChange}
 						placeholder="Please leave your feedback here"
 						value={feedback.comment}
-						// disabled={!isSelected}
+						disabled={!isSelected}
 					/>
 				</div>
+				<p className="lato-bold feedback_error_msg_text">
+					{submitState.errorMessage}
+				</p>
 			</section>
+			<p className="feedback_form_button_container">
+				<Button onClick={handleSubmit}>
+					{submitState.isSubmitting ? "Submitting ..." : "Submit"}
+				</Button>
+			</p>
 		</div>
 	);
 }

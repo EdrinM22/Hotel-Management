@@ -30,17 +30,28 @@
 	list-style: none;
 	display: flex;
 	gap: 1rem;
-	overflow: none;
+	/* overflow: hidden; */
 	padding: 0;
 	margin-top: 1rem;
 	max-width: 100%;
-	overflow: hidden;
 }
 
 .feedback-textarea-container {
 	justify-content: center;
 	align-items: center;
 	width: 80%;
+}
+
+.feedback_form_button_container {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	margin: 1rem 2rem 2rem 0;
+}
+
+.feedback_error_msg_text {
+	color: red;
+	font-size: 14px;
 }
 
 @media screen and (max-width: 1035px) {
