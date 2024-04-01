@@ -1,0 +1,135 @@
+
+.contact-header{
+    position:absolute;
+    top: 65%;
+    left: 50%;
+    font-size: 5rem;
+    transform: translate(-50%, -50%);
+    font-family: Lato, sans-serif;
+    color: rgb(255, 255, 255);
+}
+.contactfull-banner{
+    position: relative;
+    text-align: center;
+    color: white;
+    
+}
+.contact-banner{
+    margin-top: -14px;
+    margin-left : -9px;
+    padding: 0;
+    width: 100vw;
+}
+.contact-container{
+    display: flex;
+    font-family: Lato, sans-serif;
+    justify-content: center;
+    align-items: center;
+    margin: 100px;
+
+
+}
+.talk-with-us{
+    display: flex;
+    flex-direction: column;
+    margin-inline: 100px;
+    width: 600px;
+    
+
+}
+.talk-header{
+    font-size: 3rem
+
+}
+.talk-subheader{
+    font-size: 2rem;
+}
+.contact-info-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    border: 2px solid #ccc;
+    box-shadow: 5px 10px 18px #88888860;
+
+}
+.contact-info {
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 80px;
+    row-gap: 20px;
+    max-width: 600px;
+    margin: auto;
+
+  }
+  
+  .contact-info label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    width: 250px;
+  }
+  
+  .contact-info input[type="text"],
+  .contact-info input[type="email"],
+  .contact-info input[type="tel"],
+  .contact-info textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  .contact-info textarea {
+    height: 150px; /* Adjust the height as needed */
+  }
+  
+  
+  .form-button:hover {
+    background-color: #0056b3;
+  }
+  .comment{
+    resize: none;
+    margin-top: 20px;
+    width: 500px;
+    padding-bottom: 200px;
+  }
+  .submit{
+    padding: 10px 20px;
+    margin-top: 20px;
+    border: none;
+    background-color: #001427;
+    color: white;
+    border-radius: 55px;
+    transition: background-color 0.3s;
+    width: 200px;
+    height: 50px;
+}
+  .submit:hover {
+    background-color: #0055bb; /* Replace with the button hover background color you need */
+  }
+/* its a messs */
+  @media screen and (max-width: 1035px) {
+    .contact-container{
+      height: 100%;
+          
+    }
+    .contact-banner{
+      margin-top: -14px;
+      margin-left : -9px;
+      padding: 0;
+      width: 100vw;}
+    
+  }
+  
+  @media screen and (max-width: 649px) {
+    
+    .contact-container{
+      flex-direction: column;
+    }
+    .contact-banner{
+      margin-top: -14px;
+      margin-left : -9px;
+      padding: 0;
+      width: 100vw;}
+    
+  }
