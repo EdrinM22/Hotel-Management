@@ -1,7 +1,7 @@
 .book-events {
     position: absolute;
     width: 40vw;
-    height: 40vh;
+    height: 33vh;
     margin: 0 auto;
     padding: 30px;
     border: 1px solid #ddd;
@@ -100,7 +100,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 auto;
+    margin: 0 31vw;
     
     background-color: #001427;
 	color: #e7ecef;
