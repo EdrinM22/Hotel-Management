@@ -1,0 +1,120 @@
+.book-events {
+    position: absolute;
+    width: 40vw;
+    height: 40vh;
+    margin: 0 auto;
+    padding: 30px;
+    border: 1px solid #ddd;
+    background-color: white;
+    margin-top: -49vh;
+    margin-left: 27vw;
+    border-radius: 4px;
+  }
+  .event-type-selector {
+    display: flex;
+    justify-content: center;
+    gap: 20px;    
+    margin-bottom: 15px;
+    background-color: #001427;
+  }
+  .event-type{
+    color: white;
+    font-size: 1.5rem;
+  }
+
+  .event-header{
+    position:absolute;
+    top: 5%;
+    left: 50%;
+    font-size: 4rem;
+    transform: translate(-50%, -50%);
+    font-family: Lato, sans-serif;
+    color: rgb(255, 255, 255);
+}
+.eventfull-banner{
+    position: relative;
+    text-align: center;
+    color: white;
+    margin-bottom: 30vh;;  
+    margin-top: -1vh;  
+}
+.event-banner{
+    margin-top: -14px;
+    margin-left : -9px;
+    padding: 0;
+    width: 100vw;
+    height: 35vh;
+}
+  .whole-component{
+    justify-content: center;
+    align-items: center;
+
+    
+  }
+  
+  .event-details,
+  .date-pickers {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    
+  }
+  
+  .event-details div,
+  .date-pickers div {
+    margin-left: 1vw;
+    width: 85%;
+    font-family: Lato, sans-serif;
+    
+  }
+  
+  .event-details label,
+  .date-pickers label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1.2rem;
+    color: #001427;
+    font-family: Lato, sans-serif;
+    
+  }
+  .textbox{
+    padding: 10px;
+    margin-bottom: 20px;
+    width: 15vw;
+    border-radius: 3px;
+    border: 1px solid #0014275d;
+    font-family: Lato, sans-serif;
+  }
+  
+  .all-day-checkbox {
+    margin-left: 1vw;
+    margin-bottom: 15px;
+  }
+  
+  .all-day-checkbox input {
+    margin-right: 5px;
+  }
+  
+  button {
+    /* cant fix position right */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    
+    background-color: #001427;
+	color: #e7ecef;
+	border: none;
+	padding: 10px 35px;
+	border-radius: 25px;
+	font-size: 16px;
+	cursor: pointer;
+	text-transform: uppercase;
+	transition: 0.3s;
+
+	&&:hover {
+		background-color: #004b92;
+		scale: 1.1;
+	}
+
+  }
