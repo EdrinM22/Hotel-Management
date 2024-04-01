@@ -103,10 +103,31 @@
 	
 	.login-options{
 		flex-direction: column;
+        
+
 	}
+    .login-container{
+        height:92vh
+    }
     .login-form{
         border-right: none;
         border-bottom: 2px solid #00142750;
+        
+        
     }
+    .login-subheader{
+        margin-top: 0px
+        
+        
+    }
+    .login-header{
+        margin-top: 6vh;
+        
+    }
+    .join-us{
+        top: -30px;
+        
+    }
+    
 
 }
