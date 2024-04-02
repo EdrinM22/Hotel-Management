@@ -21,10 +21,19 @@
 .logo-signup{
     width: 150px;
 }
-.signup-form{
+.field-bundle{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-bottom: -10px;
+    font-family: Lato, sans-serif;
+
+}
+.signup-form{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, auto);
+    gap: 20px;
     padding: 20px;
     font-family: Lato, sans-serif;
 }

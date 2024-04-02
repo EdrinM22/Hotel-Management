@@ -13,14 +13,50 @@ const SignUp = () => {
 				</Link>
 			</div>
             <h1 className="signup-header">Welcome to Moto Hotel</h1>
+            <h2 className="signup-subheader">Hello, new customer!</h2>
         <form className="signup-form">
-        <h2 className="signup-subheader">Hello, new customer!</h2>
-        <label htmlFor="username" className="signup-label">Email</label>
-        <input type="text" id="username" className="signup-input" />
-        <label htmlFor="phone" className="signup-label">Phone Number</label>
-        <input type="text" id="phone" className="signup-input" />
+        
+        <div className="field-bundle">
+        <label htmlFor="email" className="signup-label">Email</label>
+        <input type="email" id="email" className="signup-input" />
+        </div>
+        <div className="field-bundle">
+        <label htmlFor="first_name" className="signup-label">First Name</label>
+        <input type="text" id="first_name" className="signup-input" />
+        </div>
+        <div className="field-bundle">
+        <label htmlFor="fathers_name" className="signup-label">Fathers Name(optional)</label>
+        <input type="text" id="fathers_name" className="signup-input" />
+        </div>
+        <div className="field-bundle">
+        <label htmlFor="last_name" className="signup-label">Last Name</label>
+        <input type="text" id="last_name" className="signup-input" />
+        </div>
+        <div className="field-bundle">
+        <label htmlFor="birthday" className="signup-label">Date of Birth(optional)</label>
+        <input type="date" id="birthday" className="signup-input" />
+        </div>
+        <div className="field-bundle">
+        <label htmlFor="birthplace" className="signup-label">Birth Place(optional)</label>
+        <input type="text" id="birthplace" className="signup-input" />
+        </div>
+        <div className="field-bundle">
+        <label htmlFor="personal_number" className="signup-label">Personal Number</label>
+        <input type="text" id="personal_number" className="signup-input" />
+        </div>
+        <div className="field-bundle">
+        <label htmlFor="gender" className="signup-label">Gender</label>
+        <input type="text" id="gender" className="signup-input" />
+        </div>
+        <div className="field-bundle">
+        <label htmlFor="phone_number" className="signup-label">Phone Number</label>
+        <input type="phone" id="phone_number" className="signup-input" />
+        </div>
+        <div className="field-bundle">
         <label htmlFor="password" className="signup-label">Password</label>
         <input type="password" id="password" className="signup-input" />
+        </div>
+        </form>
         <button type="submit" className="signup-button">sign up</button>
         <div className="forgot-pass">
         <Link to="../contact" className="logo-nav-link">
@@ -28,7 +64,6 @@ const SignUp = () => {
                    </Link>
             
         </div>
-        </form>
         </div>
     );
 };
