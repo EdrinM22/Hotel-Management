@@ -21,12 +21,12 @@ const SignUp = () => {
         <input type="email" id="email" className="signup-input" />
         </div>
         <div className="field-bundle">
-        <label htmlFor="first_name" className="signup-label">First Name</label>
-        <input type="text" id="first_name" className="signup-input" />
+        <label htmlFor="password" className="signup-label">Password</label>
+        <input type="password" id="password" className="signup-input" />
         </div>
         <div className="field-bundle">
-        <label htmlFor="fathers_name" className="signup-label">Fathers Name(optional)</label>
-        <input type="text" id="fathers_name" className="signup-input" />
+        <label htmlFor="first_name" className="signup-label">First Name</label>
+        <input type="text" id="first_name" className="signup-input" />
         </div>
         <div className="field-bundle">
         <label htmlFor="last_name" className="signup-label">Last Name</label>
@@ -41,10 +41,6 @@ const SignUp = () => {
         <input type="text" id="birthplace" className="signup-input" />
         </div>
         <div className="field-bundle">
-        <label htmlFor="personal_number" className="signup-label">Personal Number</label>
-        <input type="text" id="personal_number" className="signup-input" />
-        </div>
-        <div className="field-bundle">
         <label htmlFor="gender" className="signup-label">Gender</label>
         <input type="text" id="gender" className="signup-input" />
         </div>
@@ -52,10 +48,7 @@ const SignUp = () => {
         <label htmlFor="phone_number" className="signup-label">Phone Number</label>
         <input type="phone" id="phone_number" className="signup-input" />
         </div>
-        <div className="field-bundle">
-        <label htmlFor="password" className="signup-label">Password</label>
-        <input type="password" id="password" className="signup-input" />
-        </div>
+        
         </form>
         <button type="submit" className="signup-button">sign up</button>
         <div className="forgot-pass">
