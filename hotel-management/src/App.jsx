@@ -10,7 +10,7 @@ import LocationPage from "./pages/LocationPage";
 import FeedbackPage from "./pages/FeedbackPage";
 import ContactPage from "./pages/ContactPage";
 import LoginPage from "./pages/LoginPage";
-
+import SignUp from "./components/SignUp";
 const router = createBrowserRouter([
 	{
 		path: "/",
@@ -42,6 +42,10 @@ const router = createBrowserRouter([
   {
     path: 'login',
     element: <LoginPage />
+  },
+  {
+    path: 'signup',
+    element: <SignUp />
   },
   {
     path: 'staff',
