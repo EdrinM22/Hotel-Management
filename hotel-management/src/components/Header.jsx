@@ -70,13 +70,13 @@ const Header = () => {
 					>
 						Location
 					</NavLink>
-					<NavLink
+					{auth && <NavLink
 						to="/feedback"
 						className={({ isActive }) => (isActive ? "nav-link nav-link-active" : "nav-link")}
 						onClick={closeMenu}
 					>
 						Feedback
-					</NavLink>
+					</NavLink>}
 					<NavLink
 						to="/contact"
 						className={({ isActive }) => (isActive ? "nav-link nav-link-active" : "nav-link")}

@@ -31,4 +31,17 @@ export function isEmpty(value) {
 	return value.trim() === "";
 }
 
-//TODO: Add more validation functions here
+export function isPhoneNumber(phoneNumber) {
+	const phoneNumberRegex = /^\d{10}$/;
+	return phoneNumberRegex.test(phoneNumber);
+}
+
+export function isPersonalNumber(personalNumber) {
+	const personalIdRegex = /^[A-Za-z]\d{8}[A-Za-z]$/;
+	return personalIdRegex.test(personalNumber);
+}
+
+export function fieldsAreEmpty(...fields) {
+	return fields.some((field) => isEmpty(field));
+}
+
