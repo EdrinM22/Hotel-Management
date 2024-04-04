@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { useInput } from "../hooks/useInput";
 import { useSubmitState } from "../hooks/useSubmitState";
 
-import { isEmail, isPassword, isEmpty } from "../util/validation";
+import { isEmail, isPassword, isEmpty, fieldsAreEmpty } from "../util/validation";
 import { sendCredentialsToServer, sentTokenToServer } from "../util/login";
 
 import { authActions } from "../store/authSlice";
@@ -36,8 +36,6 @@ const Login = () => {
 		hasError: passwordIsInvalid,
 	} = useInput("", (value) => isPassword(value).isValid && !isEmpty(value));
 
-	const isValid = !emailIsInvalid && !passwordIsInvalid && !isEmpty(username) && !isEmpty(password);
-
 	useEffect(() => {
 		if (emailIsInvalid) {
 			setErrorMessage("Please enter a valid email address like 'name@examp.com'");
@@ -54,7 +52,7 @@ const Login = () => {
 	}
 
 	function handleSubmit(event) {
-		if (!isValid) {
+		if (fieldsAreEmpty(username, password)) {
 			setErrorMessage("Please enter a valid email address and password");
 			return;
 		}
@@ -63,16 +61,15 @@ const Login = () => {
 		async function sendLogin() {
 			try {
 				const token = await sendCredentialsToServer(username, password);
+
 				const userData = await sentTokenToServer(token.access);
 
 				handleLoginData(token, userData);
 
-				const navigationPath = userSlice.userInfo.type.toLowerCase();
-				console.log(navigationPath);
-				setSubmitting(false);
 				navigation("/");
 			} catch (error) {
 				setErrorMessage(error.message);
+			} finally {
 				setSubmitting(false);
 			}
 		}
