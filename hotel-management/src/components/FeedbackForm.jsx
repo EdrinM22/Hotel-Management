@@ -6,14 +6,10 @@ import FeedbackCategoryBtn from "./FeedbackCategoryBtn";
 import Input from "./Input";
 import Button from "./Button";
 
-import {
-	oneIsSelected,
-	feedbackCategories,
-	faceIcons,
-	submitFeedback,
-} from "../util/feedback";
+import { oneIsSelected, feedbackCategories, faceIcons, submitFeedback } from "../util/feedback";
 
 import { feedbackActions } from "../store/feedbackSlice";
+import { authActions } from "../store/authSlice";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useSubmitState } from "../hooks/useSubmitState";
@@ -23,6 +19,8 @@ export default function FeedbackForm() {
 	const navigation = useNavigate();
 
 	const feedback = useSelector((state) => state.feedback);
+	const auth = useSelector((state) => state.auth.userInfo);
+	console.log(auth);
 	const [submitState, setErrorMessage, setSubmitting] = useSubmitState();
 
 	const isSelected = oneIsSelected(feedback.category);
@@ -74,8 +72,7 @@ export default function FeedbackForm() {
 
 	function handleCategoryClick(categoryIndex) {
 		const newCategory = { ...feedback.category };
-		newCategory[Object.keys(newCategory)[categoryIndex]] =
-			!newCategory[Object.keys(newCategory)[categoryIndex]];
+		newCategory[Object.keys(newCategory)[categoryIndex]] = !newCategory[Object.keys(newCategory)[categoryIndex]];
 		dispatch(feedbackActions.setCategory(newCategory));
 		setErrorMessage("");
 	}
@@ -83,9 +80,7 @@ export default function FeedbackForm() {
 	return (
 		<div className="feedback_form_container">
 			<section className="feedback_form_section_container">
-				<h5 className="feedback_form_container_text lato-regular">
-					What is your opinion of our hotel
-				</h5>
+				<h5 className="feedback_form_container_text lato-regular">What is your opinion of our hotel</h5>
 				<ul className="feedback_container">
 					{Object.keys(faceIcons).map((face, index) => {
 						return (
@@ -101,9 +96,7 @@ export default function FeedbackForm() {
 				</ul>
 			</section>
 			<section className="feedback_form_section_container">
-				<h5 className="feedback_form_container_text lato-regular">
-					Please select the feedback category
-				</h5>
+				<h5 className="feedback_form_container_text lato-regular">Please select the feedback category</h5>
 				<ul className="feedback_container feedback-btn-container">
 					{Object.keys(feedback.category).map((category, index) => {
 						return (
@@ -119,9 +112,7 @@ export default function FeedbackForm() {
 				</ul>
 			</section>
 			<section className="feedback_form_section_container">
-				<h5 className="feedback_form_container_text lato-regular">
-					Please select the feedback category
-				</h5>
+				<h5 className="feedback_form_container_text lato-regular">Please select the feedback category</h5>
 				<div className="feedback-textarea-container">
 					<Input
 						name={"feedback"}
@@ -132,9 +123,7 @@ export default function FeedbackForm() {
 						disabled={!isSelected}
 					/>
 				</div>
-				<p className="lato-bold feedback_error_msg_text">
-					{submitState.errorMessage}
-				</p>
+				<p className="lato-bold feedback_error_msg_text">{submitState.errorMessage}</p>
 			</section>
 			<p className="feedback_form_button_container">
 				<Button onClick={handleSubmit}>
