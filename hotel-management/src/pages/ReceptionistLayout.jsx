@@ -16,7 +16,7 @@ export default function ReceptionistLayout() {
 		<div>
 			<SecondaryHeader headerImg={logoImg} navLinks={navLinks} hasButton />
 			<Outlet />
-            <Footer />
+			<Footer />
 		</div>
 	);
 }
