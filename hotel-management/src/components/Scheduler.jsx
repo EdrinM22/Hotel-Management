@@ -47,6 +47,9 @@ export default function Scheduler({
 		timelineMonthName: "Timeline Month",
 		timelineYearName: "Timeline Year",
 	},
+    fieldsData,
+    onAddNewElement,
+    onRemoveElement,
 }) {
 	const {
 		dayName,
@@ -69,9 +72,7 @@ export default function Scheduler({
 		args.navigation = { enable: true, timeDelay: 2000 };
 	}
 
-    
-
-	const eventSettings = { dataSource: dataSource };
+	const eventSettings = { dataSource: dataSource, fields: fieldsData };
 	return (
 		<ScheduleComponent
 			height="90vh"
@@ -81,6 +82,9 @@ export default function Scheduler({
 			currentView={currentView}
 			eventSettings={eventSettings}
 			readonly={isReadOnly}
+            actionBegin={(args) => {
+                    console.log(args.addedRecords)
+            }}
 		>
 			<ViewsDirective>
 				{(showDay || currentView === "Day") && (
