@@ -49,6 +49,43 @@
         scale: 1.1;
         color: #ff0000;
     }
+}
 
+.text_btn{
+	background-color: transparent;
+	color: #e7ecef;
+	border: none;
+	padding: 10px 35px;
+	font-size: 16px;
+	cursor: pointer;
+	text-transform: uppercase;
+	transition: 0.3s;
 
+	&&:hover {
+		scale: 1.1;
+		color: #004b92;
+	}
+}
+
+@media screen and (max-width: 778px){
+	
+	.primary_btn {
+		padding: 10px 20px;
+		font-size: small;
+	}
+
+	.secondary_btn {
+		padding: 10px 20px;
+		font-size: small;
+	}
+
+	.danger_btn {
+		padding: 10px 20px;
+		font-size: small;
+	}
+
+	.text_btn {
+		padding: 10px 20px;
+		font-size: small;
+	}
 }

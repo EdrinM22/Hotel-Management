@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import "./App.css";
 import RootLayout from "./pages/RootLayout";
+import ReceptionistLayout from "./pages/ReceptionistLayout";
 import BookLayout from "./pages/BookLayout";
 import MainPage from "./pages/MainPage";
 import RoomBookingPage from "./pages/RoomBookingPage";
@@ -11,6 +12,11 @@ import FeedbackPage from "./pages/FeedbackPage";
 import ContactPage from "./pages/ContactPage";
 import LoginPage from "./pages/LoginPage";
 import SignUp from "./components/SignUp";
+
+import ReceptionDashBoardPage from "./pages/ReceptionDashBoardPage";
+import TimeTablePage from "./pages/TimeTablePage";
+import TodayEventsPage from "./pages/TodayEventsPage";
+
 const router = createBrowserRouter([
 	{
 		path: "/",
@@ -48,8 +54,14 @@ const router = createBrowserRouter([
     element: <SignUp />
   },
   {
-    path: 'staff',
-    element: <h1>test</h1>,
+    path: 'receptionist',
+    element: <ReceptionistLayout />,
+    children: [
+      { index: true, element: <ReceptionDashBoardPage /> },
+      { path: 'book', element: <RoomBookingPage />},
+      { path: 'timetable', element: <TimeTablePage /> },
+      { path: 'todayevents', element: <TodayEventsPage /> }
+    ]
   },
   {
     path: 'manager',
