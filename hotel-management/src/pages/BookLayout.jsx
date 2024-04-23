@@ -1,12 +1,17 @@
 import { Outlet } from "react-router-dom";
 
-import Header from "../components/Header";
+import SecondaryHeader from "../components/SecondaryHeader";
 
 export default function BookLayout() {
-    return (
-        <>
-            <Header />
-            <Outlet />
-        </>
-    )
+    const navLinks = [
+        {name: "Book", path: "/book"},
+        {name: "Event", path: "/book/event"}
+    ];
+
+	return (
+		<>
+			<SecondaryHeader  navLinks={navLinks}/>
+			<Outlet />
+		</>
+	);
 }
