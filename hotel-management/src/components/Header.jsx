@@ -17,7 +17,6 @@ const Header = () => {
 	const [menuOpen, setMenuOpen] = useState(false);
 
 	const auth = useSelector((state) => state.auth.userInfo);
-	console.log(auth);
 
 	function toggleModal() {
 		setMenuOpen((prev) => !prev);

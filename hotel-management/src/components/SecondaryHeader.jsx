@@ -5,7 +5,7 @@ import Button from "./Button";
 
 import "./SecondaryHeader.css";
 
-export default function SecondaryHeader({ headerImg, navLinks, hasButton }) {
+export default function SecondaryHeader({ headerImg, navLinks = [], hasButton }) {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	return (
 		<>

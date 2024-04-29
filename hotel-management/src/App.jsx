@@ -4,6 +4,8 @@ import "./App.css";
 import RootLayout from "./pages/RootLayout";
 import ReceptionistLayout from "./pages/ReceptionistLayout";
 import BookLayout from "./pages/BookLayout";
+import ServiceLayout from "./pages/ServiceLayoot";
+
 import MainPage from "./pages/MainPage";
 import RoomBookingPage from "./pages/RoomBookingPage";
 import EventBookingPage from "./pages/EventBookingPage";
@@ -62,6 +64,10 @@ const router = createBrowserRouter([
       { path: 'timetable', element: <TimeTablePage /> },
       { path: 'todayevents', element: <TodayEventsPage /> }
     ]
+  },
+  {
+    path: 'service',
+    element: <ServiceLayout />,
   },
   {
     path: 'manager',

@@ -50,6 +50,7 @@ export default function Scheduler({
     fieldsData,
     onAddNewElement,
     onRemoveElement,
+    onChangesToElement
 }) {
 	const {
 		dayName,
@@ -72,6 +73,18 @@ export default function Scheduler({
 		args.navigation = { enable: true, timeDelay: 2000 };
 	}
 
+    function onActionBegin(args) {
+        console.log(args);
+        if (args.requestType === "eventCreate") {
+
+            {onAddNewElement ? onAddNewElement(args.data[0]) : console.log(args.data[0])}
+        } else if (args.requestType === "eventRemove") {
+            onRemoveElement(args.data);
+        } else if (args.requestType === "eventChange") {
+            onChangesToElement(args.changedRecords[0]);
+        }
+    }
+
 	const eventSettings = { dataSource: dataSource, fields: fieldsData };
 	return (
 		<ScheduleComponent
@@ -83,7 +96,7 @@ export default function Scheduler({
 			eventSettings={eventSettings}
 			readonly={isReadOnly}
             actionBegin={(args) => {
-                    console.log(args.addedRecords)
+                onActionBegin(args);
             }}
 		>
 			<ViewsDirective>

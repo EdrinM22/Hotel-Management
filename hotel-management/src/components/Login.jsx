@@ -63,7 +63,7 @@ const Login = () => {
 				const token = await sendCredentialsToServer(username, password);
 
 				const userData = await sentTokenToServer(token.access);
-
+				console.log(userData, token);
 				handleLoginData(token, userData);
 
 				navigation("/");

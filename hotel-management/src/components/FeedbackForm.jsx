@@ -9,7 +9,6 @@ import Button from "./Button";
 import { oneIsSelected, feedbackCategories, faceIcons, submitFeedback } from "../util/feedback";
 
 import { feedbackActions } from "../store/feedbackSlice";
-import { authActions } from "../store/authSlice";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useSubmitState } from "../hooks/useSubmitState";
@@ -19,8 +18,8 @@ export default function FeedbackForm() {
 	const navigation = useNavigate();
 
 	const feedback = useSelector((state) => state.feedback);
-	const auth = useSelector((state) => state.auth.userInfo);
-	console.log(auth);
+	const token = useSelector((state) => state.auth.userActiveToken);
+	
 	const [submitState, setErrorMessage, setSubmitting] = useSubmitState();
 
 	const isSelected = oneIsSelected(feedback.category);
@@ -44,20 +43,25 @@ export default function FeedbackForm() {
 
 		setSubmitting(true);
 		async function sendFeedback() {
+			const temp = {
+				stars: feedback.face,
+				text: feedback.comment,
+			}
 			try {
-				await submitFeedback(feedback);
-				// setTimeout(() => {
-				// 	setSubmitting(false);
-				// 	navigation("/");
-				// }, 3000);
+				await submitFeedback(temp, token);
 				setSubmitting(false);
 				navigation("/");
 			} catch (error) {
 				console.log(error);
+				setErrorMessage(error.message);
+				setSubmitting(false);
 			}
 		}
 
 		sendFeedback();
+		handleFaceClick(null);
+		handleCommentChange({ target: { value: "" } });
+		
 	}
 
 	function handleFaceClick(feedbackFaceSelected) {
