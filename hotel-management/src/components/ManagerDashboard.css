@@ -1,0 +1,118 @@
+.whole{
+display: flex;
+flex-direction: column;
+padding: 20px;
+font-family: Lato, sans-serif;
+row-gap: 20px;
+
+}
+.manager-overview{
+    border: 1.5px solid black;
+    padding-left: 20px;
+}
+.manager-stats{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    
+    
+}
+.checkins{
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+}
+.checkouts{
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+}
+.total-rooms{
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+}
+.occupied-rooms{
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+}
+.overview-desc{
+    font-size: 1.4rem;
+    width: 100px;
+
+
+}
+.overview-no{
+    font-size: 2.5rem;
+
+}
+.manager-rooms{
+    border: 1.5px solid black;
+    padding-left: 20px;
+    padding-right: 20px;
+    
+
+}
+.room-type-wrap{
+    display : flex;
+    justify-content: space-between;
+    padding-inline: 20px;
+    padding-bottom: 20px;
+
+.standard-room-pr{
+    border: 1px solid black;
+    padding-inline:30px
+}
+.comfort-room-pr{
+    border: 1px solid black;
+    padding-inline:30px
+}
+.executive-room-pr{
+    border: 1px solid black;
+    padding-inline:30px
+}
+.suite-room-pr{
+    border: 1px solid black;
+    padding-inline:30px
+}
+}
+
+.manager-feedback{
+    border: 1.5px solid black;
+    padding-left: 20px;
+    
+}
+.new-reviews{
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 20px;
+    padding-bottom: 20px;
+    align-items: center;
+
+}
+.average-rating{
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 20px;
+    padding-bottom: 20px;
+    align-items: center;
+    
+}
+.feedback-wrap{
+    display: flex;
+    padding-inline: 20px;
+    justify-content: left;
+    column-gap: 100px;
+}
+.review-rating{
+    display: flex;
+    flex-direction: column;
+
+}
+.review-text{
+    border-bottom: 2px solid black;
+    width: 55vw;
+    height: 15vh;
+
+}
