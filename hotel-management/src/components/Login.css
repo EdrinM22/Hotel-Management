@@ -4,7 +4,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    /* height: 100vh; */
     background-color: #f5f5f5;
 }
 .login-header{
@@ -89,6 +89,11 @@
     color: white;
 }
 
+.incorrect-credentials{
+    color: red;
+    border: solid 1px red !important  ;
+}
+
 @media screen and (max-width: 1035px) {
 	.login-options{
 		height: 100%;
@@ -108,7 +113,8 @@
 
 	}
     .login-container{
-        height:92vh
+        /* height:92vh */
+        padding-bottom: 50px;
     }
     .login-form{
         border-right: none;

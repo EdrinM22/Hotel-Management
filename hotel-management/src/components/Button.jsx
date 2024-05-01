@@ -5,7 +5,8 @@ export default function Button({ children, display = 'primary', onClick, ...prop
     const btnClassname = {
         primary: 'primary_btn',
         secondary: 'secondary_btn',
-        danger: 'danger_btn'
+        danger: 'danger_btn',
+        text: 'text_btn',
     }
 
 
