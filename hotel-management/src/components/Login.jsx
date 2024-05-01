@@ -18,8 +18,6 @@ const Login = () => {
 	const dispatch = useDispatch();
 	const navigation = useNavigate();
 
-	const userSlice = useSelector((state) => state.auth);
-
 	const [submitState, setErrorMessage, setSubmitting] = useSubmitState();
 
 	const {
@@ -51,7 +49,7 @@ const Login = () => {
 		dispatch(authActions.setUserInfo(userData));
 	}
 
-	function handleSubmit(event) {
+	function handleSubmit() {
 		if (fieldsAreEmpty(username, password)) {
 			setErrorMessage("Please enter a valid email address and password");
 			return;
@@ -63,10 +61,21 @@ const Login = () => {
 				const token = await sendCredentialsToServer(username, password);
 
 				const userData = await sentTokenToServer(token.access);
-
+				console.log(userData, token);
 				handleLoginData(token, userData);
 
-				navigation("/");
+				if (userData.type === "receptionist") {
+					navigation("/receptionist");
+				} else if (userData.type === "admin") {
+					navigation("/admin");
+				} else if (userData.type === "manager") {
+					navigation("/manager");
+				} else if (userData.type === "service") {
+					navigation("/service");
+				} else {
+					navigation("/");
+				}
+				// navigation("/");
 			} catch (error) {
 				setErrorMessage(error.message);
 			} finally {
