@@ -148,8 +148,6 @@ const SignUp = () => {
 
 				navigation("/");
 			} catch (error) {   
-
-
 				setErrorMessage(error.message);
 			} finally {
 				setSubmitting(false);

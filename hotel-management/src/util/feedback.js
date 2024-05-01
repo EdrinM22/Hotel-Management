@@ -41,6 +41,7 @@ export function oneIsSelected(category) {
 
 export async function submitFeedback(feedback, token) {
 	console.log(token.access);
+	
 	const response = await fetch("http://localhost:8000/feedback/create/", {
 		method: 'POST',
 		headers: {

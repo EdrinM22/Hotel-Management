@@ -18,7 +18,7 @@ import {
 } from "@syncfusion/ej2-react-schedule";
 
 registerLicense(
-	"Ngo9BigBOggjHTQxAR8/V1NBaF5cXmZCekx1RXxbf1x0ZF1MYV1bRXdPMyBoS35RckVgWn5eeHVUR2FVWExw",
+	"Ngo9BigBOggjHTQxAR8/V1NBaF5cXmZCe0x1RHxbf1x0ZFRGal1TTndfUiweQnxTdEFjXH9fcXRURGFdWEx3Xw==",
 );
 
 export default function Scheduler({

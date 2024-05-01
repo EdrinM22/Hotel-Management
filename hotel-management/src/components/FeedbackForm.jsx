@@ -9,6 +9,7 @@ import Button from "./Button";
 import { oneIsSelected, feedbackCategories, faceIcons, submitFeedback } from "../util/feedback";
 
 import { feedbackActions } from "../store/feedbackSlice";
+
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useSubmitState } from "../hooks/useSubmitState";
