@@ -1,9 +1,8 @@
 import { useState } from "react";
 import Scheduler from "../components/Scheduler.jsx";
 
-
 export default function ReceptionDashBoardPage() {
-    const [dataSource, setDataSource] = useState( [
+	const [dataSource, setDataSource] = useState([
 		{
 			RoomId: 1,
 			RoomName: "001",
@@ -21,42 +20,74 @@ export default function ReceptionDashBoardPage() {
 		{
 			RoomId: 3,
 			RoomName: "212",
-			Checkin: new Date(2024, 3, 2, 9, 30),
-			Checkout: new Date(2024, 3, 7, 11, 0),
+			Checkin: new Date(2024, 3, 2),
+			Checkout: new Date(2024, 3, 7),
 			// IsReadonly: true,
 		},
 	]);
 
-    function handleAddNewBooking(newBooking) {
-        setDataSource((prev) => {
-            return [...prev, newBooking];
-        });
-    }
+	function handleAddNewBooking(newBooking) {
+		setDataSource((prev) => {
+			return [
+				...prev,
+				{
+					RoomId: newBooking.RoomId,
+					RoomName: newBooking.RoomName,
+					Checkin: newBooking.Checkin,
+					Checkout: newBooking.Checkout,
+				},
+			];
+		});
 
-    function handleRemoveBooking(id) {
-        setDataSource((prev) => {
-            return prev.filter((booking) => booking.RoomId !== id);
-        });
-    }
+		// sent to backend
+	}
 
-    const fieldsData = {
-        id: 'RoomId',
-        subject: { name: 'RoomName', title: 'Room Name', default: 'Add Summary' },
-        startTime: { name: 'Checkin' },
-        endTime: { name: 'Checkout' }
-    }
+	function handleRemoveBooking(listOfData) {
+		// console.log(listOfData);
+		setDataSource((prev) => {
+			return prev.filter((data) => {
+				return !listOfData.some((element) => element.RoomId === data.RoomId);
+			});
+		});
 
- 
-    console.log(dataSource)
+		// sent to backend
+	}
+
+	function handleBookingChanges(changedRecord) {
+		setDataSource((prev) => {
+			return prev.map((record) => {
+				if (record.RoomId === changedRecord.RoomId) {
+					return {
+						...record,
+						Checkin: changedRecord.Checkin,
+						Checkout: changedRecord.Checkout,
+					};
+				}
+				return record;
+			});
+		});
+	}
+
+	const fieldsData = {
+		id: "RoomId",
+		subject: { name: "RoomName", title: "Room Name", default: "Add Summary" },
+		startTime: { name: "Checkin" },
+		endTime: { name: "Checkout" },
+	};
+
+	console.log(dataSource);
 
 	return (
-			<Scheduler
-				showMonth
-				isDragAndDrop
-				isResize
-                fieldsData={fieldsData}
-				dataSource={dataSource}
-				displayName={{ timelineMonthName: "Bookings" }}
-			/>
+		<Scheduler
+			showMonth
+			isDragAndDrop
+			isResize
+			fieldsData={fieldsData}
+			dataSource={dataSource}
+			displayName={{ timelineMonthName: "Bookings" }}
+			onAddNewElement={handleAddNewBooking}
+			onRemoveElement={handleRemoveBooking}
+			onChangesToElement={handleBookingChanges}
+		/>
 	);
 }

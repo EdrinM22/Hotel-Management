@@ -5,8 +5,15 @@ import Button from "./Button";
 
 import "./SecondaryHeader.css";
 
-export default function SecondaryHeader({ headerImg, navLinks, hasButton }) {
+export default function SecondaryHeader({ headerImg, navLinks = [], hasButton }) {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+	const navigate = useNavigate();
+
+	const handleLogout = () => {
+		navigate("/");
+	}
+
 	return (
 		<>
 			<header className="secondary-header">
@@ -30,7 +37,7 @@ export default function SecondaryHeader({ headerImg, navLinks, hasButton }) {
 					</nav>
 					{hasButton && (
 						<p className="secondary-header-button-container">
-							<Button display="secondary">Logout</Button>
+							<Button display="secondary" onClick={handleLogout}>Logout</Button>
 						</p>
 					)}
 				</menu>

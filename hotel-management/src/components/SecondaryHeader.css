@@ -15,11 +15,11 @@
 .secondary-header-menu {
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
     padding: 0 2rem;
-}
-
-.secondary-menu-button-container {
-	display: none;
+	width: 100%;
+	position: relative;
+	right: 20px;
 }
 
 .secendary-header-nav {
@@ -47,6 +47,7 @@
 }
 
 .secondary-header-button-container {
+	left: 10;
 	margin: 0 2rem;
 }
 

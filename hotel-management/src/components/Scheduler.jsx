@@ -18,7 +18,7 @@ import {
 } from "@syncfusion/ej2-react-schedule";
 
 registerLicense(
-	"Ngo9BigBOggjHTQxAR8/V1NBaF5cXmZCekx1RXxbf1x0ZF1MYV1bRXdPMyBoS35RckVgWn5eeHVUR2FVWExw",
+	"Ngo9BigBOggjHTQxAR8/V1NBaF5cXmZCe0x1RHxbf1x0ZFRGal1TTndfUiweQnxTdEFjXH9fcXRURGFdWEx3Xw==",
 );
 
 export default function Scheduler({
@@ -50,6 +50,7 @@ export default function Scheduler({
     fieldsData,
     onAddNewElement,
     onRemoveElement,
+    onChangesToElement
 }) {
 	const {
 		dayName,
@@ -72,6 +73,18 @@ export default function Scheduler({
 		args.navigation = { enable: true, timeDelay: 2000 };
 	}
 
+    function onActionBegin(args) {
+        console.log(args);
+        if (args.requestType === "eventCreate") {
+
+            {onAddNewElement ? onAddNewElement(args.data[0]) : console.log(args.data[0])}
+        } else if (args.requestType === "eventRemove") {
+            onRemoveElement(args.data);
+        } else if (args.requestType === "eventChange") {
+            onChangesToElement(args.changedRecords[0]);
+        }
+    }
+
 	const eventSettings = { dataSource: dataSource, fields: fieldsData };
 	return (
 		<ScheduleComponent
@@ -83,7 +96,7 @@ export default function Scheduler({
 			eventSettings={eventSettings}
 			readonly={isReadOnly}
             actionBegin={(args) => {
-                    console.log(args.addedRecords)
+                onActionBegin(args);
             }}
 		>
 			<ViewsDirective>
