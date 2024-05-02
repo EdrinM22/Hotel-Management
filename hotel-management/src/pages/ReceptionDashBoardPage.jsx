@@ -6,77 +6,61 @@ export default function ReceptionDashBoardPage() {
 		{
 			RoomId: 1,
 			RoomName: "001",
-			Checkin: "2024-04-01",
-			Checkout: "2024-04-05",
+			Checkin: new Date(2024, 3, 23, 10, 0),
+			Checkout: new Date(2024, 3, 23, 12, 30),
 			// IsReadonly: true,
 		},
 		{
 			RoomId: 2,
 			RoomName: "014",
-			Checkin: "2024-04-10",
-			Checkout: "2024-04-15",
+			Checkin: new Date(2024, 3, 13, 10, 0),
+			Checkout: new Date(2024, 3, 19, 12, 0),
 			// IsReadonly: true,
 		},
 		{
 			RoomId: 3,
 			RoomName: "212",
-			Checkin: "2024-04-06",
-			Checkout: "2024-04-07",
+			Checkin: new Date(2024, 3, 2),
+			Checkout: new Date(2024, 3, 7),
 			// IsReadonly: true,
 		},
 	]);
 
-	function formatDate(date) {
-		return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
-	}
-
-	function handleAddNewBooking(args) {
-		console.log(args);
-		const newBookingArg = args.addedRecords[0];
-		const newBoking = {
-			RoomId: newBookingArg.RoomId,
-			RoomName: newBookingArg.RoomName,
-			Checkin: formatDate(newBookingArg.Checkin),
-			Checkout: formatDate(newBookingArg.Checkout),
-		}
-
+	function handleAddNewBooking(newBooking) {
 		setDataSource((prev) => {
-			return [...prev, newBoking];
+			return [
+				...prev,
+				{
+					RoomId: newBooking.RoomId,
+					RoomName: newBooking.RoomName,
+					Checkin: newBooking.Checkin,
+					Checkout: newBooking.Checkout,
+				},
+			];
 		});
 
+		// sent to backend
 	}
 
-	function handleRemoveBooking(args) {
-		console.log(args);
-		const removedBookingArg = args.deletedRecords[0];
-		const removedBooking = {
-			RoomId: removedBookingArg.RoomId,
-			RoomName: removedBookingArg.RoomName,
-			Checkin: formatDate(removedBookingArg.Checkin),
-			Checkout: formatDate(removedBookingArg.Checkout),
-		}
-		setDataSource((prev) => {	
-			return prev.filter((record) => record.RoomId !== removedBooking.RoomId);
+	function handleRemoveBooking(listOfData) {
+		// console.log(listOfData);
+		setDataSource((prev) => {
+			return prev.filter((data) => {
+				return !listOfData.some((element) => element.RoomId === data.RoomId);
+			});
 		});
+
+		// sent to backend
 	}
 
-	function handleBookingChanges(args) {
-		console.log(args);
-		const changedBookingArg = args.changedRecords[0];
-		const changedBooking = {
-			RoomId: changedBookingArg.RoomId,
-			RoomName: changedBookingArg.RoomName,
-			Checkin: formatDate(changedBookingArg.Checkin),
-			Checkout: formatDate(changedBookingArg.Checkout),
-		}
-
+	function handleBookingChanges(changedRecord) {
 		setDataSource((prev) => {
 			return prev.map((record) => {
-				if (record.RoomId === changedBooking.RoomId) {
+				if (record.RoomId === changedRecord.RoomId) {
 					return {
 						...record,
-						Checkin: changedBooking.Checkin,
-						Checkout: changedBooking.Checkout,
+						Checkin: changedRecord.Checkin,
+						Checkout: changedRecord.Checkout,
 					};
 				}
 				return record;
