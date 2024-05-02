@@ -93,7 +93,7 @@ export default function ManagerWorkerTimetablePage() {
 			dataSource={workSchedule}
 			currentView="Week"
 			isDragAndDrop
-			isResizable
+			isResize
 			hasRecurence={recurence}
 			fieldsData={fieldsData}
 			canAdd={true}
