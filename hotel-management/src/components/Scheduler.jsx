@@ -50,7 +50,7 @@ export default function Scheduler({
     fieldsData,
     onAddNewElement,
     onRemoveElement,
-    onChangesToElement
+    onChangesToElement,
 }) {
 	const {
 		dayName,
@@ -74,14 +74,12 @@ export default function Scheduler({
 	}
 
     function onActionBegin(args) {
-        console.log(args);
         if (args.requestType === "eventCreate") {
-
-            {onAddNewElement ? onAddNewElement(args.data[0]) : console.log(args.data[0])}
+			onAddNewElement(args);
         } else if (args.requestType === "eventRemove") {
-            onRemoveElement(args.data);
+            onRemoveElement(args);
         } else if (args.requestType === "eventChange") {
-            onChangesToElement(args.changedRecords[0]);
+            onChangesToElement(args);
         }
     }
 
@@ -95,6 +93,7 @@ export default function Scheduler({
 			currentView={currentView}
 			eventSettings={eventSettings}
 			readonly={isReadOnly}
+			dateFormat="dd/MM/yyyy"
             actionBegin={(args) => {
                 onActionBegin(args);
             }}
