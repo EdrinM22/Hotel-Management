@@ -15,7 +15,7 @@ export default function ManagerLayout() {
 		<div>
 			<SecondaryHeader navLinks={navLinks} hasButton />
 			<Outlet />
-			<Footer />
+			{/* <Footer /> */}
 		</div>
 	);
 }

@@ -20,6 +20,11 @@
 	width: 100%;
 	position: relative;
 	right: 20px;
+
+}
+
+.center-navlinks{
+	justify-content: center !important;
 }
 
 .secendary-header-nav {
@@ -27,6 +32,7 @@
 	gap: 25px;
 	list-style: none;
 	align-items: center;
+	
 }
 
 .secondary-header-nav-link {

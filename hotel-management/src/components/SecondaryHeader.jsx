@@ -14,11 +14,14 @@ export default function SecondaryHeader({ headerImg, navLinks = [], hasButton })
 		navigate("/");
 	}
 
+	const hasOnlyLinks = (headerImg === undefined && hasButton === undefined);
+	console.log(hasOnlyLinks);
+
 	return (
 		<>
 			<header className="secondary-header">
 				{headerImg && <img src={headerImg} alt="header" className="secondary-header-img" />}
-				<menu className="secondary-header-menu ">
+				<menu className={` secondary-header-menu ${hasOnlyLinks ? "center-navlinks" : ""} `} >
 					<nav className="secendary-header-nav">
 						{navLinks.map((link) => (
 							<NavLink

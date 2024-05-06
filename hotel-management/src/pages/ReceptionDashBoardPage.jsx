@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Scheduler from "../components/Scheduler.jsx";
+import { formatDateYMD } from "../util/dateFormater.js";
 
 export default function ReceptionDashBoardPage() {
 	const [dataSource, setDataSource] = useState([
