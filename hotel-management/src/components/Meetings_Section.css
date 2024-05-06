@@ -1,0 +1,26 @@
+.meetings{
+    min-height: 100vh;
+}
+.meetings h1{
+    padding-left: 3vw;
+    font-size: 2.2rem;
+    padding-top: 5vh;
+}
+.meetings-content{
+    text-align: center;
+    width: 50vw;
+    height: 35vh;
+    margin-top: 10vh;
+}
+.meetings-content:nth-child(even) img{
+    position: absolute;
+    height: 30vh;
+    width: 30vw;
+    left: 5vh;
+}
+.meetings-content:nth-child(odd) img{
+   position: absolute;
+    width: 30vw;
+    height: 30vh;
+    left: 65vw;
+}

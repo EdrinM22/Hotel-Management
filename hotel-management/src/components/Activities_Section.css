@@ -1,0 +1,8 @@
+.activities{
+    height: 100vh;
+}
+.activities h1{
+    padding-top: 5vh;
+    padding-left: 3vw;
+    font-size: 2.2rem;
+}
