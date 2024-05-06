@@ -1,0 +1,79 @@
+.room-detail-page{
+    margin: 30px;
+}
+
+.room-detail-filters-container{
+    display: flex;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.room-detail-table-container{
+    width: 100%;
+    overflow-x: auto;
+}
+
+.room-detail-table{
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.room-detail-table-head{
+    background-color: #E8F1FD;
+    color: #667085;
+}
+
+.room-detail-table-head th{
+    padding: 10px;
+}
+
+.room-detail-table-body {
+    background-color: #fff;
+}
+
+.room-detail-table-body td{
+    padding: 20px;
+    border-bottom: 1px solid #E8F1FD;
+}
+
+.room-status-Available{
+    background-color: #E8F1FD;
+    border-radius: 50px;
+    padding: 5px 10px;
+    color: #448DF2;
+}
+
+.room-status-Booked{
+    background-color: #FDE8E8;
+    border-radius: 50px;
+    padding: 5px 10px;
+    color: #F24444;
+}
+
+.table-action-btn{
+    padding: 5px 10px;
+    background-color: #448DF2;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.table-action-btn:hover{
+    background-color: #0056b3;
+}
+
+@media screen and (max-width: 568px) {
+    .room-detail-page{
+        margin: 10px;
+    }
+
+    .room-detail-filters-container{
+        flex-direction: column;
+    }
+
+    .table-action-btn{
+        padding: 5px;
+    }
+}
