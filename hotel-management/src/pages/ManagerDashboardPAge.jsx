@@ -1,3 +1,7 @@
+import ManagerDashboard from "../components/ManagerDashboard";
 export default function ManagerDashboardPage() {
-    return <h1>Manager Dashboard</h1>;
+    return (
+        <ManagerDashboard/>
+        
+    );
 }
