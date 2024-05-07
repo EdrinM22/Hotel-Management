@@ -146,7 +146,8 @@ export default function ManagerRoomDetailPage() {
         }
     ]
     )
-    const [selectedRoom, setSelectedRoom] = useState();
+    
+    const [selectedRoom, setSelectedRoom] = useState(null);
 
     function handleCategoryChange(category) {
         setSelectedCategory(category);
@@ -157,10 +158,22 @@ export default function ManagerRoomDetailPage() {
         modalRef.current.open();
     }
 
+    function handleRoomDetailSubmit( room ) {
+        console.log(room);
+        const updatedRoomDetails = roomDetails.map((roomDetail) => {
+            if (roomDetail.id === room.id) {
+                return room;
+            }
+            return roomDetail;
+        });
+        setRoomDetails(updatedRoomDetails);
+        modalRef.current.close();
+    }
+
     return (
         <div className="room-detail-page">
             <Modal ref={modalRef} title={`Edit Room: #${selectedRoom && selectedRoom.id}`}>
-                {selectedRoom && <RoomDetailForm room={selectedRoom} onSubmit={() => { }} onCancel={() => {}} />}
+                {selectedRoom && <RoomDetailForm room={selectedRoom} onSubmit={handleRoomDetailSubmit} onCancel={() => {}} />}
             </Modal>
             <div className="room-detail-filters-container">
                 <FeedbackCategoryBtn content="All Rooms" isSelected={selectedCategory === "All"} onClick={() => handleCategoryChange("All")} />

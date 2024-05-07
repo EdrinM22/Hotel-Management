@@ -1,8 +1,14 @@
 .modal{
     border: none;
     border-radius: 8px;
-    padding: 2rem;
+    padding: 1.5rem;
     background-color: #E7ECEF;
+}
+
+.center-button-modal{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0;
 }
 
 .modal[open] {
@@ -11,5 +17,5 @@
 
 .modal::backdrop {
     background: rgba(0, 0, 0, 0.9);
-  }
+}
   
