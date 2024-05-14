@@ -2,6 +2,7 @@ import './Footer.css'; // Make sure to create a corresponding CSS file for styli
 import Instagram from '../assets/ig.png';
 import Facebook from '../assets/fb.png';
 import Xtw from '../assets/x.png';
+
 const Footer = () => {
   return (
     <footer className="footer">
@@ -23,15 +24,15 @@ const Footer = () => {
           <p>Email: office@moto.al</p>
         </div>
         <div className="footer-icons">
-          <span className="icon">
-          <img src={Instagram} alt="IG" className="ig-logo"/>
-          </span>
-          <span className="icon">
-          <img src={Facebook} alt="FB" className="fb-logo"/>
-          </span>
-          <span className="icon">
-          <img src={Xtw} alt="X" className="x-logo"/>
-          </span>
+          <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="icon">
+            <img src={Instagram} alt="IG" className="ig-logo"/>
+          </a>
+          <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="icon">
+            <img src={Facebook} alt="FB" className="fb-logo"/>
+          </a>
+          <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer" className="icon">
+            <img src={Xtw} alt="X" className="x-logo"/>
+          </a>
         </div>
       </div>
     </footer>

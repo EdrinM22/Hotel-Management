@@ -1,5 +1,13 @@
+import "../components/RoomBookingPage.css"
+import RoomBookingFilter from "../components/RoomBookingFilter.jsx";
+import Receipt from "../components/Receipt.jsx";
+import RoomInfo from "../components/RoomInfo.jsx";
 export default function RoomBookingPage() {
     return (
-        <h1>Room Booking Page</h1>
+        <section className="RoomBookingPage">
+            <RoomBookingFilter/>
+            <Receipt/>
+            <RoomInfo/>
+        </section>
     )
 }

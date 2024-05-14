@@ -2,7 +2,12 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import "./App.css";
 import RootLayout from "./pages/RootLayout";
+import ReceptionistLayout from "./pages/ReceptionistLayout";
 import BookLayout from "./pages/BookLayout";
+import ServiceLayout from "./pages/ServiceLayoot";
+import ManagerLayout from "./pages/ManagerLayout";
+import AdminLayout from "./pages/AdminLayout";
+
 import MainPage from "./pages/MainPage";
 import RoomBookingPage from "./pages/RoomBookingPage";
 import EventBookingPage from "./pages/EventBookingPage";
@@ -11,6 +16,18 @@ import FeedbackPage from "./pages/FeedbackPage";
 import ContactPage from "./pages/ContactPage";
 import LoginPage from "./pages/LoginPage";
 import SignUp from "./components/SignUp";
+
+import ReceptionDashBoardPage from "./pages/ReceptionDashBoardPage";
+import TimeTablePage from "./pages/TimeTablePage";
+import TodayEventsPage from "./pages/TodayEventsPage";
+
+import ManagerDashboardPage from "./pages/ManagerDashboardPAge";
+import ManagerRoomDetailPage from "./pages/ManagerRoomDetailPage";
+import ManagerWorkerTimetablePage from "./pages/ManagerWorkerTimetablePage";
+
+import AdminAddWorkerPage from "./pages/AdminAddWorkerPage";
+import ReviewPage from "./pages/ReviewPage";
+
 const router = createBrowserRouter([
 	{
 		path: "/",
@@ -48,16 +65,36 @@ const router = createBrowserRouter([
     element: <SignUp />
   },
   {
-    path: 'staff',
-    element: <h1>test</h1>,
+    path: 'receptionist',
+    element: <ReceptionistLayout />,
+    children: [
+      { index: true, element: <ReceptionDashBoardPage /> },
+      { path: 'book', element: <RoomBookingPage />},
+      { path: 'timetable', element: <TimeTablePage /> },
+      { path: 'todayevents', element: <TodayEventsPage /> }
+    ]
+  },
+  {
+    path: 'service',
+    element: <ServiceLayout />,
   },
   {
     path: 'manager',
-    element: <h1>manager</h1>,
+    element: <ManagerLayout />,
+    children: [
+      { index: true, element: <ManagerDashboardPage />},
+      { path: 'review', element: <ReviewPage /> },
+      { path: 'roomdetail', element: <ManagerRoomDetailPage /> },
+      { path: 'workertimetable', element: <ManagerWorkerTimetablePage /> }
+    ]
   },
   {
     path: 'admin',
-    element: <h1>admin</h1>,
+    element: <AdminLayout />,
+    children: [
+      { index: true, element: <ReviewPage />},
+      { path: 'addworker', element: <AdminAddWorkerPage />}
+    ]
   }
 ]);
 

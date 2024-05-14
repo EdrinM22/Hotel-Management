@@ -3,8 +3,7 @@ import './Date.css';
 import Background from '../assets/bg.jpg';
 const background = {
     backgroundImage: `url(${Background})`,
-    height: "50vh",
-    marginTop: "-14px",
+    height: "91.5vh",
     marginLeft: "-14px",
     backgroundRepeat: "no-repeat",
 };

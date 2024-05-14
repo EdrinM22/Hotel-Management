@@ -1,0 +1,37 @@
+.room-booking-filter-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-top: 5vh;
+    left: 4%;
+    width: 90%;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.filter-row {
+    margin-right: 40px;
+}
+
+.filter-row:last-child {
+    margin-right: 0;
+}
+
+.filter-row label {
+    margin-right: 20px;
+}
+
+.filter-row input[type="date"],
+.filter-row input[type="number"],
+.filter-row input[type="text"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    max-width: 200px;
+}
+

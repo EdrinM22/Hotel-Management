@@ -18,7 +18,6 @@
 .secondary_btn {
 	background-color: #e7ecef;
 	color: #001427;
-	border: none;
 	padding: 10px 35px;
 	border-radius: 25px;
 	font-size: 16px;
@@ -49,6 +48,42 @@
         scale: 1.1;
         color: #ff0000;
     }
+}
 
+.text_btn{
+	background-color: transparent;
+	color: #0d5293;
+	border: none;
+	padding: 10px 35px;
+	font-size: 16px;
+	cursor: pointer;
+	transition: 0.3s;
 
+	&&:hover {
+		scale: 1.1;
+		color: #004b92;
+	}
+}
+
+@media screen and (max-width: 778px){
+	
+	.primary_btn {
+		padding: 10px 20px;
+		font-size: small;
+	}
+
+	.secondary_btn {
+		padding: 10px 20px;
+		font-size: small;
+	}
+
+	.danger_btn {
+		padding: 10px 20px;
+		font-size: small;
+	}
+
+	.text_btn {
+		padding: 10px 20px;
+		font-size: small;
+	}
 }

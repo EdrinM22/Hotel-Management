@@ -63,3 +63,49 @@
     width: 20px;
     height: 20px;
   }
+
+  /* Media Queries for responsiveness */
+@media (max-width: 768px) {
+  .footer-content {
+      flex-direction: column; /* Stacks blocks vertically */
+      align-items: center;
+  }
+
+  .footer-block {
+      margin-right: 0;
+      margin-bottom: 20px; /* Adds space between stacked blocks */
+      align-items: center;
+  }
+
+  .footer-icons {
+      margin-left: 0;
+      margin-top: 20px; /* Adds space above the icons */
+  }
+
+  .icon {
+      margin-left: 10px;
+      font-size: 20px; /* Adjust icon size for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+      padding: 10px;
+  }
+
+  .footer-block {
+      min-width: 100%; /* Ensures blocks take full width */
+      align-items: center;
+  }
+
+  .footer-icons {
+      justify-content: center;
+      margin-top: 10px; /* Adds space above the icons */
+  }
+
+  .icon {
+      width: 30px;
+      height: 30px;
+      font-size: 18px; /* Adjust icon size for smaller screens */
+  }
+}

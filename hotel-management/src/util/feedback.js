@@ -39,11 +39,14 @@ export function oneIsSelected(category) {
 	return Object.values(category).some((value) => value);
 }
 
-export async function submitFeedback(feedback) {
-	const response = await fetch("http://localhost:3001/feedback", {
+export async function submitFeedback(feedback, token) {
+	console.log(token.access);
+	
+	const response = await fetch("http://localhost:8000/feedback/create/", {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
+			'Authorization': `Bearer ${token.access}`,
 		},
 		body: JSON.stringify(feedback),
 	})
