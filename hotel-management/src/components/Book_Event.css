@@ -39,7 +39,6 @@
     margin-top: -1vh;  
 }
 .event-banner{
-    margin-top: -14px;
     margin-left : -9px;
     padding: 0;
     width: 100vw;
@@ -101,7 +100,6 @@
     justify-content: center;
     align-items: center;
     margin: 0 31vw;
-    
     background-color: #001427;
 	color: #e7ecef;
 	border: none;
