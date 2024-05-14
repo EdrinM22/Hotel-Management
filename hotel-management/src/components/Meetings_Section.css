@@ -1,26 +1,29 @@
 .meetings{
-    min-height: 100vh;
+    min-height: 105vh;
 }
 .meetings h1{
     padding-left: 3vw;
-    font-size: 2.2rem;
+    font-size: 2.5rem;
     padding-top: 5vh;
+}
+.meetings p{
+    font-size: 1.2rem;
 }
 .meetings-content{
     text-align: center;
-    width: 50vw;
+    width: 100vw;
     height: 35vh;
     margin-top: 10vh;
 }
-.meetings-content:nth-child(even) img{
-    position: absolute;
-    height: 30vh;
-    width: 30vw;
-    left: 5vh;
+.meetings-content img {
+    height: 30rex;
+    width: 40rem;
 }
-.meetings-content:nth-child(odd) img{
-   position: absolute;
-    width: 30vw;
-    height: 30vh;
-    left: 65vw;
+.meetings-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.meetings-content div{
+    width: 40vw;
 }

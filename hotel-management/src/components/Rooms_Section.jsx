@@ -6,9 +6,6 @@ const Rooms = () => {
         <section className="rooms">
             <h1>Rooms & Suites</h1>
             <Room_Card />
-            <Room_Card />
-            <Room_Card />
-            <Room_Card />
         </section>
     )
 }

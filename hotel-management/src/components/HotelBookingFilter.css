@@ -1,12 +1,12 @@
 .hotel-booking-filter-container {
     display: flex;
-    flex-direction: row; /* Arrange items horizontally */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     position: absolute;
     top: 70%;
     left: 50%;
-    width: 70%; /* Span horizontally */
+    width: 70%;
     transform: translate(-50%,-50%);
     background-color: #f0f0f0;
     padding: 20px;

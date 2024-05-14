@@ -1,0 +1,29 @@
+.room-info{
+    position: relative;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    left: 4vw;
+    width: 60vw;
+    margin-top: 5vh;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+}
+.room-info:nth-child(2nd) div{
+    border-bottom: 2px #001427;
+    border-top: 2px #001427;
+    border-style: solid none solid none ;
+
+}
+.room-info-name{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 0;
+    flex-shrink: 1;
+}
+.room-info button{
+    width: 8.8rem;
+    font-size: 0.8rem;
+    height: 2.5rem;
+}

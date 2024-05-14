@@ -12,13 +12,12 @@ const Meetings = () => {
                 </div>
             </div>
             <div className="meetings-content">
-                <img src={Foto} alt=""></img>
+
                 <div>
                     <h2>Title for events</h2>
                     <p>Text</p>
                 </div>
-
-
+                <img src={Foto} alt=""></img>
             </div>
         </section>
     )

@@ -1,8 +1,49 @@
 .activities{
-    height: 100vh;
+    min-height: 110vh;
 }
 .activities h1{
     padding-top: 5vh;
     padding-left: 3vw;
     font-size: 2.2rem;
+}
+
+.activities-content{
+    text-align: center;
+    width: 20vw;
+    height: 35vh;
+    margin-top: 10vh;
+}
+.activities h2{
+    padding-top: 5vh;
+}
+.activities-content:nth-child(even) div{
+    position: absolute;
+    height: 30vh;
+    width: 20vw;
+    left: 60vw;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.45);
+}
+.activities-content:nth-child(odd) div{
+    background-color: #001427;
+    height: 30vh;
+    width: 20vw;
+    color: white;
+    margin-left: 15vw;
+}
+.activities-content:nth-child(even) img{
+    position: absolute;
+    width: 40rem;
+    height: 30vh;
+    left: 5vw;
+}
+.activities-content:nth-child(odd) img{
+    position: absolute;
+    width: 40rem;
+    height: 30vh;
+    left: 52vw;
+}
+.activities-small{
+    position: absolute;
+    height: 30vh;
+    width: 20vw;
 }
