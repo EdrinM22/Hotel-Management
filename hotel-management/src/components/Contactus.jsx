@@ -1,5 +1,6 @@
 import "./ContactUs.css";
 import Banner from "../assets/contact_banner.png";
+import Button from "./Button.jsx";
 
 const ContactUs = () => {
 	return (
@@ -37,9 +38,10 @@ const ContactUs = () => {
         
             </div>
             <label>
-                    <textarea className="comment" name="message" placeholder="Your message here..." />
+                    <textarea className="comment" name="message" placeholder="Your message here..." style={{fontFamily:"Lato"}}/>
                 </label>
                     <button className="submit" type="submit">Submit</button>
+                    {/*<Button display="primary" type="submit" id={"submit"}>Submit</Button>*/}
         </form>
         </div>
 
