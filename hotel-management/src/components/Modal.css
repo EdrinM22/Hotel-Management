@@ -1,0 +1,21 @@
+.modal{
+    border: none;
+    border-radius: 8px;
+    padding: 1.5rem;
+    background-color: #E7ECEF;
+}
+
+.center-button-modal{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0;
+}
+
+.modal[open] {
+    animation: slide-in-from-top 0.35s ease-out;
+}
+
+.modal::backdrop {
+    background: rgba(0, 0, 0, 0.9);
+}
+  
