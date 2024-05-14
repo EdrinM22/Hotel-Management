@@ -21,18 +21,21 @@ const Receipt = () => {
                 </div>
 
                 <div className="room-type">
-                    <h3>Standard Room </h3>
+                    <h1>Standard Room </h1>
                     <h3>$499</h3>
                 </div>
-
                 <p>Breakfast included</p>
                 <p>10 nights</p>
+                <div className="receipt-edit">
+                    <Button display={"text"}> <span style={{fontSize: "1.5rem"}}>&#9998;</span> Edit</Button>
+                    <Button display={"text"}> <span style={{fontSize: "1.5rem"}}>&#128465;</span> Remove</Button>
+                </div>
             </div>
             <div className="receipt-total">
                 <p>Add room</p>
                 <p>Total: $499</p>
             </div>
-            <Button>Book now</Button>
+            <Button display={"primary"} id="book-now">Book now</Button>
         </div>
     )
 }
