@@ -1,135 +1,194 @@
+.contact-header {
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  font-size: 5rem;
+  transform: translate(-50%, -50%);
+  font-family: Lato, sans-serif;
+  color: rgb(255, 255, 255);
+}
 
-.contact-header{
-    position:absolute;
-    top: 65%;
-    left: 50%;
-    font-size: 5rem;
-    transform: translate(-50%, -50%);
-    font-family: Lato, sans-serif;
-    color: rgb(255, 255, 255);
+.contactfull-banner {
+  position: relative;
+  text-align: center;
+  color: white;
 }
-.contactfull-banner{
-    position: relative;
-    text-align: center;
-    color: white;
-    
-}
-.contact-banner{
-    margin-left : -9px;
-    padding: 0;
-    width: 100vw;
-}
-.contact-container{
-    display: flex;
-    font-family: Lato, sans-serif;
-    justify-content: center;
-    align-items: center;
-    margin: 100px;
 
+.contact-banner {
+  margin-left: -9px;
+  padding: 0;
+  width: 100vw;
+}
 
+.contact-container {
+  display: flex;
+  flex-direction: row;
+  font-family: Lato, sans-serif;
+  justify-content: center;
+  align-items: center;
+  margin: 100px;
 }
-.talk-with-us{
-    display: flex;
-    flex-direction: column;
-    margin-inline: 100px;
-    width: 600px;
-    
 
+.talk-with-us {
+  display: flex;
+  flex-direction: column;
+  margin-inline: 100px;
+  width: 600px;
 }
-.talk-header{
-    font-size: 3rem
 
+.talk-header {
+  font-size: 3rem;
 }
-.talk-subheader{
-    font-size: 2rem;
-}
-.contact-info-form{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 30px;
-    border: 2px solid #ccc;
-    box-shadow: 5px 10px 18px #88888860;
 
+.talk-subheader {
+  font-size: 2rem;
 }
+
+.contact-info-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  border: 2px solid #ccc;
+  box-shadow: 5px 10px 18px #88888860;
+}
+
 .contact-info {
-    display: grid;
-    grid-template-columns: auto auto;
-    column-gap: 80px;
-    row-gap: 20px;
-    max-width: 600px;
-    margin: auto;
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 80px;
+  row-gap: 20px;
+  max-width: 600px;
+  margin: auto;
+}
 
+.contact-info label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  width: 250px;
+}
+
+.contact-info input[type="text"],
+.contact-info input[type="email"],
+.contact-info input[type="tel"],
+.contact-info textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.contact-info textarea {
+  height: 150px;
+  resize: none;
+}
+
+.comment {
+  resize: none;
+  margin-top: 20px;
+  width: 500px;
+  padding-bottom: 200px;
+}
+
+.submit {
+  padding: 10px 20px;
+  margin-top: 20px;
+  border: none;
+  background-color: #001427;
+  color: white;
+  border-radius: 55px;
+  transition: background-color 0.3s;
+  width: 200px;
+  height: 50px;
+}
+
+.submit:hover {
+  background-color: #0055bb;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .contact-container {
+      flex-direction: column;
+      margin: 20px;
   }
-  
+
+  .talk-with-us {
+      margin-inline: 0;
+      width: 100%;
+      text-align: center;
+  }
+
+  .contact-info-form {
+      padding: 20px;
+      width: 100%;
+      max-width: 600px;
+  }
+
+  .contact-info {
+      grid-template-columns: 1fr;
+      column-gap: 20px;
+  }
+
   .contact-info label {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 15px;
-    width: 250px;
+      width: 100%;
   }
-  
+
   .contact-info input[type="text"],
   .contact-info input[type="email"],
   .contact-info input[type="tel"],
   .contact-info textarea {
-    padding: 10px;
-    border: 1px solid #ccc;
+      width: 100%;
   }
-  
-  .contact-info textarea {
-    height: 150px; /* Adjust the height as needed */
+
+  .comment {
+      width: 100%;
+      padding-bottom: 100px;
   }
-  
-  
-  .form-button:hover {
-    background-color: #0056b3;
+
+  .submit {
+      width: 100%;
   }
-  .comment{
-    resize: none;
-    margin-top: 20px;
-    width: 500px;
-    padding-bottom: 200px;
-  }
-  .submit{
-    padding: 10px 20px;
-    margin-top: 20px;
-    border: none;
-    background-color: #001427;
-    color: white;
-    border-radius: 55px;
-    transition: background-color 0.3s;
-    width: 200px;
-    height: 50px;
 }
-  #submit{
-      margin-top: 20px;
+
+@media screen and (max-width: 480px) {
+  .contact-header {
+      font-size: 1.5rem;
+      top: 60%;
   }
-  .submit:hover {
-    background-color: #0055bb; /* Replace with the button hover background color you need */
+
+  .talk-header {
+      font-size: 1rem;
+      text-align: center;
   }
-/* its a messs */
-  @media screen and (max-width: 1035px) {
-    .contact-container{
-      height: 100%;
-          
-    }
-    .contact-banner{
-      margin-left : -9px;
-      padding: 0;
-      width: 100vw;}
-    
+
+  .talk-subheader {
+      font-size: 1rem;
+      text-align: center;
   }
-  
-  @media screen and (max-width: 649px) {
-    
-    .contact-container{
-      flex-direction: column;
-    }
-    .contact-banner{
-      margin-left : -9px;
-      padding: 0;
-      width: 100vw;}
-    
+
+  .contact-info-form {
+      padding: 10px;
   }
+
+  .contact-info input[type="text"],
+  .contact-info input[type="email"],
+  .contact-info input[type="tel"],
+  .contact-info textarea {
+      font-size: 14px;
+      padding: 8px;
+  }
+  .contact-info label{
+    margin-bottom: 0px;
+  }
+
+  .comment {
+      width: 100%;
+      height: 100px;
+      padding: 10px;
+  }
+
+  .submit {
+      width: 100%;
+  }
+}
