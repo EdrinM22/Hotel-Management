@@ -22,7 +22,7 @@ const ManagerReviews = () => {
                 }
                 console.log(await response.json);
 
-                const data = await response.json();
+                const data = await response.json(); 
                 setReviews(data);
                 console.log(data)
                 // calculateAverageRating(data);
@@ -35,38 +35,33 @@ const ManagerReviews = () => {
             }
         }
         fetchReviews();
-        // async function fetchAverage() {
-        //     try {
-        //     const response = await fetch("http://localhost:8000/feedback/average/",{
-        //         method: 'GET',
-        //         headers: {
-        //             'Content-Type': 'application/json',
-        //             'Authorization': `Bearer ${token.access}`, // Adjust if using another method for storing token
-        //         }
-        //     }
-        //     );
-        //     if (!response.ok) {
-        //         console.log(response.text);
-        //     }
-        //     const data = await response.json();
-        //     console.log(`The Data is${data}`)
-        //     setAverageRating(data.average);
-        //     }
-        //     catch (error) {
-        //         console.log("ERROR", error);
-        //     }
-        // }
-        // fetchAverage();
+        async function fetchAverage() {
+            try {
+            const response = await fetch("http://localhost:8000/feedback/average/",{
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token.access} `, // Adjust if using another method for storing token
+                }
+            }
+            );
+            if (!response.ok) {
+                console.log(response.text);
+            }
+            const data = await response.json();
+            console.log(`The Data is${data}`)
+            setAverageRating(data.average);
+            }
+            catch (error) {
+                console.log("ERROR", error);
+            }
+        }
+        fetchAverage();
         
         
     }, []);
 
-    const calculateAverageRating = (reviews) => {
-        if (reviews.length === 0) return;
-        const totalStars = reviews.reduce((sum, review) => sum + review.stars, 0);
-        setAverageRating((totalStars / reviews.length).toFixed(1));
-    };
-
+ 
     const calculateFinalReview = (reviews) => {
         if (reviews.length === 0) return;
         reviews = reviews.results
