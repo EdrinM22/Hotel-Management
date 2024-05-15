@@ -51,6 +51,7 @@
 .review-text {
     font-size: 14px;
     line-height: 1.5;
+    width: calc(100% - 20px);
 }
 
 /* Responsive adjustments */
