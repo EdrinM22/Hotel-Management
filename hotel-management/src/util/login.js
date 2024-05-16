@@ -1,17 +1,9 @@
+import { RequestService } from "./sendRequest";
+
 export async function sendCredentialsToServer(email, password) {
-	const response = await fetch("http://localhost:8000/users/api/token/", {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({
-			email: email,
-			password: password,
-		}),
-	});
-
+	const requestService = new RequestService();
+	const response = await requestService.getToken(email, password);
 	const resData = await response.json();
-
 	if (!response.ok) {
 		throw new Error(resData.detail || "Wrong Email or Password");
 	}
@@ -20,13 +12,8 @@ export async function sendCredentialsToServer(email, password) {
 }
 
 export async function sentTokenToServer(token) {
-    const response = await fetch("http://localhost:8000/users/login/", {
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`,
-        },
-    });
-
+	const requestService = new RequestService(token);
+    const response = await requestService.login();
     const resData = await response.json();
 
     if (!response.ok) {
