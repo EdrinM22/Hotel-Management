@@ -27,3 +27,6 @@
     font-size: 0.8rem;
     height: 2.5rem;
 }
+.room-info img {
+    width: inherit;
+}
