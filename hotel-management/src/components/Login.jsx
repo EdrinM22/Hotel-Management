@@ -66,11 +66,11 @@ const Login = () => {
 
 				if (userData.type === "receptionist") {
 					navigation("/receptionist");
-				} else if (userData.type === "admin") {
+				} else if (userData.type === "Admin") {
 					navigation("/admin");
-				} else if (userData.type === "manager") {
+				} else if (userData.type === "Manager") {
 					navigation("/manager");
-				} else if (userData.type === "service") {
+				} else if (userData.type === "Service") {
 					navigation("/service");
 				} else {
 					navigation("/");
