@@ -64,7 +64,7 @@ const Login = () => {
 				console.log(userData, token);
 				handleLoginData(token, userData);
 
-				if (userData.type === "receptionist") {
+				if (userData.type === "Receptionist") {
 					navigation("/receptionist");
 				} else if (userData.type === "Admin") {
 					navigation("/admin");
@@ -75,7 +75,6 @@ const Login = () => {
 				} else {
 					navigation("/");
 				}
-				// navigation("/");
 			} catch (error) {
 				setErrorMessage(error.message);
 			} finally {

@@ -8,6 +8,10 @@
     margin: 20px 0;
 }
 
+.room-detail-filters-container :last-child{
+    margin-left: auto;
+}
+
 .room-detail-table-container{
     width: 100%;
     overflow-x: auto;
