@@ -6,6 +6,8 @@ export default function AdminLayout() {
     const navLinks = [
         { name: "Reviews", path: "/admin" },
         { name: "Add Worker", path: "/admin/addworker" },
+        { name: "Contact Us Inquiries", path: "/admin/contactusinquiry" },
+        
     ]
 
     return (

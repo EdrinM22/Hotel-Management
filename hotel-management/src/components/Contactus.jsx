@@ -1,6 +1,5 @@
 import "./ContactUs.css";
 import Banner from "../assets/contact_banner.png";
-import Button from "./Button.jsx";
 
 const ContactUs = () => {
 	return (
