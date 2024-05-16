@@ -14,7 +14,6 @@ export default function ManagerRoomDetailPage() {
     
     const token = useSelector((state) => state.auth.userActiveToken);
    
-
     const [roomTypes, setRoomTypes] = useState([]);
 
     useEffect(() => {
@@ -205,8 +204,11 @@ export default function ManagerRoomDetailPage() {
                 {selectedRoom && <RoomDetailForm room={selectedRoom} onSubmit={handleRoomDetailSubmit} onCancel={() => {}} />}
             </Modal>
             <Modal ref={addRoomModalRef} title="Add Room">
-                <AddRoomForm />
+                {roomTypes.length > 0 && <AddRoomForm roomTypes={roomTypes}/>}
             </Modal>
+
+
+            
             <div className="room-detail-filters-container">
                 <FeedbackCategoryBtn content="All Rooms" isSelected={selectedCategory === "All"} onClick={() => handleCategoryChange("All")} />
                 <FeedbackCategoryBtn content="Available Rooms" isSelected={selectedCategory === "Available"} onClick={() => handleCategoryChange("Available")} />
