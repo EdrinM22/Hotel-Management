@@ -24,6 +24,7 @@ import TodayEventsPage from "./pages/TodayEventsPage";
 import ManagerDashboardPage from "./pages/ManagerDashboardPAge";
 import ManagerRoomDetailPage from "./pages/ManagerRoomDetailPage";
 import ManagerWorkerTimetablePage from "./pages/ManagerWorkerTimetablePage";
+import ManagerContactUsInquiryPage from "./pages/ManagerContactUsInquiryPage";
 
 import AdminAddWorkerPage from "./pages/AdminAddWorkerPage";
 import ReviewPage from "./pages/ReviewPage";
@@ -86,7 +87,8 @@ const router = createBrowserRouter([
       { index: true, element: <ManagerDashboardPage />},
       { path: 'review', element: <ReviewPage /> },
       { path: 'roomdetail', element: <ManagerRoomDetailPage /> },
-      { path: 'workertimetable', element: <ManagerWorkerTimetablePage /> }
+      { path: 'workertimetable', element: <ManagerWorkerTimetablePage /> },
+      { path: 'contactusinquiry', element: <ManagerContactUsInquiryPage />}
     ]
   },
   {

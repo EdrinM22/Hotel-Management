@@ -1,49 +1,92 @@
-import "../components/Book_Event.css";
-import Banner from "../assets/book_events_bg.png"
+import { useState } from 'react';
+import './Book_Event.css';
+import Banner from '../assets/contact_banner.png';
 
-const Book_Event = () => {
+const BookEvent = () => {
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        companyName: '',
+        numberOfPeople: '',
+        eventType: '',
+    });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value
+        }));
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // Here you can handle form submission, e.g., send data to backend
+        console.log('Form Data:', formData);
+    };
+
     return (
         <>
-        <div className="event-type-selector">
-        <h1 className="event-type">Room</h1>
-        <h1 className="event-type">Event</h1>
-        </div>
-        <div className="eventfull-banner">
-        <h1 className="event-header">Book Your Events With Us</h1>
-        <img src={Banner} alt="Contact Us Banner" className="event-banner" />
-        </div>
-      <div className="book-events">
-        
-        <div className="whole-component">
-        <div className="event-details">
-          <div>
-            <label htmlFor="event-type">Event Type</label>
-            <input className="textbox" type="text" id="event-type" placeholder="Event Type" />
-          </div>
-          <div>
-            <label htmlFor="number-of-guests">Number of Guests</label>
-            <input className="textbox" type="number" id="number-of-guests" placeholder="Number of Guests" />
-          </div>
-        </div>
-        <div className="date-pickers">
-          <div>
-            <label htmlFor="starting-date">Starting Date</label>
-            <input className="textbox" type="date" id="starting-date" />
-          </div>
-          <div>
-            <label htmlFor="ending-date">Ending Date</label>
-            <input className="textbox" type="date" id="ending-date" />
-          </div>
-        </div>
-        <div className="all-day-checkbox">
-          <input type="checkbox" id="all-day" />
-          <label htmlFor="all-day">All Day</label>
-        </div>
-        <button>Book</button>
-        </div>
-      </div>
-      </>
+            <div className="book-event-banner">
+                <h1 className="book-event-header">Book Your Event</h1>
+                <img src={Banner} alt="Book Event Banner" className="book-event-banner-img" />
+            </div>
+            <div className="book-event-container">
+                <form className="book-event-form" onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label>Name</label>
+                        <input
+                            type="text"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Email</label>
+                        <input
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Company Name (optional)</label>
+                        <input
+                            type="text"
+                            name="companyName"
+                            value={formData.companyName}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Number of People</label>
+                        <input
+                            type="number"
+                            name="numberOfPeople"
+                            value={formData.numberOfPeople}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Event Type</label>
+                        <input
+                            type="text"
+                            name="eventType"
+                            value={formData.eventType}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </>
     );
-  };
-  
-  export default Book_Event;
+};
+
+export default BookEvent;

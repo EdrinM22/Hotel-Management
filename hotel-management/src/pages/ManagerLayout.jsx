@@ -9,6 +9,7 @@ export default function ManagerLayout() {
         { name: "Review", path: "/manager/review"},
         { name: "Room Details", path: "/manager/roomdetail" },
         { name: "Worker Timetable", path: "/manager/workertimetable" },
+		{ name: "Contact Us Inquiries", path: "/manager/contactusinquiry" },
     ]
     
 	return (

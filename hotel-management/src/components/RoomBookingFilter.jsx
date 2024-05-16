@@ -5,7 +5,7 @@ const RoomBookingFilter = () => {
     const [checkInDate, setCheckInDate] = useState('');
         const [checkOutDate, setCheckOutDate] = useState('');
         const [numGuests, setNumGuests] = useState(1);
-        const [roomType, setRoomType] = useState("Standart Room");
+        const [roomType, setRoomType] = useState("Standard Room");
         const handleSearch = () => {
             const searchData = {
                 checkInDate,
