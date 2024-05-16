@@ -1,39 +1,73 @@
-import "./RoomInfo.css"
+import React, { useEffect, useState } from 'react';
+import "./RoomInfo.css";
 import Button from "./Button.jsx";
 import Foto from "../assets/book_events_bg.png";
-const RoomInfo = () => {
-    return(
-        <div className="room-info">
-            <img src={Foto}></img>
-            <div>
-                <div className="room-info-name">
-                    <h2>
-                        Standard Room
-                    </h2>
-                    <h3>$49.99</h3>
-                </div>
-                <p>Room info</p>
-            </div>
-            <div>
-                <div className="room-info-name">
-                    <h3>Room Only</h3>
-                    <Button>Add Room</Button>
-                </div>
-                <p>Standard Room only</p>
 
-            </div>
-            <div>
-                <div className="room-info-name">
-                    <h3>Breakfast included</h3>
-                    <Button>$55.00</Button>
+const RoomInfo = () => {
+    const [rooms, setRooms] = useState([]);
+    const [errorMessage, setErrorMessage] = useState('');
+
+    useEffect(() => {
+        async function fetchRooms() {
+            try {
+                const response = await fetch('http://localhost:8000/rooms/rooms/list/', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`Network response was not ok: ${errorText}`);
+                }
+
+                const data = await response.json();
+                setRooms(data);
+                console.log(data[0].room_type);
+
+            } catch (error) {
+                console.error("Error fetching rooms:", error);
+                setErrorMessage('Failed to fetch room information. Please try again later.');
+            }
+        }
+
+        fetchRooms();
+    }, []);
+
+    return (
+        <div className="room-info">
+            {errorMessage && <p className="error-message">{errorMessage}</p>}
+            {rooms.map(room => (
+                <div key={room.room_type.id} className="room-card">
+                    <img src={Foto} alt={`Room ${room.room_type.id}`}/>
+                    <div className="room-info-name">
+                        <h2>{room.room_type.type_name}</h2>
+                        <h3>${room.room_type.online_price}</h3>
+                    </div>
+                    <p>{room.room_type.description}</p>
+                    <div className="room-package">
+                        <div className="room-info-name">
+                            <h3>Room Only</h3>
+                            <Button>Add Room</Button>
+                        </div>
+                        <p>Standard Room only</p>
+                    </div>
+                    <div className="room-package">
+                        <div className="room-info-name">
+                            <h3>Breakfast included</h3>
+                            <Button>${room.breakfast_included_price}</Button>
+                        </div>
+                        <div className="room-info-content">
+                            <p>Standard room</p>
+                            <p>Breakfast</p>
+                            <p>Non Refundable</p>
+                        </div>
+                    </div>
                 </div>
-                <div className="room-info-content">
-                    <p>Standard room</p>
-                    <p>Breakfast</p>
-                    <p>Non Refundable</p>
-                </div>
-            </div>
+            ))}
         </div>
-    )
+    );
 }
-export default RoomInfo
+
+export default RoomInfo;

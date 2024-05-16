@@ -9,7 +9,7 @@ import { useSubmitState } from "../hooks/useSubmitState";
 import { useState } from "react";
 
 export default function RoomDetailForm({ room, onSubmit }) {
-	const roomTypes = ["Standart", "Comfort", "Executive", "Suite"];
+	const roomTypes = ["Standard", "Comfort", "Executive", "Suite"];
 
 	const [roomType, setRoomType] = useState(room.roomType);
 
