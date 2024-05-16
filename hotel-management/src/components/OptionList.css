@@ -59,6 +59,7 @@
     flex-direction: column;
     background-color: #fff;
     width: 40%;
+    min-width: 200px;
     border: 1px solid #001427;
     border-top: none;
     z-index: 1;

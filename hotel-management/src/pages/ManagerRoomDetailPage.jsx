@@ -1,12 +1,37 @@
+import Button from "../components/Button";
 import FeedbackCategoryBtn from "../components/FeedbackCategoryBtn";
 import Modal from "../components/Modal";
 import RoomDetailForm from "../components/RoomDetailForm";
+import AddRoomForm from "../components/AddRoomForm";
 import "../components/RoomDetails.css"
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect} from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function ManagerRoomDetailPage() {
     const modalRef = useRef();
+    const addRoomModalRef = useRef();
+    
+    const token = useSelector((state) => state.auth.userActiveToken);
+   
+
+    const [roomTypes, setRoomTypes] = useState([]);
+
+    useEffect(() => {
+        fetch("http://localhost:8000/rooms/room_type/scroll/list/", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization" : `Bearer ${token.access}`
+            },
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+            setRoomTypes(data);
+        });
+    }, [])
+    
 
     const [selectedCategory, setSelectedCategory] = useState("All");
     const [roomDetails, setRoomDetails] = useState([
@@ -170,16 +195,25 @@ export default function ManagerRoomDetailPage() {
         modalRef.current.close();
     }
 
+    function handleAddRoom() {
+        addRoomModalRef.current.open();
+    }
+
     return (
         <div className="room-detail-page">
             <Modal ref={modalRef} title={`Edit Room: #${selectedRoom && selectedRoom.id}`}>
                 {selectedRoom && <RoomDetailForm room={selectedRoom} onSubmit={handleRoomDetailSubmit} onCancel={() => {}} />}
             </Modal>
+            <Modal ref={addRoomModalRef} title="Add Room">
+                <AddRoomForm />
+            </Modal>
             <div className="room-detail-filters-container">
                 <FeedbackCategoryBtn content="All Rooms" isSelected={selectedCategory === "All"} onClick={() => handleCategoryChange("All")} />
                 <FeedbackCategoryBtn content="Available Rooms" isSelected={selectedCategory === "Available"} onClick={() => handleCategoryChange("Available")} />
                 <FeedbackCategoryBtn content="Booked Rooms" isSelected={selectedCategory === "Booked"} onClick={() => handleCategoryChange("Booked")} />
+                <Button display="secondary" onClick={handleAddRoom}>Add Room </Button>
             </div>
+            
             <main className="room-detail-table-container">
                 <table className="room-detail-table">
                     <thead className="room-detail-table-head">
