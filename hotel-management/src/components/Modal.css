@@ -1,7 +1,8 @@
 .modal{
     border: none;
     border-radius: 8px;
-    padding: 1.5rem;
+    padding: 1.5rem 2rem;
+
     background-color: #E7ECEF;
 }
 

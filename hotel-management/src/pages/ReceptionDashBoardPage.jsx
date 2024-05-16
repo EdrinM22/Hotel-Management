@@ -10,6 +10,7 @@ export default function ReceptionDashBoardPage() {
 			Checkin: "2024-04-01",
 			Checkout: "2024-04-05",
 			// IsReadonly: true,
+			Description: `John Doell \n${230 + 2}$`
 		},
 		{
 			RoomId: 2,
@@ -17,6 +18,7 @@ export default function ReceptionDashBoardPage() {
 			Checkin: "2024-04-10",
 			Checkout: "2024-04-15",
 			// IsReadonly: true,
+			Description: `Client Name : {Client Name} \n Total Price: ${200 + 5}$`
 		},
 		{
 			RoomId: 3,
@@ -24,6 +26,8 @@ export default function ReceptionDashBoardPage() {
 			Checkin: "2024-04-06",
 			Checkout: "2024-04-07",
 			// IsReadonly: true,
+			Description: `Ilvio Cumani \n${200 + 4}$`,
+			
 		},
 	]);
 
