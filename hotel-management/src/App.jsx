@@ -27,6 +27,7 @@ import ManagerWorkerTimetablePage from "./pages/ManagerWorkerTimetablePage";
 
 import AdminAddWorkerPage from "./pages/AdminAddWorkerPage";
 import ReviewPage from "./pages/ReviewPage";
+import AdminContactUsInquiryPage from "./pages/AdminContactUsInquiryPage";
 
 const router = createBrowserRouter([
 	{
@@ -93,7 +94,8 @@ const router = createBrowserRouter([
     element: <AdminLayout />,
     children: [
       { index: true, element: <ReviewPage />},
-      { path: 'addworker', element: <AdminAddWorkerPage />}
+      { path: 'addworker', element: <AdminAddWorkerPage />},
+      { path: 'contactusinquiry', element: <AdminContactUsInquiryPage />}
     ]
   }
 ]);
