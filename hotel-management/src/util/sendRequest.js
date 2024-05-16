@@ -5,6 +5,31 @@ const requestMethods = {
     PATCH: 'PATCH',
 };
 
+function cleanQueryParams(query_params) {
+    let data = {}
+    for ([k, v] of query_params) {
+            if (v !== null) {
+                data[k] = query_params;
+            }
+        }
+    return data
+}
+
+function getTheTrueUrl(sendingUrl, data) {
+    let i = 0;
+    if (data instanceof Object && Object.entries(data).length == 0) {
+        return sendingUrl; 
+    }
+    sendingUrl += '?';
+    for ([k, v] in data) {
+           if (i === 0) {
+                sendingUrl += `${k}=${v}`;
+           } else {
+                sendingUrl += `&${k}=${v}`;
+           }
+        }
+    return sendingUrl;
+}
 
 export class RequestService {
     
@@ -33,8 +58,12 @@ export class RequestService {
         return await this.userService.logIn();
     }
 
-     async createRoom(data) {
+    async createRoom(data) {
         return await this.roomService.createRoom(data);
+    }
+
+    async listRoom(query_params) {
+        return await this.roomService.listRoom(query_params);
     }
 
 }
@@ -86,6 +115,14 @@ class RequestRoomService {
             headers: this.header_info,
             body: JSON.stringify(data)
         })
+    }
+
+    async listRoom(query_params) {
+        let data = cleanQueryParams(query_params);
+        const sendingUrl = getTheTrueUrl(this.mainUrl + 'rooms/list/', data);
+        return await fetch(sendingUrl, {
+            headers: this.header_info,
+        });
     }
 }
 
