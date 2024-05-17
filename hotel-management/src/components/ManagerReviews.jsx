@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { getTokenFromLocalStorage } from '../util/token';
 
 const ManagerReviews = () => {
-    const [reviews, setReviews,] = useState([]);
-    const [totalReviews, setTotalReviews] = useState([])
+    const [reviews, setReviews] = useState([]);
     const [averageRating, setAverageRating] = useState(0);
     const token = getTokenFromLocalStorage();
+
     useEffect(() => {
         async function fetchReviews() {
             try {
@@ -15,57 +15,54 @@ const ManagerReviews = () => {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token.access}`, // Adjust if using another method for storing token
+                        'Authorization': `Bearer ${token.access}`,
                     }
                 });
 
                 if (!response.ok) {
-                    throw new Error('Network response was notok');
+                    throw new Error('Network response was not ok');
                 }
-                console.log(await response.json);
 
-                const data = await response.json(); 
-                setReviews(data);
-                console.log(data)
-                // calculateAverageRating(data);
-                calculateFinalReview(reviews);
-                
-                
+                const data = await response.json();
+                setReviews(data.results);  // Assuming data.results contains the list of reviews
+                calculateFinalReview(data.results);
 
             } catch (error) {
                 console.error("Error fetching reviews:", error);
             }
         }
-        fetchReviews();
+
         async function fetchAverage() {
             try {
-            const response = await fetch("http://localhost:8000/feedback/average/",{
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token.access} `, // Adjust if using another method for storing token
+                const response = await fetch("http://localhost:8000/feedback/average/", {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token.access}`,
+                    }
+                });
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(errorText);
                 }
-            }
-            );
-            if (!response.ok) {
-                console.log(response.text);
-            }
-            const data = await response.json();
-            console.log(`The Data is${data}`)
-            setAverageRating(data.average);
-            }
-            catch (error) {
-                console.log("ERROR", error);
+
+                const data = await response.json();
+                setAverageRating(data.average);
+
+            } catch (error) {
+                console.error("Error fetching average rating:", error);
             }
         }
-        fetchAverage();
-        
-    }, []);
 
- 
+        fetchReviews();
+        fetchAverage();
+
+    }, [token]);
+
     const calculateFinalReview = (reviews) => {
         if (reviews.length === 0) return;
-        reviews = reviews.results
+        
         const theTotalReviews = reviews.map((review) => (
             <div className="review-card" key={review.id}>
                 <div className="review-header">
@@ -77,13 +74,14 @@ const ManagerReviews = () => {
             </div>
         ));
         
-        setTotalReviews(theTotalReviews);
+        return theTotalReviews;
     }
+    
     return (
         <div className="manager-reviews">
             <h2>Average Rating: {averageRating}</h2>
             <div className="reviews-container">
-                {totalReviews}
+                {calculateFinalReview(reviews)}
             </div>
         </div>
     );
