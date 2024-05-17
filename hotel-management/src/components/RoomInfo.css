@@ -24,10 +24,6 @@
     margin-bottom: 15px;
 }
 
-.room-card {
-    display: flex;
-    flex-direction: column;
-}
 
 
 .room-info button {
