@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import './ManagerReviews.css';
 import { useDispatch, useSelector } from "react-redux";
+import { getTokenFromLocalStorage } from '../util/token';
+
 const ManagerReviews = () => {
     const [reviews, setReviews,] = useState([]);
     const [totalReviews, setTotalReviews] = useState([])
     const [averageRating, setAverageRating] = useState(0);
-    const token = useSelector((state) => state.auth.userActiveToken);
+    const token = getTokenFromLocalStorage();
     useEffect(() => {
         async function fetchReviews() {
             try {
@@ -57,7 +59,6 @@ const ManagerReviews = () => {
             }
         }
         fetchAverage();
-        
         
     }, []);
 
