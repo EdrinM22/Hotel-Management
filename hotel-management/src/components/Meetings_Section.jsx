@@ -1,11 +1,12 @@
 import "./Meetings_Section.css";
-import Foto from"../assets/book_events_bg.png"
+import EventsPic from "../assets/event.jpg"
+import Conferencepic from "../assets/conference.jpg"
 const Meetings = () => {
     return(
         <section className="meetings">
             <h1>Meetings & Events</h1>
             <div className="meetings-content">
-                <img src={Foto} alt=""></img>
+                <img src={Conferencepic} className="conference-pic" alt=""></img>
                 <div>
                     <h2>Meetings at our hotel</h2>
                     <p>At [Hotel Name], we offer the ideal setting for your next business meeting. Our flexible,
@@ -26,7 +27,7 @@ const Meetings = () => {
                         Located in the heart of [City Name], our hotel offers easy access and luxurious accommodations for out-of-town guests.
                         </p>
                 </div>
-                <img src={Foto} alt=""></img>
+                <img src={EventsPic} className="events-pic" alt=""></img>
             </div>
         </section>
     )
