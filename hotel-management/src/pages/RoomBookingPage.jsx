@@ -6,8 +6,10 @@ export default function RoomBookingPage() {
     return (
         <section className="RoomBookingPage">
             <RoomBookingFilter/>
-            <Receipt/>
-            <RoomInfo/>
+            <div className="reservation">
+                <RoomInfo/>
+                <Receipt/>
+            </div>
         </section>
     )
 }
