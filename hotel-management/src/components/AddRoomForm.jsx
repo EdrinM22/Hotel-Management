@@ -10,7 +10,7 @@ import { RequestService } from "../util/sendRequest";
 
 import { getTokenFromLocalStorage } from "../util/token";
 
-export default function AddRoomForm({roomTypes}) {
+export default function AddRoomForm({roomTypes, onSubmit}) {
 
     const [submitState, setErrorMessage, setSubmitting] = useSubmitState();
     const token = getTokenFromLocalStorage();
@@ -25,6 +25,7 @@ export default function AddRoomForm({roomTypes}) {
     const roomTypeOptions = roomTypes.map((roomType) => roomType.type_name);
 
     function handleRoomTypeSelection(selectedOption) {
+        setErrorMessage("");
         setNewRoomInfo((prev) => ({
             ...prev,
             room_type: selectedOption
@@ -33,6 +34,7 @@ export default function AddRoomForm({roomTypes}) {
 
     function handleRoomNumberChange(event) {
         const value = event.target.value;
+        setErrorMessage("");
         setNewRoomInfo((prev) => ({
             ...prev,
             room_unique_number: value
@@ -40,6 +42,7 @@ export default function AddRoomForm({roomTypes}) {
     }
 
     function handleRoomDescriptionChange(event) {
+        setErrorMessage("");
         const value = event.target.value;
         setNewRoomInfo((prev) => ({
             ...prev,
@@ -47,8 +50,7 @@ export default function AddRoomForm({roomTypes}) {
         }));
     }
 
-    function handleSubmit(){
-        
+    function handleSubmit(){ 
         if (newRoomInfo.room_type === null || newRoomInfo.room_unique_number === "") {
             setErrorMessage("THIS is why your wife left you 🖕🏻");
             return;
@@ -69,10 +71,10 @@ export default function AddRoomForm({roomTypes}) {
 
                 
                 if (response.status === 400) {
-                    setErrorMessage("Room already exists");
                     console.log(await response.text());
                     throw new Error("Room already exists");
                 }
+
 
             }
             catch (error) {
@@ -80,12 +82,16 @@ export default function AddRoomForm({roomTypes}) {
             }
             finally {
                 setSubmitting(false);
+                
             }
-
-            
         }
         sendRoomData();
-
+        onSubmit();
+        setNewRoomInfo({
+            room_type: null,
+            room_unique_number: "",
+            room_description: ""
+        } )
         console.log(roomData);
     }
 

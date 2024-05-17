@@ -55,6 +55,22 @@
     color: #F24444;
 }
 
+.room-status-Dirty{
+    /*make yellow*/
+    background-color: #FDF1E8;
+    border-radius: 50px;
+    padding: 5px 10px;
+    color: #F2A444;
+}
+
+.room-status-Clean{
+    /*make green*/
+    background-color: #E8FDF1;
+    border-radius: 50px;
+    padding: 5px 10px;
+    color: #37b737;
+}
+
 .table-action-btn{
     padding: 5px 10px;
     background-color: #448DF2;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import "./RoomInfo.css";
 import Button from "./Button.jsx";
 import Foto from "../assets/book_events_bg.png";
@@ -24,7 +24,6 @@ const RoomInfo = () => {
 
                 const data = await response.json();
                 setRooms(data);
-                console.log(data[0].room_type);
 
             } catch (error) {
                 console.error("Error fetching rooms:", error);
@@ -36,24 +35,26 @@ const RoomInfo = () => {
     }, []);
 
     return (
-        <div className="room-info">
+        <div>
             {errorMessage && <p className="error-message">{errorMessage}</p>}
             {rooms.map(room => (
-                <div key={room.room_type.id} className="room-card">
-                    <img src={Foto} alt={`Room ${room.room_type.id}`}/>
-                    <div className="room-info-name">
-                        <h2>{room.room_type.type_name}</h2>
-                        <h3>${room.room_type.online_price}</h3>
+                <div key={room.room_type.id} className="room-info">
+                    <img src={Foto} alt={`Room ${room.room_type.id}`} />
+                    <div>
+                        <div className="room-info-name">
+                            <h2>{room.room_type.type_name}</h2>
+                            <h3>${room.room_type.online_price}</h3>
+                        </div>
+                        <p>{room.room_type.description}</p>
                     </div>
-                    <p>{room.room_type.description}</p>
-                    <div className="room-package">
+                    <div>
                         <div className="room-info-name">
                             <h3>Room Only</h3>
                             <Button>Add Room</Button>
                         </div>
-                        <p>Standard Room only</p>
+                        <p>idk</p>
                     </div>
-                    <div className="room-package">
+                    <div>
                         <div className="room-info-name">
                             <h3>Breakfast included</h3>
                             <Button>${room.breakfast_included_price}</Button>
