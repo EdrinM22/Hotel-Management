@@ -1,3 +1,8 @@
 .RoomBookingPage {
     min-height: 110vh;
 }
+.reservation{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
