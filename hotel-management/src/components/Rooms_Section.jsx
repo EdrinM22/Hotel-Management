@@ -7,9 +7,6 @@ const Rooms = () => {
             <h1>Rooms & Suites</h1>
             <div className="cards">
                 <Room_Card />
-                <Room_Card />
-                <Room_Card />
-                <Room_Card />
             </div>
 
         </section>
