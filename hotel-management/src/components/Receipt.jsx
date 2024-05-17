@@ -1,6 +1,13 @@
 import "./Receipt.css"
 import Button from "./Button.jsx";
+
+import { getTokenFromLocalStorage } from "../util/token.js";
+
 const Receipt = () => {
+    const token = getTokenFromLocalStorage();
+
+    
+
     return(
         <div className="receipt">
             <h2>

@@ -82,7 +82,7 @@ const BookEvent = () => {
                             required
                         />
                     </div>
-                    <button type="submit">Submit</button>
+                    <button className='praga-button' type="submit">Submit</button>
                 </form>
             </div>
         </>
