@@ -69,7 +69,7 @@ const ManagerReviews = () => {
                     <h3>{review.guest.user.email}</h3>
                     <button className="delete-button">Delete</button>
                 </div>
-                <p className="review-category">{review.stars} stars</p>
+                <p className="review-category">{review.stars + 1} stars</p>
                 <p className="review-text">{review.text}</p>
             </div>
         ));
@@ -79,7 +79,7 @@ const ManagerReviews = () => {
     
     return (
         <div className="manager-reviews">
-            <h2>Average Rating: {averageRating}</h2>
+            <h2>Average Rating: {averageRating.toFixed(2)}</h2>
             <div className="reviews-container">
                 {calculateFinalReview(reviews)}
             </div>
