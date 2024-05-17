@@ -7,16 +7,17 @@ import { NavLink, Link, useNavigate } from "react-router-dom";
 
 import { useState, useEffect } from "react";
 
-import { authActions } from "../store/authSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { getTokenFromLocalStorage, removeTokenFromLocalStorage } from "../util/token";
 
 const Header = () => {
-	const dispatch = useDispatch();
 	const navigation = useNavigate();
 
 	const [menuOpen, setMenuOpen] = useState(false);
 
-	const auth = useSelector((state) => state.auth.userInfo);
+	const token = getTokenFromLocalStorage();
+	const [isLogged, setIsLogged] = useState(token ? true : false);
+
+
 
 	function toggleModal() {
 		setMenuOpen((prev) => !prev);
@@ -29,11 +30,14 @@ const Header = () => {
 	function login() {
 		navigation("/login");
 	}
-
+	
 	function logout() {
-		dispatch(authActions.logout());
+		removeTokenFromLocalStorage();
+		setIsLogged(false);
+		navigation("/");
 	}
 
+	
 	useEffect(() => {
 		document.addEventListener("click", (e) => {
 			if (e.target.closest(".menu-button-container")) return;
@@ -69,7 +73,7 @@ const Header = () => {
 					>
 						Location
 					</NavLink>
-					{auth && <NavLink
+					{isLogged && <NavLink
 						to="/feedback"
 						className={({ isActive }) => (isActive ? "nav-link nav-link-active" : "nav-link")}
 						onClick={closeMenu}
@@ -85,8 +89,8 @@ const Header = () => {
 					</NavLink>
 				</nav>
 
-				<Button onClick={auth ? logout : login}>
-					{auth ? "Log Out" : "Log In"}
+				<Button onClick={isLogged ? logout : login}>
+					{isLogged ? "Log Out" : "Log In"}
 				</Button>
 			</menu>
 		</header>
