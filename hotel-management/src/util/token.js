@@ -1,7 +1,11 @@
-export function getTokenFromLocalStorage() {
-    return JSON.parse(localStorage.getItem("token"));
+export function getTokenFromLocalStorage(identifier = "token") {
+    return JSON.parse(localStorage.getItem(identifier));
 }
 
-export function saveTokenToLocalStorage(token) {
-    localStorage.setItem("token", JSON.stringify(token));
+export function saveTokenToLocalStorage(token, identifier = "token") {
+    localStorage.setItem(identifier, JSON.stringify(token));
+}
+
+export function removeTokenFromLocalStorage(identifier = "token") {
+    localStorage.removeItem(identifier);
 }

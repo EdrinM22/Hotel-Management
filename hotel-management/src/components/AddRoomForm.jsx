@@ -6,9 +6,15 @@ import "./AddRoomForm.css";
 import { useState } from "react";
 import { useSubmitState } from "../hooks/useSubmitState";
 
-export default function AddRoomForm({roomTypes}) {
+import { RequestService } from "../util/sendRequest";
+
+import { getTokenFromLocalStorage } from "../util/token";
+
+export default function AddRoomForm({roomTypes, onSubmit}) {
 
     const [submitState, setErrorMessage, setSubmitting] = useSubmitState();
+    const token = getTokenFromLocalStorage();
+
 
     const [newRoomInfo, setNewRoomInfo] = useState({
         room_type: null,
@@ -19,6 +25,7 @@ export default function AddRoomForm({roomTypes}) {
     const roomTypeOptions = roomTypes.map((roomType) => roomType.type_name);
 
     function handleRoomTypeSelection(selectedOption) {
+        setErrorMessage("");
         setNewRoomInfo((prev) => ({
             ...prev,
             room_type: selectedOption
@@ -27,6 +34,7 @@ export default function AddRoomForm({roomTypes}) {
 
     function handleRoomNumberChange(event) {
         const value = event.target.value;
+        setErrorMessage("");
         setNewRoomInfo((prev) => ({
             ...prev,
             room_unique_number: value
@@ -34,6 +42,7 @@ export default function AddRoomForm({roomTypes}) {
     }
 
     function handleRoomDescriptionChange(event) {
+        setErrorMessage("");
         const value = event.target.value;
         setNewRoomInfo((prev) => ({
             ...prev,
@@ -41,8 +50,7 @@ export default function AddRoomForm({roomTypes}) {
         }));
     }
 
-    function handleSubmit(){
-        
+    function handleSubmit(){ 
         if (newRoomInfo.room_type === null || newRoomInfo.room_unique_number === "") {
             setErrorMessage("THIS is why your wife left you 🖕🏻");
             return;
@@ -53,10 +61,37 @@ export default function AddRoomForm({roomTypes}) {
         const roomData = {
             room_type: roomTypeId,
             room_unique_number: newRoomInfo.room_unique_number,
-            room_description: newRoomInfo.room_description
+            description: newRoomInfo.room_description
         }
 
+        async function sendRoomData() {
+            try {
+                const rs = new RequestService(token.access);
+                const response =await rs.createRoom(roomData);
 
+                
+                if (response.status === 400) {
+                    console.log(await response.text());
+                    throw new Error("Room already exists");
+                }
+
+
+            }
+            catch (error) {
+                setErrorMessage(error.message);
+            }
+            finally {
+                setSubmitting(false);
+                
+            }
+        }
+        sendRoomData();
+        onSubmit();
+        setNewRoomInfo({
+            room_type: null,
+            room_unique_number: "",
+            room_description: ""
+        } )
         console.log(roomData);
     }
 

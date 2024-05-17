@@ -6,13 +6,14 @@ import AddRoomForm from "../components/AddRoomForm";
 import "../components/RoomDetails.css"
 
 import { useState, useRef, useEffect} from "react";
-import { useDispatch, useSelector } from "react-redux";
+
+import { getTokenFromLocalStorage } from "../util/token";
 
 export default function ManagerRoomDetailPage() {
     const modalRef = useRef();
     const addRoomModalRef = useRef();
     
-    const token = useSelector((state) => state.auth.userActiveToken);
+    const token = getTokenFromLocalStorage();
    
     const [roomTypes, setRoomTypes] = useState([]);
 
@@ -31,7 +32,6 @@ export default function ManagerRoomDetailPage() {
         });
     }, [])
     
-
     const [selectedCategory, setSelectedCategory] = useState("All");
     const [roomDetails, setRoomDetails] = useState([
         {
@@ -198,13 +198,17 @@ export default function ManagerRoomDetailPage() {
         addRoomModalRef.current.open();
     }
 
+    function handleAddRoomSubmit() {
+        addRoomModalRef.current.close();
+    }
+
     return (
         <div className="room-detail-page">
             <Modal ref={modalRef} title={`Edit Room: #${selectedRoom && selectedRoom.id}`}>
-                {selectedRoom && <RoomDetailForm room={selectedRoom} onSubmit={handleRoomDetailSubmit} onCancel={() => {}} />}
+                {selectedRoom && <RoomDetailForm room={selectedRoom} onSubmit={handleRoomDetailSubmit} />}
             </Modal>
             <Modal ref={addRoomModalRef} title="Add Room">
-                {roomTypes.length > 0 && <AddRoomForm roomTypes={roomTypes}/>}
+                {roomTypes.length > 0 && <AddRoomForm roomTypes={roomTypes} onSubmit={handleAddRoomSubmit}/>}
             </Modal>
 
 
@@ -213,6 +217,8 @@ export default function ManagerRoomDetailPage() {
                 <FeedbackCategoryBtn content="All Rooms" isSelected={selectedCategory === "All"} onClick={() => handleCategoryChange("All")} />
                 <FeedbackCategoryBtn content="Available Rooms" isSelected={selectedCategory === "Available"} onClick={() => handleCategoryChange("Available")} />
                 <FeedbackCategoryBtn content="Booked Rooms" isSelected={selectedCategory === "Booked"} onClick={() => handleCategoryChange("Booked")} />
+                {/* <FeedbackCategoryBtn content="Cleaning Rooms" isSelected={selectedCategory === "Cleaning"} onClick={() => handleCategoryChange("Cleaning")} /> */}
+                
                 <Button display="secondary" onClick={handleAddRoom}>Add Room </Button>
             </div>
             
@@ -225,6 +231,7 @@ export default function ManagerRoomDetailPage() {
                             <th>Room Status</th>
                             <th>Room Price</th>
                             <th>Room Capacity</th>
+                            <th>Is Clean </th>
                             <th>Checkin</th>
                             <th>Checkout</th>
                             <th>Edit</th>
@@ -240,6 +247,7 @@ export default function ManagerRoomDetailPage() {
                                         <td><span className={`room-status-${roomDetail.roomStatus}`}>{roomDetail.roomStatus}</span></td>
                                         <td>{`${roomDetail.roomPrice}$`}</td>
                                         <td>{roomDetail.roomCapacity}</td>
+                                        <td><span className={`room-status-Clean`}>{roomDetail.roomStatus}</span></td>
                                         <td>{roomDetail.checkin ? roomDetail.checkin : "None"}</td>
                                         <td>{roomDetail.checkout ? roomDetail.checkout : "None"}</td>
                                         <td><button className="table-action-btn" onClick={() => handleAssignClean(roomDetail)}>Edit</button></td>

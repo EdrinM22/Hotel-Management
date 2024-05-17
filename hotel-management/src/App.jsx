@@ -29,6 +29,13 @@ import ManagerContactUsInquiryPage from "./pages/ManagerContactUsInquiryPage";
 import AdminAddWorkerPage from "./pages/AdminAddWorkerPage";
 import ReviewPage from "./pages/ReviewPage";
 import AdminContactUsInquiryPage from "./pages/AdminContactUsInquiryPage";
+import AboutPage from "./pages/AboutPage";
+import PrivacyNoticePage from "./pages/PrivacyNoticePage";
+import TermsOfUsePage from "./pages/TermsOfUsePage";
+import CookieConsent from "./components/CookieConsent";
+import CookieConsentPage from "./pages/CookieConsentPage";
+
+
 
 const router = createBrowserRouter([
 	{
@@ -56,6 +63,23 @@ const router = createBrowserRouter([
         path: 'contact',
         element: <ContactPage />
       },
+      {
+        path: 'about',
+        element: <AboutPage />
+      },
+      {
+        path: 'privacy',
+        element: <PrivacyNoticePage />
+      },
+      {
+        path: 'terms',
+        element: <TermsOfUsePage/>
+      },
+      {
+        path: 'cookies',
+        element: <CookieConsentPage />
+      },
+      
 		],
 	},
   {

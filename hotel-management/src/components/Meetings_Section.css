@@ -15,10 +15,10 @@
     height: 35vh;
     margin-top: 10vh;
 }
-.meetings-content img {
+/* .meetings-content img {
     height: 30rex;
     width: 40rem;
-}
+} */
 .meetings-content{
     display: flex;
     flex-direction: row;
@@ -26,4 +26,12 @@
 }
 .meetings-content div{
     width: 40vw;
+}
+.events-pic{
+    
+    box-shadow: 13px 16px 40px 0px rgba(128, 128, 128, 0.247);
+
+}
+.conference-pic{
+    box-shadow: 13px 16px 40px 0px rgba(128, 128, 128, 0.247);
 }
