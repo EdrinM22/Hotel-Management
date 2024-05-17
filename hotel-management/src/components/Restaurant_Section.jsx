@@ -1,7 +1,8 @@
+/* eslint-disable react/no-unescaped-entities */
 import "./Restaurant_Section.css"
-import Background from "../assets/bg.jpg";
+import RestaurantPic from "../assets/restaurant.png";
 const background = {
-    backgroundImage: `url(${Background})`,
+    backgroundImage: `url(${RestaurantPic})`,
     minHeight:"80vh",
     width: "100vw",
     backgroundRepeat: "no-repeat",
