@@ -12,6 +12,7 @@
     width: 20vw;
     height: 35vh;
     margin-top: 10vh;
+    
 }
 .activities h2{
     padding-top: 5vh;
@@ -21,7 +22,8 @@
     height: 30vh;
     width: 20vw;
     left: 60vw;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.45);
+    box-shadow: 13px 16px 40px 0px rgba(128, 128, 128, 0.247);
+    /* shadow taken from figma */
 }
 .activities-content:nth-child(odd) div{
     background-color: #001427;
@@ -29,17 +31,18 @@
     width: 20vw;
     color: white;
     margin-left: 15vw;
+    
 }
 .activities-content:nth-child(even) img{
     position: absolute;
     width: 40rem;
-    height: 30vh;
+    height: 40vh;
     left: 5vw;
 }
 .activities-content:nth-child(odd) img{
     position: absolute;
     width: 40rem;
-    height: 30vh;
+    height: 40vh;
     left: 52vw;
 }
 .activities-small{
