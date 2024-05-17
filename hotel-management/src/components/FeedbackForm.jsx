@@ -7,6 +7,7 @@ import Input from "./Input";
 import Button from "./Button";
 
 import { oneIsSelected, feedbackCategories, faceIcons, submitFeedback } from "../util/feedback";
+import { getTokenFromLocalStorage } from "../util/token";
 
 import { feedbackActions } from "../store/feedbackSlice";
 
@@ -19,7 +20,7 @@ export default function FeedbackForm() {
 	const navigation = useNavigate();
 
 	const feedback = useSelector((state) => state.feedback);
-	const token = useSelector((state) => state.auth.userActiveToken);
+	const token = getTokenFromLocalStorage();
 	
 	const [submitState, setErrorMessage, setSubmitting] = useSubmitState();
 

@@ -2,7 +2,21 @@ import FeedbackForm from "../components/FeedbackForm";
 import "../components/Feedback.css";
 import feedbackImg from "../assets/feedback.png";
 
+import { getTokenFromLocalStorage } from "../util/token";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+
 export default function FeedbackPage() {
+	const token = getTokenFromLocalStorage();
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		if (!token) {
+			navigate("/login");
+		}
+	}
+	, [token, navigate]);
+
 	return (
 		<>
 			<main className="feedback-main">

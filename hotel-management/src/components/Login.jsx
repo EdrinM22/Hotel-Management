@@ -14,6 +14,8 @@ import { sendCredentialsToServer, sentTokenToServer } from "../util/login";
 import { authActions } from "../store/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 
+import { saveTokenToLocalStorage } from "../util/token";
+
 const Login = () => {
 	const dispatch = useDispatch();
 	const navigation = useNavigate();
@@ -46,6 +48,7 @@ const Login = () => {
 
 	function handleLoginData(token, userData) {
 		dispatch(authActions.setUserActiveToken(token));
+		saveTokenToLocalStorage(token);
 		dispatch(authActions.setUserInfo(userData));
 	}
 
