@@ -5,7 +5,13 @@ const Rooms = () => {
     return(
         <section className="rooms">
             <h1>Rooms & Suites</h1>
-            <Room_Card />
+            <div className="cards">
+                <Room_Card />
+                <Room_Card />
+                <Room_Card />
+                <Room_Card />
+            </div>
+
         </section>
     )
 }
