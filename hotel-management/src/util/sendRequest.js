@@ -125,7 +125,9 @@ class RequestRoomService {
         let data = cleanQueryParams(query_params);
         const sendingUrl = getTheTrueUrl(this.mainUrl + 'rooms/list/', data);
         return await fetch(sendingUrl, {
-            headers: this.header_info,
+            headers: {
+                "Content-Type": "application/json",
+            },
         });
     }
 
