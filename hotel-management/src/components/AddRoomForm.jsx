@@ -69,24 +69,27 @@ export default function AddRoomForm({roomTypes, onSubmit}) {
                 const rs = new RequestService(token.access);
                 const response =await rs.createRoom(roomData);
 
+                // console.log(await response.json());
                 
                 if (response.status === 400) {
                     console.log(await response.text());
                     throw new Error("Room already exists");
                 }
+                const data = await response.json();
 
-
+                onSubmit(data);
+                
             }
             catch (error) {
                 setErrorMessage(error.message);
             }
             finally {
                 setSubmitting(false);
-                
             }
+            
         }
+
         sendRoomData();
-        onSubmit();
         setNewRoomInfo({
             room_type: null,
             room_unique_number: "",
