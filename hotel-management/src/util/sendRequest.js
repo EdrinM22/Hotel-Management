@@ -70,6 +70,10 @@ export class RequestService {
         return await this.roomService.receiptPDF(data);
     }
 
+    async deleteRoomFromReservation(room_id, reservation_id){
+        return await this.roomService.deleteRoomFromReservation(room_id, reservation_id);
+    }
+
 }
 
 class RequestUserService {
@@ -129,6 +133,13 @@ class RequestRoomService {
                 "Content-Type": "application/json",
             },
         });
+    }
+
+    async deleteRoomFromReservation(room_id, reservation_id) {
+        return await fetch(this.mainUrl +`reservation/${reservation_id}/delete/room/${room_id}`, {
+            method: 'PUT',
+            headers: this.header_info
+        })
     }
 
     async receiptPDF(data) {
