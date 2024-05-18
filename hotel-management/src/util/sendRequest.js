@@ -7,7 +7,7 @@ const requestMethods = {
 
 function cleanQueryParams(query_params) {
     let data = {}
-    for ([k, v] of Object.entries(query_params)) {
+    for (let [k, v] of Object.entries(query_params)) {
             if (v !== null) {
                 data[k] = query_params;
             }
@@ -21,7 +21,7 @@ function getTheTrueUrl(sendingUrl, data) {
         return sendingUrl; 
     }
     sendingUrl += '?';
-    for ([k, v] in Object.entries(data)) {
+    for (let [k, v] in Object.entries(data)) {
            if (i === 0) {
                 sendingUrl += `${k}=${v}`;
            } else {
@@ -68,6 +68,10 @@ export class RequestService {
 
     async receiptPDF(data) {
         return await this.roomService.receiptPDF(data);
+    }
+
+    async deleteRoomFromReservation(room_id, reservation_id){
+        return await this.roomService.deleteRoomFromReservation(room_id, reservation_id);
     }
 
 }
@@ -125,8 +129,17 @@ class RequestRoomService {
         let data = cleanQueryParams(query_params);
         const sendingUrl = getTheTrueUrl(this.mainUrl + 'rooms/list/', data);
         return await fetch(sendingUrl, {
-            headers: this.header_info,
+            headers: {
+                "Content-Type": "application/json",
+            },
         });
+    }
+
+    async deleteRoomFromReservation(room_id, reservation_id) {
+        return await fetch(this.mainUrl +`reservation/${reservation_id}/delete/room/${room_id}`, {
+            method: 'PUT',
+            headers: this.header_info
+        })
     }
 
     async receiptPDF(data) {

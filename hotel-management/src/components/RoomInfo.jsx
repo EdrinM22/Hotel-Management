@@ -3,10 +3,9 @@ import "./RoomInfo.css";
 import Button from "./Button.jsx";
 import Foto from "../assets/book_events_bg.png";
 
-const RoomInfo = () => {
+const RoomInfo = ({filters}) => {
     const [rooms, setRooms] = useState([]);
     const [errorMessage, setErrorMessage] = useState('');
-
     useEffect(() => {
         async function fetchRooms() {
             try {
@@ -30,9 +29,17 @@ const RoomInfo = () => {
                 setErrorMessage('Failed to fetch room information. Please try again later.');
             }
         }
-
         fetchRooms();
     }, []);
+
+    useEffect(() => {
+        console.log("Filters updated:", filters);
+        
+        if (filters.checkInDate && filters.checkOutDate){
+            console.log("Fetching rooms...");
+        }
+
+    }, [filters]);
 
     return (
         <div>
