@@ -1,5 +1,7 @@
 import {useState} from "react";
 import "./RoomBookingFilter.css"
+import { RequestService } from "../util/sendRequest";
+import { getTokenFromLocalStorage} from "../util/token";
 
 const RoomBookingFilter = () => {
     const [checkInDate, setCheckInDate] = useState('');
@@ -15,6 +17,7 @@ const RoomBookingFilter = () => {
             };
 
         };
+        // const requestObject = new RequestService(getTokenFromLocalStorage().access_token);
 
         return (
             <div className="room-booking-filter-container">
