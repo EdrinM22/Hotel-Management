@@ -51,7 +51,7 @@ const AddWorkerForm = () => {
                     </div>
                 </div>
                 <div className="form-row">
-                    <button type="submit">Create</button>
+                    <button className='praga-button' type="submit">Create</button>
                 </div>
             </form>
         </div>

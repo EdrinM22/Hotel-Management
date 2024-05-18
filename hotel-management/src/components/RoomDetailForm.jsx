@@ -13,14 +13,6 @@ export default function RoomDetailForm({ room, onSubmit }) {
 
 	const [roomType, setRoomType] = useState(room.roomType);
 
-	const { value: roomPrice, handleInputChange: handleRoomPriceChange } = useInput(
-		room.roomPrice,
-		(value) => value > 0,
-	);
-	const { value: roomCapacity, handleInputChange: handleRoomCapacityChange } = useInput(
-		room.roomCapacity,
-		(value) => value > 0 && value < 10,
-	);
 
 	function handleRoomSelection(selectedOption) {
 		setRoomType(selectedOption);
@@ -37,27 +29,22 @@ export default function RoomDetailForm({ room, onSubmit }) {
 		onSubmit(newRoom);
 	}
 
-	console.log(roomType, roomPrice, roomCapacity);
+	console.log(roomType);
 
 	return (
 		<form>
 			<div className="room-detail-form-row">
 				<OptionList options={roomTypes} selectedOption={roomType} onSelect={handleRoomSelection} />
 			</div>
-			<div className="room-detail-form-row">
+			<div className="make-stypeWider">
 				<Input
 					type="number"
 					labelText="Room Price"
-					value={roomPrice}
-					onChange={handleRoomPriceChange}
-				/>
-				<Input
-					type="number"
-					labelText="Room Capacity"
-					value={roomCapacity}
-					onChange={handleRoomCapacityChange}
 				/>
 			</div>
+				
+			<Input textarea />
+		
 			<p className="center-button-modal">
 				<Button type="button" onClick={handleRoomSubmit}>
 					Submit

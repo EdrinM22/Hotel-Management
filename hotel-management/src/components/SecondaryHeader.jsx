@@ -5,13 +5,14 @@ import Button from "./Button";
 
 import "./SecondaryHeader.css";
 
-export default function SecondaryHeader({ headerImg, navLinks = [], hasButton }) {
-	const [isMenuOpen, setIsMenuOpen] = useState(false);
+import { getTokenFromLocalStorage, removeTokenFromLocalStorage } from "../util/token";
 
+export default function SecondaryHeader({ headerImg, navLinks = [], hasButton }) {
 	const navigate = useNavigate();
 
 	const handleLogout = () => {
 		navigate("/");
+		removeTokenFromLocalStorage();
 	}
 
 	const hasOnlyLinks = (headerImg === undefined && hasButton === undefined);

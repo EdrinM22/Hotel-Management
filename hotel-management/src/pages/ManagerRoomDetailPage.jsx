@@ -3,252 +3,171 @@ import FeedbackCategoryBtn from "../components/FeedbackCategoryBtn";
 import Modal from "../components/Modal";
 import RoomDetailForm from "../components/RoomDetailForm";
 import AddRoomForm from "../components/AddRoomForm";
-import "../components/RoomDetails.css"
+import "../components/RoomDetails.css";
 
-import { useState, useRef, useEffect} from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState, useRef, useEffect } from "react";
+
+import { getTokenFromLocalStorage } from "../util/token";
 
 export default function ManagerRoomDetailPage() {
-    const modalRef = useRef();
-    const addRoomModalRef = useRef();
+	const modalRef = useRef();
+	const addRoomModalRef = useRef();
+
+	const token = getTokenFromLocalStorage();
+
+	const [roomTypes, setRoomTypes] = useState([]);
+	const [selectedCategory, setSelectedCategory] = useState("All");
+	const [roomDetails, setRoomDetails] = useState([]);
+	const [selectedRoom, setSelectedRoom] = useState(null);
+
+	useEffect(() => {
+		fetch("http://localhost:8000/rooms/room_type/scroll/list/", {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token.access}`,
+			},
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				setRoomTypes(data);
+			});
+	}, []);
+
+	useEffect(() => {
+		fetch("http://localhost:8000/rooms/rooms/admin/list/", {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token.access}`,
+			},
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				setRoomDetails(data);
+			});
+	}, []);
+
+    // console.log(roomDetails);
+
+	function handleCategoryChange(category) {
+		setSelectedCategory(category);
+	}
+
+	function handleAssignClean(room) {
+		setSelectedRoom(room);
+		modalRef.current.open();
+	}
+
+	function handleRoomDetailSubmit(room) {
+		console.log(room);
+		const updatedRoomDetails = roomDetails.map((roomDetail) => {
+			if (roomDetail.id === room.id) {
+				return room;
+			}
+			return roomDetail;
+		});
+		setRoomDetails(updatedRoomDetails);
+		modalRef.current.close();
+	}
+
+	function handleAddRoom() {
+		addRoomModalRef.current.open();
+	}
+
+	function handleAddRoomSubmit(newRoom) {
+        setRoomDetails((prev) => [...prev, newRoom]);
+		addRoomModalRef.current.close();
+	}
+
+    const getRoomTypeName = (roomTypeId) => {
+        const roomType = roomTypes.find((type) => type.id === roomTypeId);
+        return roomType ? roomType.type_name : "Unknown";
+    };
     
-    const token = useSelector((state) => state.auth.userActiveToken);
-   
 
-    const [roomTypes, setRoomTypes] = useState([]);
+	return (
+		<div className="room-detail-page">
+			<Modal ref={modalRef} title={`Edit Room: #${selectedRoom && selectedRoom.id}`}>
+				{selectedRoom && <RoomDetailForm room={selectedRoom} onSubmit={handleRoomDetailSubmit} />}
+			</Modal>
+			<Modal ref={addRoomModalRef} title="Add Room">
+				{roomTypes.length > 0 && (
+					<AddRoomForm roomTypes={roomTypes} onSubmit={handleAddRoomSubmit} />
+				)}
+			</Modal>
 
-    useEffect(() => {
-        fetch("http://localhost:8000/rooms/room_type/scroll/list/", {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization" : `Bearer ${token.access}`
-            },
-        })
-        .then((response) => response.json())
-        .then((data) => {
-            console.log(data);
-            setRoomTypes(data);
-        });
-    }, [])
-    
+			<div className="room-detail-filters-container">
+				<FeedbackCategoryBtn
+					content="All Rooms"
+					isSelected={selectedCategory === "All"}
+					onClick={() => handleCategoryChange("All")}
+				/>
+				<FeedbackCategoryBtn
+					content="Available Rooms"
+					isSelected={selectedCategory === false}
+					onClick={() => handleCategoryChange(false)}
+				/>
+				<FeedbackCategoryBtn
+					content="Booked Rooms"
+					isSelected={selectedCategory === true}
+					onClick={() => handleCategoryChange(true)}
+				/>
+				{/* <FeedbackCategoryBtn content="Cleaning Rooms" isSelected={selectedCategory === "Cleaning"} onClick={() => handleCategoryChange("Cleaning")} /> */}
 
-    const [selectedCategory, setSelectedCategory] = useState("All");
-    const [roomDetails, setRoomDetails] = useState([
-        {
-            "id": 101,
-            "roomType": "Single",
-            "roomStatus": "Available",
-            "roomPrice": 1000,
-            "roomCapacity": 1,
-            "checkin": "",
-            "checkout": ""
-        },
-        {
-            "id": 102,
-            "roomType": "Double",
-            "roomStatus": "Booked",
-            "roomPrice": 2000,
-            "roomCapacity": 2,
-            "checkin": "2021-10-01",
-            "checkout": "2021-10-03"
-        },
-        {
-            "id": 103,
-            "roomType": "Single",
-            "roomStatus": "Available",
-            "roomPrice": 1000,
-            "roomCapacity": 1,
-            "checkin": "",
-            "checkout": ""
-        },
-        {
-            "id": 104,
-            "roomType": "Double",
-            "roomStatus": "Available",
-            "roomPrice": 2000,
-            "roomCapacity": 2,
-            "checkin": "",
-            "checkout": ""
-        },
-        {
-            "id": 105,
-            "roomType": "Suite",
-            "roomStatus": "Available",
-            "roomPrice": 3000,
-            "roomCapacity": 4,
-            "checkin": "",
-            "checkout": ""
-        },
-        {
-            "id": 106,
-            "roomType": "Single",
-            "roomStatus": "Booked",
-            "roomPrice": 1000,
-            "roomCapacity": 1,
-            "checkin": "2021-11-05",
-            "checkout": "2021-11-07"
-        },
-        {
-            "id": 107,
-            "roomType": "Double",
-            "roomStatus": "Available",
-            "roomPrice": 2000,
-            "roomCapacity": 2,
-            "checkin": "",
-            "checkout": ""
-        },
-        {
-            "id": 108,
-            "roomType": "Single",
-            "roomStatus": "Available",
-            "roomPrice": 1000,
-            "roomCapacity": 1,
-            "checkin": "",
-            "checkout": ""
-        },
-        {
-            "id": 109,
-            "roomType": "Double",
-            "roomStatus": "Booked",
-            "roomPrice": 2000,
-            "roomCapacity": 2,
-            "checkin": "2022-01-15",
-            "checkout": "2022-01-20"
-        },
-        {
-            "id": 110,
-            "roomType": "Suite",
-            "roomStatus": "Available",
-            "roomPrice": 3000,
-            "roomCapacity": 4,
-            "checkin": "",
-            "checkout": ""
-        },{
-            "id": 111,
-            "roomType": "Single",
-            "roomStatus": "Available",
-            "roomPrice": 1000,
-            "roomCapacity": 1,
-            "checkin": "",
-            "checkout": ""
-        },
-        {
-            "id": 112,
-            "roomType": "Double",
-            "roomStatus": "Booked",
-            "roomPrice": 2000,
-            "roomCapacity": 2,
-            "checkin": "2022-03-10",
-            "checkout": "2022-03-15"
-        },
-        {
-            "id": 113,
-            "roomType": "Suite",
-            "roomStatus": "Available",
-            "roomPrice": 3000,
-            "roomCapacity": 4,
-            "checkin": "",
-            "checkout": ""
-        },
-        {
-            "id": 114,
-            "roomType": "Single",
-            "roomStatus": "Booked",
-            "roomPrice": 1000,
-            "roomCapacity": 1,
-            "checkin": "2022-04-20",
-            "checkout": "2022-04-25"
-        },
-        {
-            "id": 115,
-            "roomType": "Double",
-            "roomStatus": "Available",
-            "roomPrice": 2000,
-            "roomCapacity": 2,
-            "checkin": "",
-            "checkout": ""
-        }
-    ]
-    )
-    
-    const [selectedRoom, setSelectedRoom] = useState(null);
+				<Button display="secondary" onClick={handleAddRoom}>
+					Add Room
+				</Button>
+			</div>
 
-    function handleCategoryChange(category) {
-        setSelectedCategory(category);
-    }
-
-    function handleAssignClean(room) {
-        setSelectedRoom(room)
-        modalRef.current.open();
-    }
-
-    function handleRoomDetailSubmit( room ) {
-        console.log(room);
-        const updatedRoomDetails = roomDetails.map((roomDetail) => {
-            if (roomDetail.id === room.id) {
-                return room;
-            }
-            return roomDetail;
-        });
-        setRoomDetails(updatedRoomDetails);
-        modalRef.current.close();
-    }
-
-    function handleAddRoom() {
-        addRoomModalRef.current.open();
-    }
-
-    return (
-        <div className="room-detail-page">
-            <Modal ref={modalRef} title={`Edit Room: #${selectedRoom && selectedRoom.id}`}>
-                {selectedRoom && <RoomDetailForm room={selectedRoom} onSubmit={handleRoomDetailSubmit} onCancel={() => {}} />}
-            </Modal>
-            <Modal ref={addRoomModalRef} title="Add Room">
-                <AddRoomForm />
-            </Modal>
-            <div className="room-detail-filters-container">
-                <FeedbackCategoryBtn content="All Rooms" isSelected={selectedCategory === "All"} onClick={() => handleCategoryChange("All")} />
-                <FeedbackCategoryBtn content="Available Rooms" isSelected={selectedCategory === "Available"} onClick={() => handleCategoryChange("Available")} />
-                <FeedbackCategoryBtn content="Booked Rooms" isSelected={selectedCategory === "Booked"} onClick={() => handleCategoryChange("Booked")} />
-                <Button display="secondary" onClick={handleAddRoom}>Add Room </Button>
-            </div>
-            
-            <main className="room-detail-table-container">
-                <table className="room-detail-table">
-                    <thead className="room-detail-table-head">
-                        <tr className="room-detail-table-row">
-                            <th>Room Number</th>
-                            <th>Room Type</th>
-                            <th>Room Status</th>
-                            <th>Room Price</th>
-                            <th>Room Capacity</th>
-                            <th>Checkin</th>
-                            <th>Checkout</th>
-                            <th>Edit</th>
-                        </tr>
-                    </thead>
-                    <tbody className="room-detail-table-body">
-                        {roomDetails.map((roomDetail) => {
-                            if (selectedCategory === "All" || selectedCategory === roomDetail.roomStatus) {
-                                return (
-                                    <tr className="room-detail-table-row" key={roomDetail.id}>
-                                        <td>{`#${roomDetail.id}`}</td>
-                                        <td>{roomDetail.roomType}</td>
-                                        <td><span className={`room-status-${roomDetail.roomStatus}`}>{roomDetail.roomStatus}</span></td>
-                                        <td>{`${roomDetail.roomPrice}$`}</td>
-                                        <td>{roomDetail.roomCapacity}</td>
-                                        <td>{roomDetail.checkin ? roomDetail.checkin : "None"}</td>
-                                        <td>{roomDetail.checkout ? roomDetail.checkout : "None"}</td>
-                                        <td><button className="table-action-btn" onClick={() => handleAssignClean(roomDetail)}>Edit</button></td>
-                                    </tr>
-                                );
-                            }
-                            return null;
-                        })}
-                    </tbody>
-                </table>
-            </main>
-        </div>
-    );
+			<main className="room-detail-table-container">
+				<table className="room-detail-table">
+					<thead className="room-detail-table-head">
+						<tr className="room-detail-table-row">
+							<th>Room Number</th>
+							<th>Room Type</th>
+							<th>Room Status</th>
+							<th>Real Price</th>
+                            <th>Online Price</th>
+							<th>Room Capacity</th>
+							{/* <th>Is Clean </th> */}
+							{/* <th>Edit</th> */}
+						</tr>
+					</thead>
+					<tbody className="room-detail-table-body">
+						{roomDetails.map((roomDetail) => {
+							if (selectedCategory === "All" || selectedCategory === roomDetail.is_reserved) {
+								return (
+									<tr className="room-detail-table-row" key={roomDetail.room_unique_number}>
+										<td>{`#${roomDetail.room_unique_number}`}</td>
+										<td>{ getRoomTypeName(roomDetail.room_type) }</td>
+										<td>
+											<span className={`room-status-${roomDetail.is_reserved ? "Booked" : "Available"}`}>
+												{roomDetail.is_reserved ? "Booked" : "Available"}
+											</span>
+										</td>
+										<td>{`${roomDetail.real_price}$`}</td>
+                                        <td>{`${roomDetail.online_price}$`}</td>
+										<td>{`${roomDetail.size} people`}</td>
+										{/* <td>
+											<span className={`room-status-${roomDetail}`}>{roomDetail.roomStatus}</span>
+										</td> */}
+										{/* <td>
+											<button
+												className="table-action-btn"
+												onClick={() => handleAssignClean(roomDetail)}
+											>
+												Edit
+											</button>
+										</td> */}
+									</tr>
+								);
+							}
+							return null;
+						})}
+					</tbody>
+				</table>
+			</main>
+		</div>
+	);
 }
