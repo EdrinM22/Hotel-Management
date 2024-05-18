@@ -32,6 +32,10 @@
     text-decoration: none;
     margin-bottom: 8px; /* Adjust the space between links as needed */
   }
+  .footer-block a:hover {
+    text-decoration: underline;
+  }
+  
   
   .footer-icons {
     display: flex;

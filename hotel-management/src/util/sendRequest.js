@@ -7,7 +7,7 @@ const requestMethods = {
 
 function cleanQueryParams(query_params) {
     let data = {}
-    for ([k, v] of query_params) {
+    for ([k, v] of Object.entries(query_params)) {
             if (v !== null) {
                 data[k] = query_params;
             }
@@ -21,7 +21,7 @@ function getTheTrueUrl(sendingUrl, data) {
         return sendingUrl; 
     }
     sendingUrl += '?';
-    for ([k, v] in data) {
+    for ([k, v] in Object.entries(data)) {
            if (i === 0) {
                 sendingUrl += `${k}=${v}`;
            } else {
@@ -64,6 +64,10 @@ export class RequestService {
 
     async listRoom(query_params) {
         return await this.roomService.listRoom(query_params);
+    }
+
+    async receiptPDF(data) {
+        return await this.roomService.receiptPDF(data);
     }
 
 }
@@ -124,6 +128,16 @@ class RequestRoomService {
             headers: this.header_info,
         });
     }
+
+    async receiptPDF(data) {
+        return await fetch(this.mainUrl + 'reservation/receipt/pdf/', {
+            method: requestMethods.POST,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        })
+    }
 }
 
 class RequestFeedbackService {
@@ -133,5 +147,17 @@ class RequestFeedbackService {
         this.refresh_token = refresh_token;
         this.mainUrl = mainUrl + "feedback/";
         this.header_info = header_info;
+    }
+
+    async createFeedback(data) {
+        return await fetch(this.mainUrl + 'create/', {
+            method: requestMethods.POST,
+            headers: this.header_info,
+            body: data
+        })
+    }
+    
+    async listFeedback(data) {
+        
     }
 }

@@ -13,6 +13,8 @@ import { sendCredentialsToServer, sentTokenToServer } from "../util/login";
 
 import { authActions } from "../store/authSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { RequestService } from "../util/sendRequest";
+import { saveAs } from 'file-saver';
 
 import { saveTokenToLocalStorage } from "../util/token";
 
@@ -86,6 +88,22 @@ const Login = () => {
 		}
 
 		sendLogin();
+	}
+
+	async function downloadPDf() {
+		try {
+			const request_service = new RequestService()
+			const reservation_id = 3;
+			const response = await request_service.receiptPDF({'reservation_id': reservation_id});
+			if (!response.ok) {
+				console.log(await response.text());
+				throw new Error("Done");
+			}
+			const blob = await response.blob()
+			saveAs(blob, 'receipt.pdf');
+		} catch (error) {
+			console.log(error)
+		}
 	}
 
 	// console.log(userSlice);
