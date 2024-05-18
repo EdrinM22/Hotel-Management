@@ -58,7 +58,7 @@ const ManagerReviews = () => {
         fetchReviews();
         fetchAverage();
 
-    }, [token]);
+    }, []);
 
     const calculateFinalReview = (reviews) => {
         if (reviews.length === 0) return;
