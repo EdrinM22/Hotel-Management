@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import "../components/RoomBookingPage.css";
 import RoomBookingFilter from "../components/RoomBookingFilter.jsx";
 import Receipt from "../components/Receipt.jsx";

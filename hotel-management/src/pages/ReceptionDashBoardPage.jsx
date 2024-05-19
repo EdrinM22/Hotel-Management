@@ -1,35 +1,67 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Scheduler from "../components/Scheduler.jsx";
 import { formatDateYMD } from "../util/dateFormater.js";
 
+import { RequestService } from "../util/sendRequest.js";
+
+import { getTokenFromLocalStorage } from "../util/token";
+
 export default function ReceptionDashBoardPage() {
-	const [dataSource, setDataSource] = useState([
-		{
-			RoomId: 1,
-			RoomName: "001",
-			Checkin: "2024-04-01",
-			Checkout: "2024-04-05",
-			// IsReadonly: true,
-			Description: `John Doell \n${230 + 2}$`
-		},
-		{
-			RoomId: 2,
-			RoomName: "014",
-			Checkin: "2024-04-10",
-			Checkout: "2024-04-15",
-			// IsReadonly: true,
-			Description: `Client Name : {Client Name} \n Total Price: ${200 + 5}$`
-		},
-		{
-			RoomId: 3,
-			RoomName: "212",
-			Checkin: "2024-04-06",
-			Checkout: "2024-04-07",
-			// IsReadonly: true,
-			Description: `Ilvio Cumani \n${200 + 4}$`,
-			
-		},
-	]);
+	const token = getTokenFromLocalStorage();
+
+	const [dataSource, setDataSource] = useState([]);
+
+	useEffect(() => {
+		async function fetchReservations() {
+			try {
+				const response = await fetch("http://localhost:8000/rooms/reservation/list/", {
+					method: "GET",
+					headers: {
+						"Content-Type": "application",
+						Authorization: `Bearer ${token.access}`,
+					},
+				});
+
+				if (!response.ok) {
+					throw new Error("Something went wrong");
+				}
+
+				const data = await response.json();
+				// console.log("Data after response ", data);
+
+				let myReserv = [];
+
+				data.forEach((item) => {
+					const {
+						id,
+						start_date,
+						end_date,
+						person_info,
+						reservation_cost,
+						room_reservations,
+					} = item;
+					room_reservations.forEach((reservation) => {
+						const { room } = reservation;
+						const newReservation = {
+							RoomId: `${id}/${room.id}`,
+							RoomName: room.room_unique_number,
+							Checkin: start_date,
+							Checkout: end_date,
+							Description: `Client Email : ${person_info} \nTotal Price to pay:  ${reservation_cost}$ \n Room Type ${room.room_type} \n `,
+						};
+						myReserv.push(newReservation);
+					});
+				});
+
+				// console.log("My Reservations", myReserv);
+				setDataSource(myReserv);
+			} catch (error) {
+				console.error(error);
+			}
+		}
+
+		fetchReservations();
+	}, []);
 
 	function formatDate(date) {
 		return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
@@ -37,32 +69,60 @@ export default function ReceptionDashBoardPage() {
 
 	function handleAddNewBooking(args) {
 		console.log(args);
-		const newBookingArg = args.addedRecords[0];
-		const newBoking = {
-			RoomId: newBookingArg.RoomId,
-			RoomName: newBookingArg.RoomName,
-			Checkin: formatDate(newBookingArg.Checkin),
-			Checkout: formatDate(newBookingArg.Checkout),
-		}
+		args.cancel = true;
+		// const newBookingArg = args.addedRecords[0];
+		// const newBoking = {
+		// 	RoomId: newBookingArg.RoomId,
+		// 	RoomName: newBookingArg.RoomName,
+		// 	Checkin: formatDate(newBookingArg.Checkin),
+		// 	Checkout: formatDate(newBookingArg.Checkout),
+		// };
 
-		setDataSource((prev) => {
-			return [...prev, newBoking];
-		});
-
+		// setDataSource((prev) => {
+		// 	return [...prev, newBoking];
+		// });
 	}
 
+	
 	function handleRemoveBooking(args) {
-		console.log(args);
+		// console.log(args);
 		const removedBookingArg = args.deletedRecords[0];
 		const removedBooking = {
 			RoomId: removedBookingArg.RoomId,
 			RoomName: removedBookingArg.RoomName,
 			Checkin: formatDate(removedBookingArg.Checkin),
 			Checkout: formatDate(removedBookingArg.Checkout),
+		};
+
+		console.log("Removed Booking", removedBooking);
+
+		async function deleteReservation() {
+			const [reservationId, roomId] = removedBooking.RoomId.split("/");
+			console.log("Room ID", roomId);
+			console.log("Reservation ID", reservationId);
+
+			try {
+
+				const rs = new RequestService(token.access);
+
+				const response = await rs.deleteRoomFromReservation(roomId, reservationId);
+
+				if (!response.ok) {
+					throw new Error(await response.text());
+				}
+
+				// const data = await response.json();
+
+				setDataSource((prev) => {
+					return prev.filter((record) => record.RoomId !== removedBooking.RoomId);
+				});
+			} catch (error) {
+				console.error(error);
+				args.cancel = true;
+			} 
 		}
-		setDataSource((prev) => {	
-			return prev.filter((record) => record.RoomId !== removedBooking.RoomId);
-		});
+
+		deleteReservation();
 	}
 
 	function handleBookingChanges(args) {
@@ -73,7 +133,7 @@ export default function ReceptionDashBoardPage() {
 			RoomName: changedBookingArg.RoomName,
 			Checkin: formatDate(changedBookingArg.Checkin),
 			Checkout: formatDate(changedBookingArg.Checkout),
-		}
+		};
 
 		setDataSource((prev) => {
 			return prev.map((record) => {
@@ -96,7 +156,7 @@ export default function ReceptionDashBoardPage() {
 		endTime: { name: "Checkout" },
 	};
 
-	console.log(dataSource);
+	// console.log( "STATE PRINT" ,  dataSource);
 
 	return (
 		<Scheduler
@@ -108,7 +168,7 @@ export default function ReceptionDashBoardPage() {
 			displayName={{ timelineMonthName: "Bookings" }}
 			onAddNewElement={handleAddNewBooking}
 			onRemoveElement={handleRemoveBooking}
-			onChangesToElement={handleBookingChanges}
+			onChangesToElement={handleBookingChanges}uh
 		/>
 	);
 }

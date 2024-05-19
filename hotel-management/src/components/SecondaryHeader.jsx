@@ -16,7 +16,6 @@ export default function SecondaryHeader({ headerImg, navLinks = [], hasButton })
 	}
 
 	const hasOnlyLinks = (headerImg === undefined && hasButton === undefined);
-	console.log(hasOnlyLinks);
 
 	return (
 		<>

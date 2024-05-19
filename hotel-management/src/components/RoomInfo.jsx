@@ -3,10 +3,9 @@ import "./RoomInfo.css";
 import Button from "./Button.jsx";
 import Foto from "../assets/book_events_bg.png";
 
-// eslint-disable-next-line react/prop-types
-const RoomInfo = ({ onRoomSelect, setErrorMessage }) => {
+const RoomInfo = ({filters}) => {
     const [rooms, setRooms] = useState([]);
-
+    const [errorMessage, setErrorMessage] = useState('');
     useEffect(() => {
         async function fetchRooms() {
             try {
@@ -30,9 +29,17 @@ const RoomInfo = ({ onRoomSelect, setErrorMessage }) => {
                 setErrorMessage('Failed to fetch room information. Please try again later.');
             }
         }
-
         fetchRooms();
     }, [setErrorMessage]);
+
+    useEffect(() => {
+        console.log("Filters updated:", filters);
+        
+        if (filters.checkInDate && filters.checkOutDate){
+            console.log("Fetching rooms...");
+        }
+
+    }, [filters]);
 
     return (
         <div>
