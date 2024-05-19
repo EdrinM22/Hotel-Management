@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import Scheduler from "../components/Scheduler.jsx";
 import { formatDateYMD } from "../util/dateFormater.js";
 
+import { RequestService } from "../util/sendRequest.js";
+
 import { getTokenFromLocalStorage } from "../util/token";
 
 export default function ReceptionDashBoardPage() {
@@ -25,24 +27,34 @@ export default function ReceptionDashBoardPage() {
 				}
 
 				const data = await response.json();
-				// console.log("Data after response ", data);
+				console.log("Data after response ", data);
 
 				let myReserv = [];
 
-				for (let i = 0; i < data.length; i++) {
-					for (let j = 0; j < data[i].room_reservations.length; j++) {
-						const reservation = {
-							RoomId: " " + data[i].id + "/" + data[i].room_reservations[j].room.id,
-							RoomName: data[i].room_reservations[j].room.room_unique_number,
-							Checkin: data[i].start_date,
-							Checkout: data[i].end_date,
-							Description: `Client Email : ${data[i].person_info} \n${data[i].reservation_cost}$`,
+				data.forEach((item) => {
+					const {
+						id,
+						start_date,
+						end_date,
+						person_info,
+						reservation_cost,
+						room_reservations,
+						applying_date,
+					} = item;
+					room_reservations.forEach((reservation) => {
+						const { room } = reservation;
+						const newReservation = {
+							RoomId: `${id}/${room.id}`,
+							RoomName: room.room_unique_number,
+							Checkin: start_date,
+							Checkout: end_date,
+							Description: `Client Email : ${person_info} \nTotal Price to pay:  ${reservation_cost}$ \n Room Type ${room.room_type} \n `,
 						};
-						myReserv.push(reservation);
-					}
-				}
+						myReserv.push(newReservation);
+					});
+				});
 
-				// console.log("My Reservations", myReserv);
+				console.log("My Reservations", myReserv);
 				setDataSource(myReserv);
 			} catch (error) {
 				console.error(error);
@@ -72,8 +84,6 @@ export default function ReceptionDashBoardPage() {
 		// });
 	}
 
-
-
 	//! There is a bug here because we dont have the correct url for the delete request
 	function handleRemoveBooking(args) {
 		// console.log(args);
@@ -85,31 +95,19 @@ export default function ReceptionDashBoardPage() {
 			Checkout: formatDate(removedBookingArg.Checkout),
 		};
 
-
-
 		async function deleteReservation() {
 			const [roomId, reservationId] = removedBooking.RoomId.split("/");
 			console.log("Room ID", roomId);
 			console.log("Reservation ID", reservationId);
 
-			const data = {
-				room_id: roomId,
-				reservation_id: reservationId,
-			};
-
 			try {
-				const response = await fetch("http://localhost:8000/rooms/reservation/delete/", {
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-						Authorization: `Bearer ${token.access}`,
-					},
-					body: JSON.stringify(data),
-				});
-				console.log("Data after response ", data);
+
+				const rs = new RequestService(token.access);
+
+				const response = await rs.deleteRoomFromReservation(roomId, reservationId);
 
 				if (!response.ok) {
-					throw new Error("Something went wrong");
+					throw new Error(await response.text());
 				}
 
 				// const data = await response.json();
