@@ -35,6 +35,8 @@ import TermsOfUsePage from "./pages/TermsOfUsePage";
 import CookieConsent from "./components/CookieConsent";
 import CookieConsentPage from "./pages/CookieConsentPage";
 
+import PaymentPage from "./pages/PaymentPage";
+
 
 
 const router = createBrowserRouter([
@@ -48,7 +50,8 @@ const router = createBrowserRouter([
 				element: <BookLayout />,
 				children: [
           { index: true, element: <RoomBookingPage /> },
-          { path: "event", element: <EventBookingPage /> }
+          { path: "event", element: <EventBookingPage /> },
+          { path: 'payment', element: <PaymentPage />}
         ],
 			},
       {
