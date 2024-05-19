@@ -27,7 +27,7 @@ export default function ReceptionDashBoardPage() {
 				}
 
 				const data = await response.json();
-				console.log("Data after response ", data);
+				// console.log("Data after response ", data);
 
 				let myReserv = [];
 
@@ -39,7 +39,6 @@ export default function ReceptionDashBoardPage() {
 						person_info,
 						reservation_cost,
 						room_reservations,
-						applying_date,
 					} = item;
 					room_reservations.forEach((reservation) => {
 						const { room } = reservation;
@@ -54,7 +53,7 @@ export default function ReceptionDashBoardPage() {
 					});
 				});
 
-				console.log("My Reservations", myReserv);
+				// console.log("My Reservations", myReserv);
 				setDataSource(myReserv);
 			} catch (error) {
 				console.error(error);
@@ -84,7 +83,7 @@ export default function ReceptionDashBoardPage() {
 		// });
 	}
 
-	//! There is a bug here because we dont have the correct url for the delete request
+	
 	function handleRemoveBooking(args) {
 		// console.log(args);
 		const removedBookingArg = args.deletedRecords[0];
@@ -95,8 +94,10 @@ export default function ReceptionDashBoardPage() {
 			Checkout: formatDate(removedBookingArg.Checkout),
 		};
 
+		console.log("Removed Booking", removedBooking);
+
 		async function deleteReservation() {
-			const [roomId, reservationId] = removedBooking.RoomId.split("/");
+			const [reservationId, roomId] = removedBooking.RoomId.split("/");
 			console.log("Room ID", roomId);
 			console.log("Reservation ID", reservationId);
 
@@ -118,7 +119,7 @@ export default function ReceptionDashBoardPage() {
 			} catch (error) {
 				console.error(error);
 				args.cancel = true;
-			}
+			} 
 		}
 
 		deleteReservation();
@@ -167,7 +168,7 @@ export default function ReceptionDashBoardPage() {
 			displayName={{ timelineMonthName: "Bookings" }}
 			onAddNewElement={handleAddNewBooking}
 			onRemoveElement={handleRemoveBooking}
-			onChangesToElement={handleBookingChanges}
+			onChangesToElement={handleBookingChanges}uh
 		/>
 	);
 }
