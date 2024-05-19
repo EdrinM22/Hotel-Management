@@ -45,3 +45,8 @@ export function fieldsAreEmpty(...fields) {
 	return fields.some((field) => isEmpty(field));
 }
 
+export function isPngOrJpg(filename) {
+    const regex = /\.(png|jpg|jpeg)$/i;
+    return regex.test(filename);
+}
+

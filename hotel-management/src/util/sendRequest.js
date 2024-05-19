@@ -78,6 +78,11 @@ export class RequestService {
         return await this.roomService.changeReservationDate(reservation_id, data);
     }
 
+    async createRoomType(data) {
+        console.log(data);
+        return await this.roomService.createRoomType(data);
+    }
+
 }
 
 class RequestUserService {
@@ -150,7 +155,7 @@ class RequestRoomService {
         return await fetch(this.mainUrl + `reservation/change/date/${reservation_id}/`, {
             method: requestMethods.PUT,
             headers: this.header_info,
-            body: data
+            body: JSON.stringify(data)
         })
     }
 
@@ -161,6 +166,14 @@ class RequestRoomService {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(data),
+        })
+    }
+
+    async createRoomType(data) {
+        return await fetch(this.mainUrl + 'room_type/create/', {
+            method: requestMethods.POST,
+            headers: this.header_info,
+            body: JSON.stringify(data)
         })
     }
 }
@@ -178,7 +191,7 @@ class RequestFeedbackService {
         return await fetch(this.mainUrl + 'create/', {
             method: requestMethods.POST,
             headers: this.header_info,
-            body: data
+            body: JSON.stringify(data)
         })
     }
     
