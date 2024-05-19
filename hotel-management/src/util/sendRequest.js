@@ -136,7 +136,7 @@ class RequestRoomService {
     }
 
     async deleteRoomFromReservation(room_id, reservation_id) {
-        return await fetch(this.mainUrl +`reservation/${reservation_id}/delete/room/${room_id}`, {
+        return await fetch(this.mainUrl +`reservation/${reservation_id}/delete/room/${room_id}/`, {
             method: 'PUT',
             headers: this.header_info
         })
