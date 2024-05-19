@@ -67,7 +67,7 @@ const ManagerReviews = () => {
             <div className="review-card" key={review.id}>
                 <div className="review-header">
                     <h3>{review.guest.user.email}</h3>
-                    <button className="delete-button">Delete</button>
+                    
                 </div>
                 <p className="review-category">{review.stars + 1} stars</p>
                 <p className="review-text">{review.text}</p>
