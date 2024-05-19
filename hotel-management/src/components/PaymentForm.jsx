@@ -5,16 +5,47 @@ import PayPalIcon from '../assets/paypal.png';
 import CashIcon from '../assets/Cash.png';
 import {RequestService} from "../util/sendRequest.js";
 
+import {getTokenFromLocalStorage} from "../util/token.js";
+
+import { useSelector } from "react-redux";
+
 const PaymentForm = () => {
+    const token = getTokenFromLocalStorage();
     const [selectedPayment, setSelectedPayment] = useState('');
+
+    const bookingInfo = useSelector((state) => state.booking);
+    console.log(bookingInfo);
 
     const handlePaymentChange = (e) => {
         setSelectedPayment(e.target.value);
     };
     console.log();
+
+    function formatDateDDMMYYYY(String) {
+        return String.split("-").reverse().join("/");
+    }
+
     const handleConfirm = () => {
         alert(`Payment method selected: ${selectedPayment}`);
+        const bookingData = {
+            room_types: bookingInfo.room_types,
+            start_date: formatDateDDMMYYYY(bookingInfo.start_date),
+            end_date: formatDateDDMMYYYY(bookingInfo.end_date),
+            guest_information: bookingInfo.guestInformation,
+        };
+
+        console.log(bookingData);
+
+        async function sendBookingToBack(){
+            const response = await fetch("http://localhost:8000/rooms/reservation/create/", {
+                method:"POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(bookingData)
+            })
+        }
+        sendBookingToBack();
     };
+
     async function downloadPDf() {
         try {
             const request_service = new RequestService()

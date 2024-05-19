@@ -6,7 +6,15 @@ import { useNavigate } from "react-router-dom";
 import BookingFormModal from './BookingFormModal';
 import { getTokenFromLocalStorage } from "../util/token.js";
 
+import { useDispatch, useSelector } from "react-redux";
+import { bookingActions } from "../store/BookingSlice";
+
+
 const Receipt = ({ reservations, errorMessage, onEdit, onRemove }) => {
+    const dispatch = useDispatch();
+
+    const bookingInfo = useSelector((state) => state.booking)
+
     const token = getTokenFromLocalStorage();
     const [editReservations, setEditReservations] = useState(false);
     const [showBookingForm, setShowBookingForm] = useState(false);
@@ -46,44 +54,56 @@ const Receipt = ({ reservations, errorMessage, onEdit, onRemove }) => {
         if (!token) {
             setShowBookingForm(true);
         } else {
-            const reservationData = reservations.map(reservation => ({
-                roomTypeId: reservation.id,
-                roomCount: reservation.rooms,
+            const room_types= reservations.map(reservation => ({
+                id: reservation.id,
+                count: reservation.rooms,
             }));
 
-            navigate('/book/payment', {
-                state: {
-                    reservationData,
-                    checkInDate: reservations[0].checkInDate,
-                    checkOutDate: reservations[0].checkOutDate,
-                }
-            });
+            navigate('/book/payment', 
+            // {
+            //     state: {
+            //         room_types,
+            //         start_date: reservations[0].checkInDate,
+            //         end_date: reservations[0].checkOutDate,
+            //     }
+            // }
+             );
 
             const state = {
-                reservationData,
+                room_types,
             };
             console.log(state);
         }
     };
 
-    const handleFormSubmit = (userData) => {
+    const handleFormSubmit = (guest_information) => {
         setShowBookingForm(false);
-        const reservationData = reservations.map(reservation => ({
-            roomTypeId: reservation.id,
-            roomCount: reservation.rooms,
+        const room_types = reservations.map(reservation => ({
+            id: reservation.id,
+            count: reservation.rooms,
         }));
         const state = {
-            reservationData,
-            checkInDate: reservations[0].checkInDate,
-            checkOutDate: reservations[0].checkOutDate,
-            userData
+            room_types,
+            start_date: reservations[0].checkInDate,
+            end_date: reservations[0].checkOutDate,
+            guest_information
         };
-        navigate('/book/payment', {
-            state: {
-                reservationData,
-                userData
-            }
-        });
+
+        dispatch(bookingActions.setGuestInformation(guest_information ));
+        dispatch(bookingActions.setRoomTypes(room_types));
+        dispatch(bookingActions.setStartDate(reservations[0].checkInDate));
+        dispatch(bookingActions.setEndDate(reservations[0].checkOutDate));
+
+        console.log(bookingInfo );
+
+        navigate('/book/payment',
+        //  {
+        //     state: {
+        //         room_types,
+        //         guest_information
+        //     }
+        // }
+    );
         console.log(state);
     };
 
