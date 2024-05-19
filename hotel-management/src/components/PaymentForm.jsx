@@ -3,7 +3,7 @@ import './PaymentForm.css';
 import CreditCardIcon from '../assets/creditcard.png';
 import PayPalIcon from '../assets/paypal.png';
 import CashIcon from '../assets/Cash.png';
-import Receipt from './Receipt';
+import {RequestService} from "../util/sendRequest.js";
 
 const PaymentForm = () => {
     const [selectedPayment, setSelectedPayment] = useState('');
@@ -11,13 +11,28 @@ const PaymentForm = () => {
     const handlePaymentChange = (e) => {
         setSelectedPayment(e.target.value);
     };
-
+    console.log();
     const handleConfirm = () => {
         alert(`Payment method selected: ${selectedPayment}`);
     };
+    async function downloadPDf() {
+        try {
+            const request_service = new RequestService()
+            const reservation_id = 3;
+            const response = await request_service.receiptPDF({'reservation_id': reservation_id});
+            if (!response.ok) {
+                console.log(await response.text());
+                throw new Error("Done");
+            }
+            const blob = await response.blob()
+            saveAs(blob, 'receipt.pdf');
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     const handlePrintReceipt = () => {
-        alert('Receipt printed!');
+        downloadPDf();
     };
 
     return (

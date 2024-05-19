@@ -33,14 +33,6 @@ const RoomBookingFilter = ({ filters, onFilterChange }) => {
 					onChange={(event) => onFilterChange("numGuests", event.target.value)}
 				/>
 			</div>
-			<div className="filter-row">
-				<label>Room:</label>
-				<input
-					type="text"
-					value={filters.roomType}
-					onChange={(event) => onFilterChange("roomType", event.target.value)}
-				/>
-			</div>
 		</div>
 	);
 };

@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react';
 import './EditReservationModal.css';
 import Button from './Button.jsx';
 
-const EditReservationModal = ({ reservation, onClose, onSave }) => {
-    const [checkInDate, setCheckInDate] = useState(reservation.checkInDate);
-    const [checkOutDate, setCheckOutDate] = useState(reservation.checkOutDate);
-    const [nights, setNights] = useState(reservation.nights);
-    const [rooms, setRooms] = useState(reservation.rooms);
-    const [guests, setGuests] = useState(reservation.guests);
+const EditReservationModal = ({ reservations, onClose, onSave }) => {
+    const [checkInDate, setCheckInDate] = useState(reservations[0].checkInDate || '');
+    const [checkOutDate, setCheckOutDate] = useState(reservations[0].checkOutDate || '');
+    const [nights, setNights] = useState(reservations[0].nights || 1);
+    const [rooms, setRooms] = useState(reservations[0].rooms || 1);
 
     useEffect(() => {
         document.body.classList.add('modal-open');
@@ -17,15 +16,14 @@ const EditReservationModal = ({ reservation, onClose, onSave }) => {
     }, []);
 
     const handleSave = () => {
-        const updatedReservation = {
+        const updatedReservations = reservations.map(reservation => ({
             ...reservation,
             checkInDate,
             checkOutDate,
             nights,
-            rooms,
-            guests,
-        };
-        onSave(updatedReservation);
+            rooms
+        }));
+        onSave(updatedReservations);
         onClose();
     };
 
@@ -42,6 +40,7 @@ const EditReservationModal = ({ reservation, onClose, onSave }) => {
     };
 
     const calculateCheckOutDate = (checkInDate, nights) => {
+        if (!checkInDate) return '';
         const checkIn = new Date(checkInDate);
         checkIn.setDate(checkIn.getDate() + nights);
         return checkIn.toISOString().split('T')[0]; // Return date in YYYY-MM-DD format
@@ -83,15 +82,6 @@ const EditReservationModal = ({ reservation, onClose, onSave }) => {
                         value={rooms}
                         min="1"
                         onChange={(e) => setRooms(Number(e.target.value))}
-                    />
-                </label>
-                <label>
-                    Number of Guests:
-                    <input
-                        type="number"
-                        value={guests}
-                        min="1"
-                        onChange={(e) => setGuests(Number(e.target.value))}
                     />
                 </label>
                 <div className="modal-actions">
