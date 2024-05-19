@@ -30,7 +30,7 @@ const RoomInfo = ({filters}) => {
             }
         }
         fetchRooms();
-    }, []);
+    }, [setErrorMessage]);
 
     useEffect(() => {
         console.log("Filters updated:", filters);
@@ -43,39 +43,36 @@ const RoomInfo = ({filters}) => {
 
     return (
         <div>
-            {errorMessage && <p className="error-message">{errorMessage}</p>}
-            {rooms.map(room => (
+            {rooms.map((room) => (
                 <div key={room.room_type.id} className="room-info">
-                    <img src={Foto} alt={`Room ${room.room_type.id}`} />
-                    <div>
+                        <img src={Foto} alt={`Room ${room.room_type.id}`} />
                         <div className="room-info-name">
                             <h2>{room.room_type.type_name}</h2>
-                            <h3>${room.room_type.online_price}</h3>
+                            <h3>${`${room.room_type.online_price}`} / night</h3>
                         </div>
                         <p>{room.room_type.description}</p>
-                    </div>
-                    <div>
-                        <div className="room-info-name">
-                            <h3>Room Only</h3>
-                            <Button>Add Room</Button>
+                        <div>
+                            <div className="room-info-name">
+                                <h3>Room Only</h3>
+                                <Button onClick={() => onRoomSelect(room, 'Room Only')}>Add Room</Button>
+                            </div>
+                            <p>Standard Room only</p>
                         </div>
-                        <p>idk</p>
-                    </div>
-                    <div>
-                        <div className="room-info-name">
-                            <h3>Breakfast included</h3>
-                            <Button>${room.breakfast_included_price}</Button>
+                        <div className="room-package">
+                            <div className="room-info-name">
+                                <h3>Breakfast included</h3>
+                                <Button onClick={() => onRoomSelect(room, 'Breakfast included')}>$55/night</Button>
+                            </div>
+                            <div className="room-info-content">
+                                <p>Standard room</p>
+                                <p>Breakfast</p>
+                                <p>Non Refundable</p>
+                            </div>
                         </div>
-                        <div className="room-info-content">
-                            <p>Standard room</p>
-                            <p>Breakfast</p>
-                            <p>Non Refundable</p>
-                        </div>
                     </div>
-                </div>
             ))}
         </div>
     );
-}
+};
 
 export default RoomInfo;
