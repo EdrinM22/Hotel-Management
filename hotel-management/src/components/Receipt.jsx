@@ -46,42 +46,42 @@ const Receipt = ({ reservations, errorMessage, onEdit, onRemove }) => {
         if (!token) {
             setShowBookingForm(true);
         } else {
-            const reservationData = reservations.map(reservation => ({
-                roomTypeId: reservation.id,
-                roomCount: reservation.rooms,
+            const room_types= reservations.map(reservation => ({
+                id: reservation.id,
+                count: reservation.rooms,
             }));
 
             navigate('/book/payment', {
                 state: {
-                    reservationData,
-                    checkInDate: reservations[0].checkInDate,
-                    checkOutDate: reservations[0].checkOutDate,
+                    room_types,
+                    start_date: reservations[0].checkInDate,
+                    end_date: reservations[0].checkOutDate,
                 }
             });
 
             const state = {
-                reservationData,
+                room_types,
             };
             console.log(state);
         }
     };
 
-    const handleFormSubmit = (userData) => {
+    const handleFormSubmit = (guest_information) => {
         setShowBookingForm(false);
-        const reservationData = reservations.map(reservation => ({
-            roomTypeId: reservation.id,
-            roomCount: reservation.rooms,
+        const room_types = reservations.map(reservation => ({
+            id: reservation.id,
+            count: reservation.rooms,
         }));
         const state = {
-            reservationData,
-            checkInDate: reservations[0].checkInDate,
-            checkOutDate: reservations[0].checkOutDate,
-            userData
+            room_types,
+            start_date: reservations[0].checkInDate,
+            end_date: reservations[0].checkOutDate,
+            guest_information
         };
         navigate('/book/payment', {
             state: {
-                reservationData,
-                userData
+                room_types,
+                guest_information
             }
         });
         console.log(state);

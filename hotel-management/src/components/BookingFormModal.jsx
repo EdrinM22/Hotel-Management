@@ -3,21 +3,21 @@ import "./EditReservationModal.css";
 import Button from "./Button.jsx";
 
 const BookingFormModal = ({ onClose, onSubmit }) => {
-    const [firstName, setFirstName] = useState('');
-    const [fathersName, setFathersName] = useState('');
-    const [surname, setSurname] = useState('');
+    const [first_name, setFirstName] = useState('');
+    const [fathers_name, setFathersName] = useState('');
+    const [last_name, setSurname] = useState('');
     const [email, setEmail] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
+    const [phone_number, setPhoneNumber] = useState('');
     const [gender, setGender] = useState('');
-    const [birthDate, setBirthDate] = useState('');
+    const [birthdate, setBirthDate] = useState('');
     const [birthplace, setBirthplace] = useState('');
-    const [personalNumber, setPersonalNumber] = useState('');
+    const [personal_number, setPersonalNumber] = useState('');
 
 
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onSubmit({ firstName, fathersName, surname, email, phoneNumber, personalNumber, birthplace,birthDate, gender});
+        onSubmit({ first_name, fathers_name, last_name, email, phone_number, personal_number, birthplace, birthdate, gender});
     };
 
     return (
@@ -26,15 +26,15 @@ const BookingFormModal = ({ onClose, onSubmit }) => {
                 <form onSubmit={handleSubmit}>
                     <label>
                         First Name:
-                        <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} required/>
+                        <input type="text" value={first_name} onChange={(e) => setFirstName(e.target.value)} required/>
                     </label>
                     <label>
                         Father's Name (optional):
-                        <input type="text" value={fathersName} onChange={(e) => setFathersName(e.target.value)}/>
+                        <input type="text" value={fathers_name} onChange={(e) => setFathersName(e.target.value)}/>
                     </label>
                     <label>
                         Surname:
-                        <input type="text" value={surname} onChange={(e) => setSurname(e.target.value)} required/>
+                        <input type="text" value={last_name} onChange={(e) => setSurname(e.target.value)} required/>
                     </label>
                     <label>
                         Email:
@@ -42,7 +42,7 @@ const BookingFormModal = ({ onClose, onSubmit }) => {
                     </label>
                     <label>
                         Phone Number:
-                        <input type="tel" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)}
+                        <input type="tel" value={phone_number} onChange={(e) => setPhoneNumber(e.target.value)}
                                required/>
                     </label>
                     <label>
@@ -51,7 +51,7 @@ const BookingFormModal = ({ onClose, onSubmit }) => {
                     </label>
                     <label>
                         Birthday:
-                        <input type="date" value={birthDate} onChange={(e) => setBirthDate(e.target.value)}
+                        <input type="date" value={birthdate} onChange={(e) => setBirthDate(e.target.value)}
                                required/>
                     </label>
                     <label>
@@ -61,7 +61,7 @@ const BookingFormModal = ({ onClose, onSubmit }) => {
                     </label>
                     <label>
                         Personal number:
-                        <input type="number" value={personalNumber} onChange={(e) => setPersonalNumber(e.target.value)}
+                        <input type="number" value={personal_number} onChange={(e) => setPersonalNumber(e.target.value)}
                                required/>
                     </label>
                     <div style={{display: 'flex', justifyContent: 'space-between', flexDirection: "row"}}>

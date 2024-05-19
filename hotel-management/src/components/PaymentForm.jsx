@@ -4,8 +4,11 @@ import CreditCardIcon from '../assets/creditcard.png';
 import PayPalIcon from '../assets/paypal.png';
 import CashIcon from '../assets/Cash.png';
 import {RequestService} from "../util/sendRequest.js";
+import {posts} from "@reduxjs/toolkit/src/query/tests/mocks/handlers.js";
+import {getTokenFromLocalStorage} from "../util/token.js";
 
 const PaymentForm = () => {
+    const token = getTokenFromLocalStorage();
     const [selectedPayment, setSelectedPayment] = useState('');
 
     const handlePaymentChange = (e) => {
@@ -14,6 +17,14 @@ const PaymentForm = () => {
     console.log();
     const handleConfirm = () => {
         alert(`Payment method selected: ${selectedPayment}`);
+        // async function sendBookingToBack (){
+        //     const response = await fetch("", {
+        //         method:"POST",
+        //         headers: {"Content-Type": "application/json", "Authorization": `Bearer ${token.access}`},
+        //         body: JSON.stringify()
+        //     })
+        // }
+        // sendBookingToBack();
     };
     async function downloadPDf() {
         try {
