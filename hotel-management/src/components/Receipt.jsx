@@ -2,12 +2,19 @@ import React, { useState } from 'react';
 import "./Receipt.css";
 import Button from "./Button.jsx";
 import EditReservationModal from './EditReservationModal';
+import {useNavigate} from "react-router-dom";
+import BookingFormModal from './BookingFormModal';
+import {getTokenFromLocalStorage} from "../util/token.js";
+
 
 const Receipt = ({ reservations, errorMessage, onEdit, onRemove }) => {
+    const token = getTokenFromLocalStorage();
     const [editReservation, setEditReservation] = useState(null);
+    const [showBookingForm, setShowBookingForm] = useState(false);
+    const navigate = useNavigate();
 
-    const handleEdit = (reservation) => {
-        setEditReservation(reservation);
+    const handleEdit = (reservations) => {
+        setEditReservation(reservations);
     };
 
     const handleSave = (updatedReservation) => {
@@ -24,26 +31,69 @@ const Receipt = ({ reservations, errorMessage, onEdit, onRemove }) => {
             return total + room.price * room.nights * room.rooms;
         }, 0);
     };
+    const handlePayment = () => {
+       if(!token){
+           setShowBookingForm(true);
+       }else{
+           const reservationData = reservations.map(reservation => ({
+               roomTypeId: reservation.id,
+               roomCount: reservation.rooms,
 
+           }));
+
+           navigate('/book/payment',{
+               state: {
+                   reservationData,
+                   checkInDate: reservations[0].checkInDate,
+                   checkOutDate: reservations[0].checkOutDate
+               }
+           })
+           const state ={
+               reservationData,
+           }
+           console.log(state)
+       }
+    }
+    const handleFormSubmit = (userData) => {
+        setShowBookingForm(false);
+        const reservationData = reservations.map(reservation => ({
+            roomTypeId: reservation.id,
+            roomCount: reservation.rooms,
+
+        }));
+        const state = {
+            reservationData,
+            checkInDate: reservations[0].checkInDate,
+            checkOutDate: reservations[0].checkOutDate,
+            userData
+        }
+        navigate('/book/payment',{
+            state: {
+                reservationData,
+                userData
+            }
+        });
+        console.log(state)
+    };
     return (
         <div className="receipt">
             <h2>Your Reservation</h2>
             {reservations.map(reservation => (
                 <div key={reservation.id} className="receipt-info">
                     <div className="receipt-date">
-                        <p>Check-in:</p>
+                        <h4>Check-in:</h4>
                         <p>{reservation.checkInDate}</p>
                     </div>
                     <div className="receipt-date">
-                        <p>Check-out:</p>
+                        <h4>Check-out:</h4>
                         <p>{reservation.checkOutDate}</p>
                     </div>
                     <div className="receipt-date">
-                        <p>Guests:</p>
+                        <h4>Guests:</h4>
                         <p>{reservation.guests}</p>
                     </div>
                     <div className="receipt-date">
-                        <p>Rooms:</p>
+                        <h4>Rooms:</h4>
                         <p>{reservation.rooms}</p>
                     </div>
                     <div>
@@ -52,22 +102,23 @@ const Receipt = ({ reservations, errorMessage, onEdit, onRemove }) => {
                             <h3>${reservation.price} / night</h3>
                         </div>
                         <p>{reservation.details}</p>
-                        <div className="receipt-edit">
-                            <Button display={"text"} onClick={() => handleEdit(reservation)}>
-                                <span style={{ fontSize: "1.5rem" }}>&#9998;</span> Edit
-                            </Button>
-                            <Button display={"text"} onClick={() => onRemove(reservation.id)}>
-                                <span style={{ fontSize: "1.5rem" }}>&#128465;</span> Remove
-                            </Button>
-                        </div>
+
                     </div>
                 </div>
             ))}
+            <div className="receipt-edit">
+                <Button display={"text"} onClick={() => handleEdit(reservations)}>
+                    <span style={{fontSize: "1.5rem"}}>&#9998;</span> Edit
+                </Button>
+                <Button display={"text"} onClick={() => onRemove(reservations.id)}>
+                    <span style={{fontSize: "1.5rem"}}>&#128465;</span> Remove
+                </Button>
+            </div>
             <div className="receipt-total">
-                <p>Total: ${calculateTotal()}</p>
+                <h3>Total: ${calculateTotal()}</h3>
             </div>
             <div id="book-now">
-                <Button display={"primary"}>Book now</Button>
+                <Button display={"primary"} onClick={handlePayment}>Book now</Button>
             </div>
 
             {editReservation && (
@@ -75,6 +126,12 @@ const Receipt = ({ reservations, errorMessage, onEdit, onRemove }) => {
                     reservation={editReservation}
                     onClose={() => setEditReservation(null)}
                     onSave={handleSave}
+                />
+            )}
+            {showBookingForm && (
+                <BookingFormModal
+                    onClose={() => setShowBookingForm(false)}
+                    onSubmit={handleFormSubmit}
                 />
             )}
         </div>

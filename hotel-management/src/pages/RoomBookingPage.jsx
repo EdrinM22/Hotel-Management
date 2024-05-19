@@ -4,13 +4,16 @@ import Receipt from "../components/Receipt.jsx";
 import RoomInfo from "../components/RoomInfo.jsx";
 
 import { useState } from "react";
+import {formatDateYMD} from "../util/dateFormater.js";
 
 export default function RoomBookingPage() {
+    let today = new Date();
+    let tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate()+1)
     const [filters, setFilters] = useState({
-        checkInDate: "",
-        checkOutDate: "",
+        checkInDate: formatDateYMD(today),
+        checkOutDate: formatDateYMD(tomorrow),
         numGuests: 1,
-        roomType: "Standard Room",
     });
 
     const [reservations, setReservations] = useState([]);
@@ -27,7 +30,7 @@ export default function RoomBookingPage() {
 
     function handleRoomSelect(room, details) {
         const reservation = {
-            id: reservations.length + 1,
+            id: room.room_type.id,
             checkInDate: filters.checkInDate,
             checkOutDate: filters.checkOutDate,
             guests: filters.numGuests,
