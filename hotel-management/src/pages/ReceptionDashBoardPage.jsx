@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Scheduler from "../components/Scheduler.jsx";
+import Modal from "../components/Modal.jsx";
+
 import { formatDateYMD, formatDateDMY } from "../util/dateFormater.js";
 
 import { RequestService } from "../util/sendRequest.js";
@@ -8,9 +10,10 @@ import { getTokenFromLocalStorage } from "../util/token";
 
 export default function ReceptionDashBoardPage() {
 	const token = getTokenFromLocalStorage();
+	const modalRef = useRef();
 
 	const [dataSource, setDataSource] = useState([]);
-
+		
 	useEffect(() => {
 		async function fetchReservations() {
 			try {
@@ -57,9 +60,9 @@ export default function ReceptionDashBoardPage() {
 		fetchReservations();
 	}, []);
 
-	// function formatDate(date) {
-	// 	return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
-	// }
+	function formatDate(date) {
+		return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+	}
 
 	function handleAddNewBooking(args) {
 		console.log(args);
@@ -118,7 +121,6 @@ export default function ReceptionDashBoardPage() {
 	}
 
 	function handleBookingChanges(args) {
-		
 		async function updateReservationConditionaly(args) {
 			console.log(args);
 			const changedBookingArg = args.changedRecords[0];
@@ -159,6 +161,7 @@ export default function ReceptionDashBoardPage() {
 					return true;
 				} catch (error) {
 					console.error(error);
+					modalRef.current.open();
 					return false;
 				}
 			}
@@ -196,17 +199,22 @@ export default function ReceptionDashBoardPage() {
 	// console.log( "STATE PRINT" ,  dataSource);
 
 	return (
-		<Scheduler
-			showMonth
-			isDragAndDrop
-			isResize
-			fieldsData={fieldsData}
-			dataSource={dataSource}
-			displayName={{ timelineMonthName: "Bookings" }}
-			onAddNewElement={handleAddNewBooking}
-			onRemoveElement={handleRemoveBooking}
-			onChangesToElement={handleBookingChanges}
-			uh
-		/>
+		<>
+			<Modal ref={modalRef} >
+				<h1> yes i know there is an error </h1>
+			</Modal>
+			<Scheduler
+				showMonth
+				isDragAndDrop
+				isResize
+				fieldsData={fieldsData}
+				dataSource={dataSource}
+				displayName={{ timelineMonthName: "Bookings" }}
+				onAddNewElement={handleAddNewBooking}
+				onRemoveElement={handleRemoveBooking}
+				onChangesToElement={handleBookingChanges}
+				uh
+			/>
+		</>
 	);
 }
