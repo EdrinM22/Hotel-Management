@@ -19,60 +19,52 @@ const Receipt = ({ reservations, errorMessage, onEdit, onRemove }) => {
         return <p className="error-message">{errorMessage}</p>;
     }
 
-    const roomCounts = reservations.reduce((acc, room) => {
-        const key = room.roomType;
-        if (!acc[key]) {
-            acc[key] = { ...room, count: 0 };
-        }
-        acc[key].count += 1;
-        return acc;
-    }, {});
+    const calculateTotal = () => {
+        return reservations.reduce((total, room) => {
+            return total + room.price * room.nights * room.rooms;
+        }, 0);
+    };
 
     return (
         <div className="receipt">
             <h2>Your Reservation</h2>
-            {Object.values(roomCounts).map(reservation => (
+            {reservations.map(reservation => (
                 <div key={reservation.id} className="receipt-info">
                     <div className="receipt-date">
-                        <h4>Check-in:</h4>
+                        <p>Check-in:</p>
                         <p>{reservation.checkInDate}</p>
                     </div>
                     <div className="receipt-date">
-                        <h4>Check-out:</h4>
+                        <p>Check-out:</p>
                         <p>{reservation.checkOutDate}</p>
                     </div>
                     <div className="receipt-date">
-                        <h4>Guests:</h4>
+                        <p>Guests:</p>
                         <p>{reservation.guests}</p>
                     </div>
                     <div className="receipt-date">
-                        <h4>Number of rooms:</h4>
-                        <p>{reservation.count} rooms</p>
-                    </div>
-                    <div className="receipt-date">
-                        <h4>Number of nights:</h4>
-                        <p>{reservation.nights} nights</p>
+                        <p>Rooms:</p>
+                        <p>{reservation.rooms}</p>
                     </div>
                     <div>
-                    <div className="room-type">
+                        <div className="room-type">
                             <h1>{reservation.roomType}</h1>
-                            <h3>${reservation.price}</h3>
+                            <h3>${reservation.price} / night</h3>
                         </div>
                         <p>{reservation.details}</p>
-
                         <div className="receipt-edit">
                             <Button display={"text"} onClick={() => handleEdit(reservation)}>
-                                <span style={{fontSize: "1.5rem"}}>&#9998;</span> Edit
+                                <span style={{ fontSize: "1.5rem" }}>&#9998;</span> Edit
                             </Button>
                             <Button display={"text"} onClick={() => onRemove(reservation.id)}>
-                                <span style={{fontSize: "1.5rem"}}>&#128465;</span> Remove
+                                <span style={{ fontSize: "1.5rem" }}>&#128465;</span> Remove
                             </Button>
                         </div>
                     </div>
                 </div>
             ))}
             <div className="receipt-total">
-                <p>Total: ${reservations.reduce((total, room) => total + room.total, 0)}</p>
+                <p>Total: ${calculateTotal()}</p>
             </div>
             <div id="book-now">
                 <Button display={"primary"}>Book now</Button>

@@ -3,34 +3,42 @@ import './EditReservationModal.css';
 import Button from './Button.jsx';
 
 const EditReservationModal = ({ reservation, onClose, onSave }) => {
-    const [nights, setNights] = useState(reservation.nights);
     const [checkInDate, setCheckInDate] = useState(reservation.checkInDate);
     const [checkOutDate, setCheckOutDate] = useState(reservation.checkOutDate);
+    const [nights, setNights] = useState(reservation.nights);
+    const [rooms, setRooms] = useState(reservation.rooms);
+    const [guests, setGuests] = useState(reservation.guests);
 
     useEffect(() => {
-        // Add class to body when modal is open
         document.body.classList.add('modal-open');
         return () => {
-            // Remove class from body when modal is closed
             document.body.classList.remove('modal-open');
         };
     }, []);
+
+    const handleSave = () => {
+        const updatedReservation = {
+            ...reservation,
+            checkInDate,
+            checkOutDate,
+            nights,
+            rooms,
+            guests,
+        };
+        onSave(updatedReservation);
+        onClose();
+    };
+
+    const handleCheckInChange = (e) => {
+        const newCheckInDate = e.target.value;
+        setCheckInDate(newCheckInDate);
+        setCheckOutDate(calculateCheckOutDate(newCheckInDate, nights));
+    };
 
     const handleNightsChange = (e) => {
         const newNights = Number(e.target.value);
         setNights(newNights);
         setCheckOutDate(calculateCheckOutDate(checkInDate, newNights));
-    };
-
-    const handleSave = () => {
-        const updatedReservation = {
-            ...reservation,
-            nights,
-            checkInDate,
-            checkOutDate,
-        };
-        onSave(updatedReservation);
-        onClose();
     };
 
     const calculateCheckOutDate = (checkInDate, nights) => {
@@ -48,7 +56,16 @@ const EditReservationModal = ({ reservation, onClose, onSave }) => {
                     <input
                         type="date"
                         value={checkInDate}
-                        onChange={(e) => setCheckInDate(e.target.value)}
+                        onChange={handleCheckInChange}
+                    />
+                </label>
+                <label>
+                    Number of Nights:
+                    <input
+                        type="number"
+                        value={nights}
+                        min="1"
+                        onChange={handleNightsChange}
                     />
                 </label>
                 <label>
@@ -56,10 +73,27 @@ const EditReservationModal = ({ reservation, onClose, onSave }) => {
                     <input
                         type="date"
                         value={checkOutDate}
-                        onChange={(e) => setCheckOutDate(e.target.value)}
+                        readOnly
                     />
                 </label>
-
+                <label>
+                    Number of Rooms:
+                    <input
+                        type="number"
+                        value={rooms}
+                        min="1"
+                        onChange={(e) => setRooms(Number(e.target.value))}
+                    />
+                </label>
+                <label>
+                    Number of Guests:
+                    <input
+                        type="number"
+                        value={guests}
+                        min="1"
+                        onChange={(e) => setGuests(Number(e.target.value))}
+                    />
+                </label>
                 <div className="modal-actions">
                     <Button display={"primary"} onClick={handleSave}>Save</Button>
                     <Button display={"text"} onClick={onClose}>Cancel</Button>

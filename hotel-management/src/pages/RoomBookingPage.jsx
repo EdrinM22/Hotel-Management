@@ -7,20 +7,31 @@ import RoomInfo from "../components/RoomInfo.jsx";
 export default function RoomBookingPage() {
     const [selectedRooms, setSelectedRooms] = useState([]);
     const [errorMessage, setErrorMessage] = useState('');
+    const getDefaultCheckInDate = () => {
+        const today = new Date();
+        return today.toISOString().split('T')[0];
+    };
+
+    const getDefaultCheckOutDate = () => {
+        const today = new Date();
+        const tomorrow = new Date(today);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        return tomorrow.toISOString().split('T')[0];
+    };
 
     const handleRoomSelect = (room, packageType) => {
-        let today = new Date();
         const price = packageType === 'Room Only' ? room.room_type.online_price : room.breakfast_included_price;
         const newRoom = {
-            id: new Date().getTime(),
+            id: new Date().getTime(), // Unique ID for each room
             roomType: room.room_type.type_name,
             price: price,
             details: packageType === 'Room Only' ? 'Standard Room only' : 'Breakfast included',
             nights: 1,
             total: price,
-            checkInDate: new Date(today.setDate(today.getDate())).toISOString().split('T')[0],
-            checkOutDate: new Date(today.setDate(today.getDate()+1)).toISOString().split('T')[0],
-            guests: 1
+            checkInDate: getDefaultCheckInDate(),
+            checkOutDate: getDefaultCheckOutDate(),
+            guests: 1,
+            rooms: 1,
         };
         setSelectedRooms([...selectedRooms, newRoom]);
     };
