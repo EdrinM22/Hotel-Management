@@ -6,7 +6,7 @@ import { getTokenFromLocalStorage } from "../util/token.js";
 const Receipt = () => {
     const token = getTokenFromLocalStorage();
 
-    
+
 
     return(
         <div className="receipt">

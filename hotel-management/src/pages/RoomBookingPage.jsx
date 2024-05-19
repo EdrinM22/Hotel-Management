@@ -6,21 +6,21 @@ import RoomInfo from "../components/RoomInfo.jsx";
 import { useEffect, useState } from "react";
 
 export default function RoomBookingPage() {
-	const [filters, setFilters] = useState({
-		checkInDate: "",
-		checkOutDate: "",
-		numGuests: 1,
-		roomType: "Standard Room",
-	});
+    const [filters, setFilters] = useState({
+        checkInDate: "",
+        checkOutDate: "",
+        numGuests: 1,
+        roomType: "Standard Room",
+    });
 
-	function handleFilterChange(identifier, value) {
-		setFilters((prevFilters) => {
+    function handleFilterChange(identifier, value) {
+        setFilters((prevFilters) => {
             return {
                 ...prevFilters,
                 [identifier]: value,
             };
         });
-	}
+    }
 
     // useEffect(() => {
     //     console.log("Filters updated:", filters);
@@ -31,13 +31,13 @@ export default function RoomBookingPage() {
 
     // }, [filters]);
 
-	return (
-		<section className="RoomBookingPage">
-			<RoomBookingFilter filters={filters} onFilterChange={handleFilterChange} />
-			<div className="reservation">
-				<RoomInfo filters={filters} />
-				<Receipt />
-			</div>
-		</section>
-	);
+    return (
+        <section className="RoomBookingPage">
+            <RoomBookingFilter filters={filters} onFilterChange={handleFilterChange} />
+            <div className="reservation">
+                <RoomInfo filters={filters} />
+                <Receipt />
+            </div>
+        </section>
+    );
 }
