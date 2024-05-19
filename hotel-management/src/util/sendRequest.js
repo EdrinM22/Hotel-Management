@@ -73,6 +73,10 @@ export class RequestService {
     async deleteRoomFromReservation(room_id, reservation_id){
         return await this.roomService.deleteRoomFromReservation(room_id, reservation_id);
     }
+    
+    async changeReservationDate(reservation_id, data) {
+        return await this.roomService.changeReservationDate(reservation_id, data);
+    }
 
 }
 
@@ -139,6 +143,14 @@ class RequestRoomService {
         return await fetch(this.mainUrl +`reservation/${reservation_id}/delete/room/${room_id}/`, {
             method: 'PUT',
             headers: this.header_info
+        })
+    }
+
+    async changeReservationDate(reservation_id, data) {
+        return await fetch(this.mainUrl + `reservation/change/date/${reservation_id}/`, {
+            method: requestMethods.PUT,
+            headers: this.header_info,
+            body: data
         })
     }
 
