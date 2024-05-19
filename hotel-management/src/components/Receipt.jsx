@@ -108,11 +108,11 @@ const Receipt = ({ reservations, errorMessage, onEdit, onRemove }) => {
                         <h4>Rooms:</h4>
                         <div className="room-counter">
                             <Button display={"text"} onClick={() => handleRoomIncrement(reservation.id, -1)}>
-                                <span style={{fontSize: "1.5rem"}}>&#8722;</span>
+                                &#8722;
                             </Button>
                             <p>{reservation.rooms}</p>
-                            <Button display={"text"} onClick={() => handleRoomIncrement(reservation.id, 1)}>
-                                <span style={{fontSize: "1.5rem"}}>&#43;</span>
+                            <Button display={"text"} width={"1rem"} onClick={() => handleRoomIncrement(reservation.id, 1)}>
+                                &#43;
                             </Button>
                         </div>
                     </div>
@@ -130,12 +130,10 @@ const Receipt = ({ reservations, errorMessage, onEdit, onRemove }) => {
                     </div>
                 </div>
             ))}
-            <div className="receipt-edit">
-                <Button display={"text"} onClick={() => setEditReservations(true)}>
-                    <span style={{fontSize: "1.5rem"}}>&#9998;</span> Edit
-                </Button>
-            </div>
             <div className="receipt-total">
+                <Button display={"text"} onClick={() => setEditReservations(true)}>
+                    &#9998; Edit
+                </Button>
                 <h3>Total: ${calculateTotal()}</h3>
             </div>
             <div id="book-now">
