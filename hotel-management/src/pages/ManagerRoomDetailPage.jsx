@@ -3,6 +3,7 @@ import FeedbackCategoryBtn from "../components/FeedbackCategoryBtn";
 import Modal from "../components/Modal";
 import RoomDetailForm from "../components/RoomDetailForm";
 import AddRoomForm from "../components/AddRoomForm";
+import AddRoomTypeForm from "../components/AddRoomTypeForm";
 import "../components/RoomDetails.css";
 
 import { useState, useRef, useEffect } from "react";
@@ -12,6 +13,7 @@ import { getTokenFromLocalStorage } from "../util/token";
 export default function ManagerRoomDetailPage() {
 	const modalRef = useRef();
 	const addRoomModalRef = useRef();
+	const addRoomTypeModalRef = useRef();
 
 	const token = getTokenFromLocalStorage();
 
@@ -75,6 +77,8 @@ export default function ManagerRoomDetailPage() {
 		addRoomModalRef.current.open();
 	}
 
+
+
 	function handleAddRoomSubmit(newRoom) {
         setRoomDetails((prev) => [...prev, newRoom]);
 		addRoomModalRef.current.close();
@@ -95,6 +99,9 @@ export default function ManagerRoomDetailPage() {
 				{roomTypes.length > 0 && (
 					<AddRoomForm roomTypes={roomTypes} onSubmit={handleAddRoomSubmit} />
 				)}
+			</Modal>
+			<Modal ref={addRoomTypeModalRef} title="Add Room Type">
+				<AddRoomTypeForm />
 			</Modal>
 
 			<div className="room-detail-filters-container">
@@ -118,6 +125,10 @@ export default function ManagerRoomDetailPage() {
 				<Button display="secondary" onClick={handleAddRoom}>
 					Add Room
 				</Button>
+				<Button display="secondary" onClick={() => {addRoomTypeModalRef.current.open() }}>
+					Add Room Type
+				</Button>
+
 			</div>
 
 			<main className="room-detail-table-container">
