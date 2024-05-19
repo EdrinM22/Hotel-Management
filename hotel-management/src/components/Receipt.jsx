@@ -6,7 +6,15 @@ import { useNavigate } from "react-router-dom";
 import BookingFormModal from './BookingFormModal';
 import { getTokenFromLocalStorage } from "../util/token.js";
 
+import { useDispatch, useSelector } from "react-redux";
+import { bookingActions } from "../store/BookingSlice";
+
+
 const Receipt = ({ reservations, errorMessage, onEdit, onRemove }) => {
+    const dispatch = useDispatch();
+
+    const bookingInfo = useSelector((state) => state.booking)
+
     const token = getTokenFromLocalStorage();
     const [editReservations, setEditReservations] = useState(false);
     const [showBookingForm, setShowBookingForm] = useState(false);
@@ -51,13 +59,15 @@ const Receipt = ({ reservations, errorMessage, onEdit, onRemove }) => {
                 count: reservation.rooms,
             }));
 
-            navigate('/book/payment', {
-                state: {
-                    room_types,
-                    start_date: reservations[0].checkInDate,
-                    end_date: reservations[0].checkOutDate,
-                }
-            });
+            navigate('/book/payment', 
+            // {
+            //     state: {
+            //         room_types,
+            //         start_date: reservations[0].checkInDate,
+            //         end_date: reservations[0].checkOutDate,
+            //     }
+            // }
+             );
 
             const state = {
                 room_types,
@@ -78,12 +88,22 @@ const Receipt = ({ reservations, errorMessage, onEdit, onRemove }) => {
             end_date: reservations[0].checkOutDate,
             guest_information
         };
-        navigate('/book/payment', {
-            state: {
-                room_types,
-                guest_information
-            }
-        });
+
+        dispatch(bookingActions.setGuestInformation(guest_information ));
+        dispatch(bookingActions.setRoomTypes(room_types));
+        dispatch(bookingActions.setStartDate(reservations[0].checkInDate));
+        dispatch(bookingActions.setEndDate(reservations[0].checkOutDate));
+
+        console.log(bookingInfo );
+
+        navigate('/book/payment',
+        //  {
+        //     state: {
+        //         room_types,
+        //         guest_information
+        //     }
+        // }
+    );
         console.log(state);
     };
 

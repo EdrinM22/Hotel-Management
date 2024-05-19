@@ -52,7 +52,7 @@ const BookingFormModal = ({ onClose, onSubmit }) => {
                     <label>
                         Birthday:
                         <input type="date" value={birthdate} onChange={(e) => setBirthDate(e.target.value)}
-                               required/>
+                               />
                     </label>
                     <label>
                         Birthplace:
