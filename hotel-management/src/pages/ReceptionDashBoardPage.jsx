@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Scheduler from "../components/Scheduler.jsx";
-import { formatDateYMD } from "../util/dateFormater.js";
+import { formatDateYMD, formatDateDMY } from "../util/dateFormater.js";
 
 import { RequestService } from "../util/sendRequest.js";
 
@@ -32,14 +32,8 @@ export default function ReceptionDashBoardPage() {
 				let myReserv = [];
 
 				data.forEach((item) => {
-					const {
-						id,
-						start_date,
-						end_date,
-						person_info,
-						reservation_cost,
-						room_reservations,
-					} = item;
+					const { id, start_date, end_date, person_info, reservation_cost, room_reservations } =
+						item;
 					room_reservations.forEach((reservation) => {
 						const { room } = reservation;
 						const newReservation = {
@@ -47,7 +41,7 @@ export default function ReceptionDashBoardPage() {
 							RoomName: room.room_unique_number,
 							Checkin: start_date,
 							Checkout: end_date,
-							Description: `Client Email : ${person_info} \nTotal Price to pay:  ${reservation_cost}$ \n Room Type ${room.room_type} \n `,
+							Description: `Client Email: ${person_info} \nTotal Price to pay:  ${reservation_cost}$ \nRoom Type: ${room.room_type} \n `,
 						};
 						myReserv.push(newReservation);
 					});
@@ -63,9 +57,9 @@ export default function ReceptionDashBoardPage() {
 		fetchReservations();
 	}, []);
 
-	function formatDate(date) {
-		return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
-	}
+	// function formatDate(date) {
+	// 	return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+	// }
 
 	function handleAddNewBooking(args) {
 		console.log(args);
@@ -83,7 +77,6 @@ export default function ReceptionDashBoardPage() {
 		// });
 	}
 
-	
 	function handleRemoveBooking(args) {
 		// console.log(args);
 		const removedBookingArg = args.deletedRecords[0];
@@ -102,7 +95,6 @@ export default function ReceptionDashBoardPage() {
 			console.log("Reservation ID", reservationId);
 
 			try {
-
 				const rs = new RequestService(token.access);
 
 				const response = await rs.deleteRoomFromReservation(roomId, reservationId);
@@ -119,34 +111,79 @@ export default function ReceptionDashBoardPage() {
 			} catch (error) {
 				console.error(error);
 				args.cancel = true;
-			} 
+			}
 		}
 
 		deleteReservation();
 	}
 
 	function handleBookingChanges(args) {
-		console.log(args);
-		const changedBookingArg = args.changedRecords[0];
-		const changedBooking = {
-			RoomId: changedBookingArg.RoomId,
-			RoomName: changedBookingArg.RoomName,
-			Checkin: formatDate(changedBookingArg.Checkin),
-			Checkout: formatDate(changedBookingArg.Checkout),
-		};
+		
+		async function updateReservationConditionaly(args) {
+			console.log(args);
+			const changedBookingArg = args.changedRecords[0];
 
-		setDataSource((prev) => {
-			return prev.map((record) => {
-				if (record.RoomId === changedBooking.RoomId) {
-					return {
-						...record,
-						Checkin: changedBooking.Checkin,
-						Checkout: changedBooking.Checkout,
-					};
+			const { RoomId, Checkin, Checkout, Description } = changedBookingArg;
+			console.log("ROOM ID", RoomId);
+			console.log("Checkin", formatDateDMY(Checkin));
+			console.log("Checkout", formatDateDMY(Checkout));
+			console.log("Description", Description);
+
+			const [reservationId, roomId] = RoomId.split("/");
+			console.log("Room ID", roomId);
+			console.log("Reservation ID", reservationId);
+
+			const [userEmail, totalPrice, roomType] = Description.split("\n");
+			console.log("User Email", userEmail);
+			console.log("Total Price", totalPrice);
+			console.log("Room Type", roomType);
+
+			const priceValue = totalPrice.split(":")[1].trim();
+			console.log("Price Value", priceValue);
+
+			async function updateReservation(args) {
+				try {
+					const rs = new RequestService(token.access);
+
+					const response = await rs.changeReservationDate(reservationId, {
+						start_date: formatDateDMY(Checkin),
+						end_date: formatDateDMY(Checkout),
+					});
+
+					if (!response.ok) {
+						args.cancel = true;
+						throw new Error(await response.text());
+					}
+
+					console.log(await response.json());
+					return true;
+				} catch (error) {
+					console.error(error);
+					return false;
 				}
-				return record;
-			});
-		});
+			}
+
+			const add = await updateReservation(args);
+			console.log("ADD", add);
+
+			if (add === true) {
+				console.log("ADD TRUE");
+				setDataSource((prev) => {
+					return prev.map((record) => {
+						if (record.RoomId === RoomId) {
+							return {
+								...record,
+								Checkin: Checkin,
+								Checkout: Checkout,
+							};
+						}
+						return record;
+					});
+				});
+			}
+		}
+
+		updateReservationConditionaly(args);
 	}
 
 	const fieldsData = {
@@ -168,7 +205,8 @@ export default function ReceptionDashBoardPage() {
 			displayName={{ timelineMonthName: "Bookings" }}
 			onAddNewElement={handleAddNewBooking}
 			onRemoveElement={handleRemoveBooking}
-			onChangesToElement={handleBookingChanges}uh
+			onChangesToElement={handleBookingChanges}
+			uh
 		/>
 	);
 }

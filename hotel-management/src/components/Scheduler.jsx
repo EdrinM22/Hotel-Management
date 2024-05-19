@@ -79,7 +79,12 @@ export default function Scheduler({
         } else if (args.requestType === "eventRemove") {
             onRemoveElement(args);
         } else if (args.requestType === "eventChange") {
-            onChangesToElement(args);
+		
+            const sucess = onChangesToElement(args);
+			//! i dont know why but we need this. Good luck future me ❤️
+			if (!sucess) {
+				args.cancel = true;
+			}
         }
     }
 
