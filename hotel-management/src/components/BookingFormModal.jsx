@@ -57,11 +57,11 @@ const BookingFormModal = ({ onClose, onSubmit }) => {
                     <label>
                         Birthplace:
                         <input type="text" value={birthplace} onChange={(e) => setBirthplace(e.target.value)}
-                               required/>
+                               />
                     </label>
                     <label>
                         Personal number:
-                        <input type="number" value={personal_number} onChange={(e) => setPersonalNumber(e.target.value)}
+                        <input type="text" value={personal_number} onChange={(e) => setPersonalNumber(e.target.value)}
                                required/>
                     </label>
                     <div style={{display: 'flex', justifyContent: 'space-between', flexDirection: "row"}}>

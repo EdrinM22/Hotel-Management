@@ -69,7 +69,7 @@ const ManagerReviews = () => {
                     <h3>{review.guest.user.email}</h3>
                     
                 </div>
-                <p className="review-category">{review.stars + 1} stars</p>
+                <p className="review-category">{review.stars } stars</p>
                 <p className="review-text">{review.text}</p>
             </div>
         ));

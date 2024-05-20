@@ -68,14 +68,6 @@ const EditReservationModal = ({ reservations, onClose, onSave }) => {
                     />
                 </label>
                 <label>
-                    Check-out Date:
-                    <input
-                        type="date"
-                        value={checkOutDate}
-                        readOnly
-                    />
-                </label>
-                <label>
                     Number of Rooms:
                     <input
                         type="number"

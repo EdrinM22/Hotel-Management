@@ -61,16 +61,11 @@ const Receipt = ({ reservations, errorMessage, onEdit, onRemove }) => {
 				count: reservation.rooms,
 			}));
 
-			navigate(
-				"/book/payment",
-				// {
-				//     state: {
-				//         room_types,
-				//         start_date: reservations[0].checkInDate,
-				//         end_date: reservations[0].checkOutDate,
-				//     }
-				// }
-			);
+            dispatch(bookingActions.setRoomTypes(room_types));
+            dispatch(bookingActions.setStartDate(reservations[0].checkInDate));
+            dispatch(bookingActions.setEndDate(reservations[0].checkOutDate));
+
+			navigate("/book/payment");
 
 			const state = {
 				room_types,
@@ -99,15 +94,7 @@ const Receipt = ({ reservations, errorMessage, onEdit, onRemove }) => {
 
 		console.log(bookingInfo);
 
-		navigate(
-			"/book/payment",
-			//  {
-			//     state: {
-			//         room_types,
-			//         guest_information
-			//     }
-			// }
-		);
+		navigate("/book/payment");
 		console.log(state);
 	};
 

@@ -20,8 +20,8 @@ const Footer = () => {
         </div>
         <div className="footer-block">
           <h3>Contact</h3>
-          <p>Reservations: +355 123 123 1234</p>
-          <p>Email: office@moto.al</p>
+          <p>Reservations: +355 67 555 0510</p>
+          <p>Email: motohotelservice@gmail.com</p>
         </div>
         <div className="footer-icons">
           <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="icon">
