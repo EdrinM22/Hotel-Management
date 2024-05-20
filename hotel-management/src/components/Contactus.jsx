@@ -2,6 +2,9 @@ import { useState } from 'react';
 import './ContactUs.css';
 import Banner from '../assets/contact_banner.png';
 
+import { useNavigate } from 'react-router-dom';
+
+
 const ContactUs = () => {
     const [formData, setFormData] = useState({
         name: '',
@@ -12,6 +15,8 @@ const ContactUs = () => {
     });
     const [errorMessage, setErrorMessage] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -47,12 +52,18 @@ const ContactUs = () => {
                 phone: '',
                 note: ''
             });
-            setErrorMessage('');
+            setErrorMessage('Thank you for your message! We will get back to you soon.🥰');
+
+            setTimeout(() => {
+                 navigate('/');
+            }, 1000);
+           
         } catch (error) {
             console.error('Error:', error);
             setErrorMessage('Failed to send the message. Please try again.');
         } finally {
             setIsSubmitting(false);
+
         }
     };
 

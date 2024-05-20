@@ -31,7 +31,7 @@ const PaymentForm = () => {
 			room_types: bookingInfo.room_types,
 			start_date: formatDateDDMMYYYY(bookingInfo.start_date),
 			end_date: formatDateDDMMYYYY(bookingInfo.end_date),
-			guest_information: bookingInfo.guestInformation,
+			guest_information: token ? undefined : bookingInfo.guestInformation,
 		};
 
 		console.log(bookingData);
@@ -39,7 +39,10 @@ const PaymentForm = () => {
 		async function sendBookingToBack() {
 			const response = await fetch("http://localhost:8000/rooms/reservation/create/", {
 				method: "POST",
-				headers: { "Content-Type": "application/json" },
+				headers: { 
+					"Content-Type": "application/json",
+					...(token ? { "Authorization": `Bearer ${token.access}` } : {}),
+				 },
 				body: JSON.stringify(bookingData),
 			});
 		}
