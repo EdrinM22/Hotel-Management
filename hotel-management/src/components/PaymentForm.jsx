@@ -26,7 +26,6 @@ const PaymentForm = () => {
 	}
 
 	const handleConfirm = () => {
-		alert(`Payment method selected: ${selectedPayment}`);
 		const bookingData = {
 			room_types: bookingInfo.room_types,
 			start_date: formatDateDDMMYYYY(bookingInfo.start_date),
@@ -37,22 +36,37 @@ const PaymentForm = () => {
 		console.log(bookingData);
 
 		async function sendBookingToBack() {
-			const response = await fetch("http://localhost:8000/rooms/reservation/create/", {
-				method: "POST",
-				headers: { 
-					"Content-Type": "application/json",
-					...(token ? { "Authorization": `Bearer ${token.access}` } : {}),
-				 },
-				body: JSON.stringify(bookingData),
-			});
+			try {
+				const response = await fetch("http://localhost:8000/rooms/reservation/create/", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+						...(token ? { Authorization: `Bearer ${token.access}` } : {}),
+					},
+					body: JSON.stringify(bookingData),
+				});
+
+				if (!response.ok) {
+					throw new Error("Network response was not ok");
+				}
+
+				const data = await response.json();
+				console.log(data);
+
+				downloadPDf(data.id);
+
+			} catch (error) {
+				console.error("Error sending booking to back:", error);
+			}
 		}
+
 		sendBookingToBack();
 	};
 
-	async function downloadPDf() {
+	async function downloadPDf(reservation_id) {
 		try {
 			const request_service = new RequestService();
-			const reservation_id = 3;
+			// const reservation_id = 3;
 			const response = await request_service.receiptPDF({ reservation_id: reservation_id });
 			if (!response.ok) {
 				console.log(await response.text());
@@ -65,9 +79,9 @@ const PaymentForm = () => {
 		}
 	}
 
-	const handlePrintReceipt = () => {
-		downloadPDf();
-	};
+	// const handlePrintReceipt = () => {
+	// 	downloadPDf();
+	// };
 
 	return (
 		<div className="payment-form">
@@ -107,9 +121,9 @@ const PaymentForm = () => {
 			<button onClick={handleConfirm} className="confirm-button">
 				Confirm
 			</button>
-			<button onClick={handlePrintReceipt} className="print-button">
+			{/* <button onClick={() => {}} className="print-button">
 				Print Receipt
-			</button>
+			</button> */}
 		</div>
 	);
 };
