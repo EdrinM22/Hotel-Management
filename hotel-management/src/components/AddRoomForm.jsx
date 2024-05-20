@@ -107,10 +107,10 @@ export default function AddRoomForm({roomTypes, onSubmit}) {
                 <Input type="number" labelText="Room Number" onChange={handleRoomNumberChange} value={newRoomInfo.room_unique_number} />
             </div>
 			<Input textarea onChange={handleRoomDescriptionChange} value={newRoomInfo.room_description}/>
-			<p className="center-button-modal">
+			<div className="center-button-modal">
                 {submitState.errorMessage && <p className="lato-bold feedback_error_msg_text">{submitState.errorMessage}</p>}
 				<Button onClick={handleSubmit}  type="button">Submit</Button>
-			</p>
+			</div>
 		</form>
 	);
 }

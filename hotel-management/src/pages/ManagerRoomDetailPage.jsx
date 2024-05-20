@@ -3,6 +3,9 @@ import FeedbackCategoryBtn from "../components/FeedbackCategoryBtn";
 import Modal from "../components/Modal";
 import RoomDetailForm from "../components/RoomDetailForm";
 import AddRoomForm from "../components/AddRoomForm";
+
+import AddRoomTypeForm from "../components/FUCKFUCKBOOM";
+
 import "../components/RoomDetails.css";
 
 import { useState, useRef, useEffect } from "react";
@@ -12,6 +15,7 @@ import { getTokenFromLocalStorage } from "../util/token";
 export default function ManagerRoomDetailPage() {
 	const modalRef = useRef();
 	const addRoomModalRef = useRef();
+	const AddRoomTypeRef = useRef();
 
 	const token = getTokenFromLocalStorage();
 
@@ -48,7 +52,7 @@ export default function ManagerRoomDetailPage() {
 			});
 	}, []);
 
-    // console.log(roomDetails);
+	// console.log(roomDetails);
 
 	function handleCategoryChange(category) {
 		setSelectedCategory(category);
@@ -71,20 +75,15 @@ export default function ManagerRoomDetailPage() {
 		modalRef.current.close();
 	}
 
-	function handleAddRoom() {
-		addRoomModalRef.current.open();
-	}
-
 	function handleAddRoomSubmit(newRoom) {
-        setRoomDetails((prev) => [...prev, newRoom]);
+		setRoomDetails((prev) => [...prev, newRoom]);
 		addRoomModalRef.current.close();
 	}
 
-    const getRoomTypeName = (roomTypeId) => {
-        const roomType = roomTypes.find((type) => type.id === roomTypeId);
-        return roomType ? roomType.type_name : "Unknown";
-    };
-    
+	const getRoomTypeName = (roomTypeId) => {
+		const roomType = roomTypes.find((type) => type.id === roomTypeId);
+		return roomType ? roomType.type_name : "Unknown";
+	};
 
 	return (
 		<div className="room-detail-page">
@@ -96,6 +95,17 @@ export default function ManagerRoomDetailPage() {
 					<AddRoomForm roomTypes={roomTypes} onSubmit={handleAddRoomSubmit} />
 				)}
 			</Modal>
+			<Modal ref={AddRoomTypeRef} title="Add Room Type">
+				<AddRoomTypeForm />
+			</Modal>
+			<div className="room-detail-filters-container">
+				<Button display="secondary" onClick={() => addRoomModalRef.current.open()}>
+					Add Room
+				</Button>
+				<Button display="secondary" onClick={() => AddRoomTypeRef.current.open()}>
+					Add Room Type
+				</Button>
+			</div>
 
 			<div className="room-detail-filters-container">
 				<FeedbackCategoryBtn
@@ -114,10 +124,6 @@ export default function ManagerRoomDetailPage() {
 					onClick={() => handleCategoryChange(true)}
 				/>
 				{/* <FeedbackCategoryBtn content="Cleaning Rooms" isSelected={selectedCategory === "Cleaning"} onClick={() => handleCategoryChange("Cleaning")} /> */}
-
-				<Button display="secondary" onClick={handleAddRoom}>
-					Add Room
-				</Button>
 			</div>
 
 			<main className="room-detail-table-container">
@@ -128,7 +134,7 @@ export default function ManagerRoomDetailPage() {
 							<th>Room Type</th>
 							<th>Room Status</th>
 							<th>Real Price</th>
-                            <th>Online Price</th>
+							<th>Online Price</th>
 							<th>Room Capacity</th>
 							{/* <th>Is Clean </th> */}
 							{/* <th>Edit</th> */}
@@ -140,14 +146,16 @@ export default function ManagerRoomDetailPage() {
 								return (
 									<tr className="room-detail-table-row" key={roomDetail.room_unique_number}>
 										<td>{`#${roomDetail.room_unique_number}`}</td>
-										<td>{ getRoomTypeName(roomDetail.room_type) }</td>
+										<td>{getRoomTypeName(roomDetail.room_type)}</td>
 										<td>
-											<span className={`room-status-${roomDetail.is_reserved ? "Booked" : "Available"}`}>
+											<span
+												className={`room-status-${roomDetail.is_reserved ? "Booked" : "Available"}`}
+											>
 												{roomDetail.is_reserved ? "Booked" : "Available"}
 											</span>
 										</td>
 										<td>{`${roomDetail.real_price}$`}</td>
-                                        <td>{`${roomDetail.online_price}$`}</td>
+										<td>{`${roomDetail.online_price}$`}</td>
 										<td>{`${roomDetail.size} people`}</td>
 										{/* <td>
 											<span className={`room-status-${roomDetail}`}>{roomDetail.roomStatus}</span>
