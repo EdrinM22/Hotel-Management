@@ -35,7 +35,7 @@ const Room_Card = () => {
     }, []);
 
     return (
-        <div className="room-cards-container">
+        <div className="cards">
             {errorMessage && <p className="error-message">{errorMessage}</p>}
             {rooms.map(room => (
                 <div key={room.room_type.id} className="room-card">
