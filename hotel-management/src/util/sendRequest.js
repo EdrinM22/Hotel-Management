@@ -78,6 +78,15 @@ export class RequestService {
         return await this.roomService.changeReservationDate(reservation_id, data);
     }
 
+    async createRoomType(data) {
+        const formData = new FormData();
+        formData.append('type_name', data.type_name);
+        formData.append('price', data.price);
+        formData.append('size', data.size);
+        formData.append('main_image', data.main_image);
+        return await this.roomService.createRoomType(formData);
+    }
+
 }
 
 class RequestUserService {
@@ -150,6 +159,16 @@ class RequestRoomService {
         return await fetch(this.mainUrl + `reservation/change/date/${reservation_id}/`, {
             method: requestMethods.PUT,
             headers: this.header_info,
+            body: data
+        })
+    }
+    async createRoomType(data) {
+        await fetch(this.mainUrl + 'room_type/create/', {
+            method: requestMethods.POST,
+            headers: {
+                'Authorization': `Bearer ${this.access_token}`,
+                // 'Content-Type': 'multipart/form-data'
+            },
             body: data
         })
     }
