@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="84199c42-e873-4eb3-a4b8-42eb3a1ad920" name="Changes" comment="just fuck it">
+      <change beforePath="$PROJECT_DIR$/hotel-management/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-management/.gitignore" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="CSS File" />
+        <option value="JSX File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="mateo2.0" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Mateogjini14&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/EdrinM22/Hotel-Management.git&quot;,
+    &quot;accountId&quot;: &quot;21c4bea4-7192-4948-86d2-09d041511333&quot;
+  }
+}</component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2eUsW2CeoUJWbwRhIaQfKPeilcR" />
+  <component name="ProjectLevelVcsManager">
+    <OptionsSetting value="false" id="Update" />
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Node.js.App.jsx.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/mateo/WebstormProjects/Hotel-Management/hotel-management/src/assets&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.Run.executor&quot;: &quot;Run&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2023.2.1\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\mateo\WebstormProjects\Hotel-Management\hotel-management\src\assets" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Run" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/hotel-management/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-WS-241.14494.235" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="84199c42-e873-4eb3-a4b8-42eb3a1ad920" name="Changes" comment="" />
+      <created>1711970518694</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1711970518694</updated>
+      <workItem from="1711970520656" duration="19545000" />
+      <workItem from="1712041803989" duration="2856000" />
+      <workItem from="1712046169440" duration="4000" />
+      <workItem from="1712636727769" duration="3027000" />
+      <workItem from="1712645669186" duration="608000" />
+      <workItem from="1712941143593" duration="201000" />
+      <workItem from="1712941387586" duration="823000" />
+      <workItem from="1713969648996" duration="1430000" />
+      <workItem from="1714152313615" duration="18877000" />
+      <workItem from="1714406989926" duration="2002000" />
+      <workItem from="1714737999968" duration="6239000" />
+      <workItem from="1714991502236" duration="9539000" />
+      <workItem from="1715028890692" duration="55000" />
+      <workItem from="1715168896563" duration="2466000" />
+      <workItem from="1715523247597" duration="23928000" />
+      <workItem from="1715691752001" duration="1055000" />
+      <workItem from="1715692829489" duration="8005000" />
+      <workItem from="1715842585692" duration="10898000" />
+      <workItem from="1715936686318" duration="987000" />
+      <workItem from="1715951539044" duration="12149000" />
+      <workItem from="1715969285588" duration="8530000" />
+      <workItem from="1716052414629" duration="13880000" />
+      <workItem from="1716110740483" duration="37896000" />
+      <workItem from="1716154753177" duration="28000" />
+      <workItem from="1716202825814" duration="38000" />
+      <workItem from="1716202880919" duration="4892000" />
+      <workItem from="1716228752258" duration="11236000" />
+      <workItem from="1716469029070" duration="2777000" />
+      <workItem from="1716536118253" duration="652000" />
+    </task>
+    <task id="LOCAL-00001" summary="Bug Fix">
+      <option name="closed" value="true" />
+      <created>1712042413537</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1712042413537</updated>
+    </task>
+    <task id="LOCAL-00002" summary="mainpage">
+      <option name="closed" value="true" />
+      <created>1715028930741</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1715028930741</updated>
+    </task>
+    <task id="LOCAL-00003" summary="mainpage and bookpage">
+      <option name="closed" value="true" />
+      <created>1715674656775</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1715674656775</updated>
+    </task>
+    <task id="LOCAL-00004" summary="mainpage and bookpage">
+      <option name="closed" value="true" />
+      <created>1715686757212</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1715686757212</updated>
+    </task>
+    <task id="LOCAL-00005" summary="bookpage missing buttons, icon change and bug fixes">
+      <option name="closed" value="true" />
+      <created>1715691393603</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1715691393603</updated>
+    </task>
+    <task id="LOCAL-00006" summary="AI text added">
+      <option name="closed" value="true" />
+      <created>1715888190015</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1715888190015</updated>
+    </task>
+    <task id="LOCAL-00007" summary="bugs fixed">
+      <option name="closed" value="true" />
+      <created>1715963102305</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1715963102305</updated>
+    </task>
+    <task id="LOCAL-00008" summary="idk why that was there to begin with">
+      <option name="closed" value="true" />
+      <created>1715963681498</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1715963681498</updated>
+    </task>
+    <task id="LOCAL-00009" summary="changing the activities section">
+      <option name="closed" value="true" />
+      <created>1715975793599</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1715975793599</updated>
+    </task>
+    <task id="LOCAL-00010" summary="changing the activities section">
+      <option name="closed" value="true" />
+      <created>1716070002245</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1716070002245</updated>
+    </task>
+    <task id="LOCAL-00011" summary="reservation">
+      <option name="closed" value="true" />
+      <created>1716114181320</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1716114181320</updated>
+    </task>
+    <task id="LOCAL-00012" summary="changes reverted">
+      <option name="closed" value="true" />
+      <created>1716116830312</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1716116830312</updated>
+    </task>
+    <task id="LOCAL-00013" summary="changes reverted">
+      <option name="closed" value="true" />
+      <created>1716141825790</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1716141825790</updated>
+    </task>
+    <task id="LOCAL-00014" summary="just fuck it">
+      <option name="closed" value="true" />
+      <created>1716144578420</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1716144578420</updated>
+    </task>
+    <task id="LOCAL-00015" summary="just fuck it">
+      <option name="closed" value="true" />
+      <created>1716150886928</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1716150886928</updated>
+    </task>
+    <task id="LOCAL-00016" summary="just fuck it">
+      <option name="closed" value="true" />
+      <created>1716276423991</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1716276423991</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Bug Fix" />
+    <MESSAGE value="mainpage" />
+    <MESSAGE value="mainpage and bookpage" />
+    <MESSAGE value="bookpage missing buttons, icon change and bug fixes" />
+    <MESSAGE value="AI text added" />
+    <MESSAGE value="bugs fixed" />
+    <MESSAGE value="idk why that was there to begin with" />
+    <MESSAGE value="changing the activities section" />
+    <MESSAGE value="reservation" />
+    <MESSAGE value="changes reverted" />
+    <MESSAGE value="just fuck it" />
+    <option name="LAST_COMMIT_MESSAGE" value="just fuck it" />
+  </component>
+</project>

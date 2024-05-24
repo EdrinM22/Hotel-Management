@@ -1,0 +1,39 @@
+Index: hotel-management/src/util/signup.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>export default async function sendSignupDataToServer(newUserData){\r\n    const response = await fetch(\"http://localhost:8000/users/guest/list/create/\", {\r\n        method: \"POST\",\r\n        headers: {\r\n            \"Content-Type\": \"application/json\",\r\n        },\r\n        body: JSON.stringify(newUserData),\r\n    });\r\n\r\n    const resData = await response.json();\r\n\r\n    console.log(resData);\r\n\r\n    if (!response.ok) {\r\n        throw new Error(resData.detail || \"Something went wrong\");\r\n    }\r\n\r\n    return resData;\r\n}\r\n\r\n\r\nexport function formateDate(date){\r\n    let newDate = new Date(date);\r\n    let day = newDate.getDate();\r\n    let month = newDate.getMonth() + 1;\r\n    let year = newDate.getFullYear();\r\n    return `${year}-${month}-${day}`;\r\n}
+===================================================================
+diff --git a/hotel-management/src/util/signup.js b/hotel-management/src/util/signup.js
+--- a/hotel-management/src/util/signup.js	
++++ b/hotel-management/src/util/signup.js	
+@@ -1,5 +1,5 @@
+ export default async function sendSignupDataToServer(newUserData){
+-    const response = await fetch("http://localhost:8000/users/guest/list/create/", {
++    const response = await fetch("http://localhost:8001/users/guest/list/create/", {
+         method: "POST",
+         headers: {
+             "Content-Type": "application/json",
+Index: hotel-management/src/util/login.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>export async function sendCredentialsToServer(email, password) {\r\n\tconst response = await fetch(\"http://localhost:8000/users/api/token/\", {\r\n\t\tmethod: \"POST\",\r\n\t\theaders: {\r\n\t\t\t\"Content-Type\": \"application/json\",\r\n\t\t},\r\n\t\tbody: JSON.stringify({\r\n\t\t\temail: email,\r\n\t\t\tpassword: password,\r\n\t\t}),\r\n\t});\r\n\r\n\tconst resData = await response.json();\r\n\r\n\tif (!response.ok) {\r\n\t\tthrow new Error(resData.detail || \"Wrong Email or Password\");\r\n\t}\r\n\r\n\treturn resData;\r\n}\r\n\r\nexport async function sentTokenToServer(token) {\r\n    const response = await fetch(\"http://localhost:8000/users/login/\", {\r\n        headers: {\r\n            \"Content-Type\": \"application/json\",\r\n            \"Authorization\": `Bearer ${token}`,\r\n        },\r\n    });\r\n\r\n    const resData = await response.json();\r\n\r\n    if (!response.ok) {\r\n        throw new Error(resData.detail || \"Wrong Email or Password\");\r\n    }\r\n\r\n    return resData;\r\n}\r\n
+===================================================================
+diff --git a/hotel-management/src/util/login.js b/hotel-management/src/util/login.js
+--- a/hotel-management/src/util/login.js	
++++ b/hotel-management/src/util/login.js	
+@@ -1,5 +1,5 @@
+ export async function sendCredentialsToServer(email, password) {
+-	const response = await fetch("http://localhost:8000/users/api/token/", {
++	const response = await fetch("http://localhost:8001/users/api/token/", {
+ 		method: "POST",
+ 		headers: {
+ 			"Content-Type": "application/json",
+@@ -20,7 +20,7 @@
+ }
+ 
+ export async function sentTokenToServer(token) {
+-    const response = await fetch("http://localhost:8000/users/login/", {
++    const response = await fetch("http://localhost:8001/users/api/token/", {
+         headers: {
+             "Content-Type": "application/json",
+             "Authorization": `Bearer ${token}`,

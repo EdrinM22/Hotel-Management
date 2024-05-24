@@ -1,0 +1,18 @@
+Index: hotel-management/src/components/Meetings_Section.jsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import \"./Meetings_Section.css\";\r\nimport EventsPic from \"../assets/event.jpg\"\r\nimport Conferencepic from \"../assets/conference.jpg\"\r\nconst Meetings = () => {\r\n    return(\r\n        <section className=\"meetings\">\r\n            <h1>Meetings & Events</h1>\r\n            <div className=\"meetings-content\">\r\n                <img src={Conferencepic} className=\"conference-pic\" alt=\"\"></img>\r\n                <div>\r\n                    <h2>Meetings at our hotel</h2>\r\n                    <p>At [Hotel Name], we offer the ideal setting for your next business meeting. Our flexible,\r\n                        tech-savvy meeting spaces come with high-speed Wi-Fi and advanced audiovisual equipment to ensure your presentations shine.\r\n                        Delight your attendees with customized catering options and rely on our dedicated event coordinators to manage every detail.\r\n                        Conveniently located in the heart of [City Name], our hotel also provides luxurious accommodations for those staying overnight.</p>\r\n                </div>\r\n            </div>\r\n            <div className=\"meetings-content\">\r\n\r\n                <div>\r\n                    <h2>Events at our hotel</h2>\r\n                    <p>Plan your special event at [Hotel Name],\r\n                        featuring a range of elegant spaces perfect for any occasion,\r\n                        from intimate gatherings to grand celebrations.\r\n                        Enjoy customizable catering from our talented chefs, state-of-the-art audiovisual technology,\r\n                        and personalized planning services from our experienced event coordinators.\r\n                        Located in the heart of [City Name], our hotel offers easy access and luxurious accommodations for out-of-town guests.\r\n                        </p>\r\n                </div>\r\n                <img src={EventsPic} className=\"events-pic\" alt=\"\"></img>\r\n            </div>\r\n        </section>\r\n    )\r\n}\r\nexport default Meetings
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/hotel-management/src/components/Meetings_Section.jsx b/hotel-management/src/components/Meetings_Section.jsx
+--- a/hotel-management/src/components/Meetings_Section.jsx	(revision fbd95a515162973143a5d37f509b22ff69cdb922)
++++ b/hotel-management/src/components/Meetings_Section.jsx	(date 1715976869753)
+@@ -16,7 +16,6 @@
+                 </div>
+             </div>
+             <div className="meetings-content">
+-
+                 <div>
+                     <h2>Events at our hotel</h2>
+                     <p>Plan your special event at [Hotel Name],
