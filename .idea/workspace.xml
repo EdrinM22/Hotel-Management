@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="84199c42-e873-4eb3-a4b8-42eb3a1ad920" name="Changes" comment="just fuck it">
-      <change beforePath="$PROJECT_DIR$/hotel-management/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-management/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-management/src/components/ContactUsInquiry.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-management/src/components/ContactUsInquiry.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +141,7 @@
       <workItem from="1716202880919" duration="4892000" />
       <workItem from="1716228752258" duration="11236000" />
       <workItem from="1716469029070" duration="2777000" />
-      <workItem from="1716536118253" duration="652000" />
+      <workItem from="1716536118253" duration="2581000" />
     </task>
     <task id="LOCAL-00001" summary="Bug Fix">
       <option name="closed" value="true" />
@@ -270,7 +271,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716276423991</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="just fuck it">
+      <option name="closed" value="true" />
+      <created>1716537003709</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1716537003709</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

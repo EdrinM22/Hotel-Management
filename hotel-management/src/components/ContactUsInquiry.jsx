@@ -32,7 +32,7 @@ const ContactUsInquiry = () => {
     }, []);
 
     return (
-        <div>
+        <div style={{minHeight: '75vh'}}>
             {errorMessage && <p className="error-message">{errorMessage}</p>}
             {contacts.map(contact => (
                 <div className="contact-card" key={contact.id}>
@@ -40,7 +40,7 @@ const ContactUsInquiry = () => {
                         <span>{contact.name} {contact.surname}</span>
                         <span>{contact.email}</span>
                         <span>{contact.phone}</span>
-                        <button className="delete-button">Delete</button>
+                        {/*<button className="delete-button">Delete</button>*/}
                     </div>
                     <textarea 
                         className="contact-message" 
