@@ -80,7 +80,7 @@ export default function AddRoomTypeForm({}) {
 			type_name: newRoomTypeInfo.type_name,
 			price: parseInt(newRoomTypeInfo.price, 10),
 			size: parseInt(newRoomTypeInfo.capacity, 10),
-			main_image: newRoomTypeInfo.room_image.name,
+			main_image: newRoomTypeInfo.room_image,
 		};
 
 		// console.log(roomData);
